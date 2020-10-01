@@ -16,6 +16,8 @@ import useTokenBalance from '../../../hooks/useTokenBalance'
 import useSushi from '../../../hooks/useSushi'
 import { getSushiAddress, getSushiSupply } from '../../../sushi/utils'
 import { getBalanceNumber } from '../../../utils/formatBalance'
+import useBest from '../../../hooks/useBest'
+import { getTotalSupply } from '../../../utils/erc20'
 
 const PendingRewards: React.FC = () => {
   const [start, setStart] = useState(0)
@@ -71,19 +73,19 @@ const PendingRewards: React.FC = () => {
 
 const Balances: React.FC = () => {
   const [totalSupply, setTotalSupply] = useState<BigNumber>()
-  const sushi = useSushi()
-  const sushiBalance = useTokenBalance(getSushiAddress(sushi))
+  const best = useBest()
+  const sushiBalance = useTokenBalance(best.address)
   const { account, ethereum }: { account: any; ethereum: any } = useWallet()
 
   useEffect(() => {
     async function fetchTotalSupply() {
-      const supply = await getSushiSupply(sushi)
+      const supply = new BigNumber(await getTotalSupply(ethereum, best.address))
       setTotalSupply(supply)
     }
-    if (sushi) {
+    if (best) {
       fetchTotalSupply()
     }
-  }, [sushi, setTotalSupply])
+  }, [best, setTotalSupply])
 
   return (
     <StyledWrapper>
@@ -94,7 +96,7 @@ const Balances: React.FC = () => {
               <SushiIcon />
               <Spacer />
               <div style={{ flex: 1 }}>
-                <Label text="Your SUSHI Balance" />
+                <Label text="Your BEST Balance" />
                 <Value
                   value={!!account ? getBalanceNumber(sushiBalance) : 'Locked'}
                 />
@@ -113,7 +115,7 @@ const Balances: React.FC = () => {
 
       <Card>
         <CardContent>
-          <Label text="Total SUSHI Supply" />
+          <Label text="Total BEST Supply" />
           <Value
             value={totalSupply ? getBalanceNumber(totalSupply) : 'Locked'}
           />

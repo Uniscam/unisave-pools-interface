@@ -1,6 +1,7 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
+import { useWallet } from 'use-wallet'
 import { Contract } from 'web3-eth-contract'
 import Button from '../../../components/Button'
 import Card from '../../../components/Card'
@@ -24,16 +25,19 @@ import WithdrawModal from './WithdrawModal'
 interface StakeProps {
   lpContract: Contract
   pid: number
-  tokenName: string
+  tokenName: string,
+  isWBNB: boolean,
 }
 
-const Stake: React.FC<StakeProps> = ({ lpContract, pid, tokenName }) => {
+const Stake: React.FC<StakeProps> = ({ lpContract, pid, tokenName, isWBNB }) => {
   const [requestedApproval, setRequestedApproval] = useState(false)
 
-  const allowance = useAllowance(lpContract)
-  const { onApprove } = useApprove(lpContract)
+  const { balance } = useWallet();
+  const allowance = useAllowance(lpContract, pid)
+  const { onApprove } = useApprove(lpContract, pid)
 
   const tokenBalance = useTokenBalance(lpContract.options.address)
+
   const stakedBalance = useStakedBalance(pid)
 
   const { onStake } = useStake(pid)
@@ -41,7 +45,7 @@ const Stake: React.FC<StakeProps> = ({ lpContract, pid, tokenName }) => {
 
   const [onPresentDeposit] = useModal(
     <DepositModal
-      max={tokenBalance}
+      max={isWBNB ? new BigNumber(balance) : tokenBalance}
       onConfirm={onStake}
       tokenName={tokenName}
     />,
@@ -60,6 +64,7 @@ const Stake: React.FC<StakeProps> = ({ lpContract, pid, tokenName }) => {
       setRequestedApproval(true)
       const txHash = await onApprove()
       // user rejected tx or didn't go thru
+      console.warn(txHash)
       if (!txHash) {
         setRequestedApproval(false)
       }
@@ -78,7 +83,7 @@ const Stake: React.FC<StakeProps> = ({ lpContract, pid, tokenName }) => {
             <Label text={`${tokenName} Tokens Staked`} />
           </StyledCardHeader>
           <StyledCardActions>
-            {!allowance.toNumber() ? (
+            {!isWBNB && !allowance.toNumber() ? (
               <Button
                 disabled={requestedApproval}
                 onClick={handleApprove}

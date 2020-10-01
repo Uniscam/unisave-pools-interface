@@ -1,9 +1,9 @@
 import { useContext } from 'react'
 import { Context as FarmsContext, Farm } from '../contexts/Farms'
 
-const useFarm = (id: string): Farm => {
+const useFarm = (id: string | number): Farm => {
   const { farms } = useContext(FarmsContext)
-  const farm = farms.find((farm) => farm.id === id)
+  const farm = typeof id === 'string' ? farms.find((farm) => farm.id === id) : farms.find(farm => farm.pid === id)
   return farm
 }
 

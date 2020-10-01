@@ -30,8 +30,8 @@ interface StakeProps {
 const Stake: React.FC<StakeProps> = ({ lpContract, pid, tokenName }) => {
   const [requestedApproval, setRequestedApproval] = useState(false)
 
-  const allowance = useAllowance(lpContract)
-  const { onApprove } = useApprove(lpContract)
+  const allowance = useAllowance(lpContract, pid)
+  const { onApprove } = useApprove(lpContract, pid)
 
   const tokenBalance = useTokenBalance(lpContract.options.address)
   const stakedBalance = useStakedBalance(pid)

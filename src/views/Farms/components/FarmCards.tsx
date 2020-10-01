@@ -94,7 +94,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
   const [harvestable, setHarvestable] = useState(0)
 
   const { account } = useWallet()
-  const { lpTokenAddress } = farm
+  const { stakingTokenAddress } = farm
   const sushi = useSushi()
 
   const renderer = (countdownProps: CountdownRenderProps) => {
@@ -114,7 +114,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
       if (sushi) return
       const earned = await getEarned(
         getMasterChefContract(sushi),
-        lpTokenAddress,
+        stakingTokenAddress,
         account,
       )
       setHarvestable(bnToDec(earned))
@@ -122,7 +122,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
     if (sushi && account) {
       fetchEarned()
     }
-  }, [sushi, lpTokenAddress, account, setHarvestable])
+  }, [sushi, stakingTokenAddress, account, setHarvestable])
 
   const poolActive = true // startTime * 1000 - Date.now() <= 0
 
@@ -132,10 +132,10 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
       <Card>
         <CardContent>
           <StyledContent>
-            <CardIcon>{farm.icon}</CardIcon>
+            <CardIcon>{}</CardIcon>
             <StyledTitle>{farm.name}</StyledTitle>
             <StyledDetails>
-              <StyledDetail>Deposit {farm.lpToken.toUpperCase()}</StyledDetail>
+              <StyledDetail>Deposit {farm.stakingToken.toUpperCase()}</StyledDetail>
               <StyledDetail>Earn {farm.earnToken.toUpperCase()}</StyledDetail>
             </StyledDetails>
             <Spacer />
@@ -151,7 +151,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
                 />
               )}
             </Button>
-            <StyledInsight>
+            {/* <StyledInsight>
               <span>APY</span>
               <span>
                 {farm.apy
@@ -162,7 +162,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
                       .slice(0, -1)}%`
                   : 'Loading ...'}
               </span>
-              {/* <span>
+              <span>
                 {farm.tokenAmount
                   ? (farm.tokenAmount.toNumber() || 0).toLocaleString('en-US')
                   : '-'}{' '}
@@ -173,8 +173,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
                   ? (farm.wethAmount.toNumber() || 0).toLocaleString('en-US')
                   : '-'}{' '}
                 ETH
-              </span> */}
-            </StyledInsight>
+              </span>
+            </StyledInsight> */}
           </StyledContent>
         </CardContent>
       </Card>
@@ -183,7 +183,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
 }
 
 const RainbowLight = keyframes`
-  
+
 	0% {
 		background-position: 0% 50%;
 	}

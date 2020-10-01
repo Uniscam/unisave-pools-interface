@@ -32,26 +32,33 @@ const useAllStakedValue = () => {
   const block = useBlock()
 
   const fetchAllStakedValue = useCallback(async () => {
-    const balances: Array<StakedValue> = await Promise.all(
-      farms.map(
-        ({
-          pid,
-          lpContract,
-          tokenContract,
-        }: {
-          pid: number
-          lpContract: Contract
-          tokenContract: Contract
-        }) =>
-          getTotalLPWethValue(
-            masterChefContract,
-            wethContact,
-            lpContract,
-            tokenContract,
-            pid,
-          ),
-      ),
-    )
+    // const balances: Array<StakedValue> = await Promise.all(
+    //   farms.map(
+    //     ({
+    //       pid,
+    //       lpContract,
+    //       tokenContract,
+    //     }: {
+    //       pid: number
+    //       lpContract: Contract
+    //       tokenContract: Contract
+    //     }) =>
+    //       getTotalLPWethValue(
+    //         masterChefContract,
+    //         wethContact,
+    //         lpContract,
+    //         tokenContract,
+    //         pid,
+    //       ),
+    //   ),
+    // )
+    const balances: Array<StakedValue> = farms.map(() => ({
+      tokenAmount: new BigNumber(0),
+      wethAmount: new BigNumber(0),
+      totalWethValue: new BigNumber(0),
+      tokenPriceInWeth: new BigNumber(0),
+      poolWeight: new BigNumber(0),
+    }))
 
     setBalance(balances)
   }, [account, masterChefContract, sushi])

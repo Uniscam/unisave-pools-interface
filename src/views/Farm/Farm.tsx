@@ -17,20 +17,18 @@ const Farm: React.FC = () => {
   const { farmId } = useParams()
   const {
     pid,
-    lpToken,
-    lpTokenAddress,
-    tokenAddress,
+    stakingToken,
+    stakingTokenAddress,
     earnToken,
     name,
-    icon,
+    shouldWrapBNB,
   } = useFarm(farmId) || {
     pid: 0,
-    lpToken: '',
-    lpTokenAddress: '',
-    tokenAddress: '',
+    stakingToken: '',
+    stakingTokenAddress: '',
     earnToken: '',
     name: '',
-    icon: '',
+    shouldWrapBNB: false,
   }
 
   useEffect(() => {
@@ -41,14 +39,14 @@ const Farm: React.FC = () => {
   const { ethereum } = useWallet()
 
   const lpContract = useMemo(() => {
-    return getContract(ethereum as provider, lpTokenAddress)
-  }, [ethereum, lpTokenAddress])
+    return getContract(ethereum as provider, stakingTokenAddress)
+  }, [ethereum, stakingTokenAddress])
 
   const { onRedeem } = useRedeem(getMasterChefContract(sushi))
 
   const lpTokenName = useMemo(() => {
-    return lpToken.toUpperCase()
-  }, [lpToken])
+    return stakingToken.toUpperCase()
+  }, [stakingToken])
 
   const earnTokenName = useMemo(() => {
     return earnToken.toUpperCase()
@@ -57,7 +55,7 @@ const Farm: React.FC = () => {
   return (
     <>
       <PageHeader
-        icon={icon}
+        icon=""
         subtitle={`Deposit ${lpTokenName}  Tokens and earn ${earnTokenName}`}
         title={name}
       />
@@ -69,9 +67,10 @@ const Farm: React.FC = () => {
           <Spacer />
           <StyledCardWrapper>
             <Stake
-              lpContract={lpContract}
               pid={pid}
-              tokenName={lpToken.toUpperCase()}
+              lpContract={lpContract}
+              tokenName={stakingToken.toUpperCase()}
+              isWBNB={shouldWrapBNB}
             />
           </StyledCardWrapper>
         </StyledCardsWrapper>

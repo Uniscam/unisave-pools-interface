@@ -8,29 +8,26 @@ import { Contract } from 'web3-eth-contract'
 
 import { getAllowance } from '../utils/erc20'
 import { getMasterChefContract } from '../sushi/utils'
+import useFarm from './useFarm'
 
-const useAllowance = (lpContract: Contract) => {
+const useAllowance = (lpContract: Contract, pid: number) => {
   const [allowance, setAllowance] = useState(new BigNumber(0))
-  const { account }: { account: string; ethereum: provider } = useWallet()
-  const sushi = useSushi()
-  const masterChefContract = getMasterChefContract(sushi)
+  const { account } = useWallet()
+  const farm = useFarm(pid)
 
   const fetchAllowance = useCallback(async () => {
-    const allowance = await getAllowance(
-      lpContract,
-      masterChefContract,
-      account,
-    )
+    const allowance = await lpContract.methods.allowance(account, farm.poolAddress).call()
+    console.warn(allowance)
     setAllowance(new BigNumber(allowance))
-  }, [account, masterChefContract, lpContract])
+  }, [account, farm, lpContract])
 
   useEffect(() => {
-    if (account && masterChefContract && lpContract) {
+    if (account && farm && lpContract) {
       fetchAllowance()
     }
     let refreshInterval = setInterval(fetchAllowance, 10000)
     return () => clearInterval(refreshInterval)
-  }, [account, masterChefContract, lpContract])
+  }, [account, farm, lpContract])
 
   return allowance
 }

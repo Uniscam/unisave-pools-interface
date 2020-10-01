@@ -1,20 +1,32 @@
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
+import { provider } from 'web3-core'
 
 import useSushi from './useSushi'
 import { useWallet } from 'use-wallet'
 
 import { harvest, getMasterChefContract } from '../sushi/utils'
+import { getContract } from '../utils/pool'
+import useFarm from './useFarm'
 
 const useReward = (pid: number) => {
-  const { account } = useWallet()
-  const sushi = useSushi()
-  const masterChefContract = getMasterChefContract(sushi)
+  const { account, ethereum } = useWallet()
+  const farm = useFarm(pid)
+
+  const contract = useMemo(() => {
+    return getContract(ethereum as provider, farm.poolAddress)
+  }, [ethereum, farm.poolAddress])
 
   const handleReward = useCallback(async () => {
-    const txHash = await harvest(masterChefContract, pid, account)
-    console.log(txHash)
-    return txHash
-  }, [account, pid, sushi])
+      const txHash = await contract.methods
+      .getReward()
+      .send({ from: account })
+      .on('transactionHash', (tx: any) => {
+        console.log(tx)
+        return tx.transactionHash
+      })
+      console.log(txHash)
+    return ''
+  }, [account, pid])
 
   return { onReward: handleReward }
 }

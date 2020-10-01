@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { provider } from 'web3-core'
 
 import BigNumber from 'bignumber.js'
@@ -7,27 +7,30 @@ import { useWallet } from 'use-wallet'
 import { getEarned, getMasterChefContract } from '../sushi/utils'
 import useSushi from './useSushi'
 import useBlock from './useBlock'
+import { getContract } from '../utils/pool'
+import useFarm from './useFarm'
 
 const useEarnings = (pid: number) => {
   const [balance, setBalance] = useState(new BigNumber(0))
-  const {
-    account,
-    ethereum,
-  }: { account: string; ethereum: provider } = useWallet()
-  const sushi = useSushi()
-  const masterChefContract = getMasterChefContract(sushi)
-  const block = useBlock()
+  const { account, ethereum } = useWallet()
+  const farm = useFarm(pid)
+
+  const contract = useMemo(() => {
+    return getContract(ethereum as provider, farm.poolAddress)
+  }, [ethereum, farm.poolAddress])
 
   const fetchBalance = useCallback(async () => {
-    const balance = await getEarned(masterChefContract, pid, account)
+    const balance = await contract.methods.earned(account).call();
     setBalance(new BigNumber(balance))
-  }, [account, masterChefContract, sushi])
+  }, [account, pid, contract])
 
   useEffect(() => {
-    if (account && masterChefContract && sushi) {
+    if (account && contract) {
       fetchBalance()
     }
-  }, [account, block, masterChefContract, setBalance, sushi])
+    let refreshInterval = setInterval(fetchBalance, 10000)
+    return () => clearInterval(refreshInterval)
+  }, [account, pid, setBalance, contract])
 
   return balance
 }

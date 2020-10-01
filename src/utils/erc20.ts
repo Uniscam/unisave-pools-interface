@@ -43,3 +43,18 @@ export const getBalance = async (
     return '0'
   }
 }
+
+export const getTotalSupply = async (
+  provider: provider,
+  tokenAddress: string,
+): Promise<string> => {
+  const lpContract = getContract(provider, tokenAddress)
+  try {
+    const balance: string = await lpContract.methods
+      .totalSupply()
+      .call()
+    return balance
+  } catch (e) {
+    return '0'
+  }
+}

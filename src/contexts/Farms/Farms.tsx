@@ -1,28 +1,42 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
 import { useWallet } from 'use-wallet'
-import useSushi from '../../hooks/useSushi'
+import { Pools } from '../../constants/pools'
 
 import { bnToDec } from '../../utils'
-import { getMasterChefContract, getEarned } from '../../sushi/utils'
-import { getFarms } from '../../sushi/utils'
 
 import Context from './context'
 import { Farm } from './types'
 
 const Farms: React.FC = ({ children }) => {
-  const [unharvested, setUnharvested] = useState(0)
+  const { chainId } = useWallet()
 
-  const sushi = useSushi()
-  const { account } = useWallet()
-
-  const farms = getFarms(sushi)
+  const farms: Array<Farm> = Pools.filter(pool => (pool.poolAddresses as any)[chainId]).map(
+    ({
+      poolAddresses,
+      name,
+      symbol,
+      tokenSymbol,
+      stakingTokenAddresses,
+      shouldWrapBNB,
+    }: any, index) => ({
+      pid: index,
+      id: symbol,
+      name,
+      poolAddress: poolAddresses[chainId],
+      stakingToken: symbol,
+      stakingTokenAddress: stakingTokenAddresses[chainId],
+      tokenSymbol,
+      earnToken: 'best',
+      earnTokenAddress: '0x36eb1b02cB7Be3ffA1eE7Bd2A3c7D036002730F7',
+      shouldWrapBNB,
+    }),
+  );
 
   return (
     <Context.Provider
       value={{
         farms,
-        unharvested,
       }}
     >
       {children}
