@@ -14,6 +14,7 @@ import theme from './theme'
 import Farms from './views/Farms'
 import Home from './views/Home'
 // import Stake from './views/Stake'
+import Shop from './views/Shop'
 
 const App: React.FC = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
@@ -37,6 +38,9 @@ const App: React.FC = () => {
           </Route>
           <Route path="/farms">
             <Farms />
+          </Route>
+          <Route path="/shop">
+            <Shop />
           </Route>
         </Switch>
       </Router>
