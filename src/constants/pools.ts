@@ -1,7 +1,7 @@
 export const Pools = [
     {
         poolAddresses: {
-            97: '0xde47e262cE637c39C2f80190301251DD5a973788',
+            97: '0x21a938EB04046347FfD42a97DBfb84e15448eAf0',
         },
         stakingTokenAddresses: {
             97: '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd',
@@ -9,7 +9,7 @@ export const Pools = [
         name: 'BNB',
         symbol: 'BNB',
         tokenSymbol: 'BNB',
-        shouldWrapBNB: true,
+        isWBNB: true,
     },
     {
         poolAddresses: {
@@ -21,7 +21,7 @@ export const Pools = [
         name: 'ETH',
         symbol: 'ETH',
         tokenSymbol: 'ETH',
-        shouldWrapBNB: false,
+        isWBNB: false,
     },
     {
         poolAddresses: {
@@ -33,7 +33,7 @@ export const Pools = [
         name: 'BTCB',
         symbol: 'BTCB',
         tokenSymbol: 'BTCB',
-        shouldWrapBNB: false,
+        isWBNB: false,
     },
     {
         poolAddresses: {
@@ -45,7 +45,7 @@ export const Pools = [
         name: 'USDT',
         symbol: 'USDT',
         tokenSymbol: 'USDT',
-        shouldWrapBNB: false,
+        isWBNB: false,
     },
     {
         poolAddresses: {
@@ -57,6 +57,6 @@ export const Pools = [
         name: 'BUSD',
         symbol: 'BUSD',
         tokenSymbol: 'BUSD',
-        shouldWrapBNB: false,
+        isWBNB: false,
     },
 ]

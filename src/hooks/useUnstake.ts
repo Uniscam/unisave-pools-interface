@@ -7,7 +7,6 @@ import { useWallet } from 'use-wallet'
 import { unstake, getMasterChefContract } from '../sushi/utils'
 import useFarm from './useFarm'
 import { getContract } from '../utils/pool'
-import { getContract as getWBNBContract } from '../utils/wbnb'
 import BigNumber from 'bignumber.js'
 
 const useUnstake = (pid: number) => {
@@ -30,12 +29,6 @@ const useUnstake = (pid: number) => {
         console.log(tx)
         return tx.transactionHash
       })
-
-      if (farm.shouldWrapBNB) {
-        const wbnbContract = getWBNBContract(ethereum as provider, farm.stakingTokenAddress)
-
-        await wbnbContract.methods.withdraw(value).send({ from: account })
-      }
     },
     [account, pid, contract],
   )

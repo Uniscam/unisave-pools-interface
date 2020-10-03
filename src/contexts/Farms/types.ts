@@ -10,7 +10,7 @@ export interface Farm {
   earnTokenAddress: string
   id: string
   tokenSymbol: string,
-  shouldWrapBNB: boolean,
+  isWBNB: boolean,
 }
 
 export interface FarmsContext {

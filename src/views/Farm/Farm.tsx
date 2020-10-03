@@ -21,14 +21,14 @@ const Farm: React.FC = () => {
     stakingTokenAddress,
     earnToken,
     name,
-    shouldWrapBNB,
+    isWBNB,
   } = useFarm(farmId) || {
     pid: 0,
     stakingToken: '',
     stakingTokenAddress: '',
     earnToken: '',
     name: '',
-    shouldWrapBNB: false,
+    isWBNB: false,
   }
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const Farm: React.FC = () => {
               pid={pid}
               lpContract={lpContract}
               tokenName={stakingToken.toUpperCase()}
-              isWBNB={shouldWrapBNB}
+              isWBNB={isWBNB}
             />
           </StyledCardWrapper>
         </StyledCardsWrapper>

@@ -7,7 +7,6 @@ import { useWallet } from 'use-wallet'
 import { stake, getMasterChefContract } from '../sushi/utils'
 import useFarm from './useFarm'
 import { getContract } from '../utils/pool'
-import { getContract as getWBNBContract } from '../utils/wbnb'
 import BigNumber from 'bignumber.js'
 
 const useStake = (pid: number) => {
@@ -22,17 +21,11 @@ const useStake = (pid: number) => {
     async (amount: string) => {
       const value = new BigNumber(amount).times(new BigNumber(10).pow(18)).toString()
 
-      if (farm.shouldWrapBNB) {
-        const wbnbContract = getWBNBContract(ethereum as provider, farm.stakingTokenAddress)
+      const call = !farm.isWBNB
+        ? contract.methods.stake(value).send({ from: account })
+        : contract.methods.stake().send({ from: account, value })
 
-        await wbnbContract.methods.deposit().send({ from: account, value })
-        await wbnbContract.methods.approve(farm.poolAddress, value).send({ from: account })
-      }
-
-      const txHash = await contract.methods
-      .stake(value)
-      .send({ from: account })
-      .on('transactionHash', (tx: any) => {
+      const txHash = call.on('transactionHash', (tx: any) => {
         console.log(tx)
         return tx.transactionHash
       })
