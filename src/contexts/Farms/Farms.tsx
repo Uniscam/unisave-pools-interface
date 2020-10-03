@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
 
 import { useWallet } from 'use-wallet'
 import { Pools } from '../../constants/pools'
 
-import { bnToDec } from '../../utils'
+// import { bnToDec } from '../../utils'
 
 import Context from './context'
 import { Farm } from './types'

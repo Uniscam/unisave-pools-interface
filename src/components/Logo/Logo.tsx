@@ -6,7 +6,7 @@ import chef from '../../assets/img/chef.png'
 const Logo: React.FC = () => {
   return (
     <StyledLogo to="/">
-      <img src={chef} height="32" style={{ marginTop: -4 }} />
+      <img src={chef} height="32" style={{ marginTop: -4 }} alt="logo" />
       <StyledText>
         SushiSwap <MasterChefText>MasterChef</MasterChefText>
       </StyledText>

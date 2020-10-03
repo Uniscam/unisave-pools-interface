@@ -6,6 +6,7 @@ BigNumber.config({
   DECIMAL_PLACES: 80,
 })
 
+// eslint-disable-next-line no-unused-vars
 const GAS_LIMIT = {
   STAKING: {
     DEFAULT: 200000,

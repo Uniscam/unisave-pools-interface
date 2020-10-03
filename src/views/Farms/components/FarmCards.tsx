@@ -24,7 +24,7 @@ interface FarmWithStakedValue extends Farm, StakedValue {
 
 const FarmCards: React.FC = () => {
   const [farms] = useFarms()
-  const { account } = useWallet()
+  // const { account } = useWallet()
   const stakedValue = useAllStakedValue()
 
   const sushiIndex = farms.findIndex(
@@ -90,7 +90,9 @@ interface FarmCardProps {
 }
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [startTime, setStartTime] = useState(0)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [harvestable, setHarvestable] = useState(0)
 
   const { account } = useWallet()
@@ -281,20 +283,20 @@ const StyledDetail = styled.div`
   color: ${(props) => props.theme.color.grey[500]};
 `
 
-const StyledInsight = styled.div`
-  display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-  border-radius: 8px;
-  background: #fffdfa;
-  color: #aa9584;
-  width: 100%;
-  margin-top: 12px;
-  line-height: 32px;
-  font-size: 13px;
-  border: 1px solid #e6dcd5;
-  text-align: center;
-  padding: 0 12px;
-`
+// const StyledInsight = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   box-sizing: border-box;
+//   border-radius: 8px;
+//   background: #fffdfa;
+//   color: #aa9584;
+//   width: 100%;
+//   margin-top: 12px;
+//   line-height: 32px;
+//   font-size: 13px;
+//   border: 1px solid #e6dcd5;
+//   text-align: center;
+//   padding: 0 12px;
+// `
 
 export default FarmCards

@@ -1,10 +1,10 @@
 import { useCallback, useMemo } from 'react'
 import { provider } from 'web3-core'
 
-import useSushi from './useSushi'
+// import useSushi from './useSushi'
 import { useWallet } from 'use-wallet'
 
-import { unstake, getMasterChefContract } from '../sushi/utils'
+// import { unstake, getMasterChefContract } from '../sushi/utils'
 import useFarm from './useFarm'
 import { getContract } from '../utils/pool'
 import BigNumber from 'bignumber.js'
@@ -29,8 +29,9 @@ const useUnstake = (pid: number) => {
         console.log(tx)
         return tx.transactionHash
       })
+      console.log(txHash)
     },
-    [account, pid, contract],
+    [account, contract],
   )
 
   return { onUnstake: handleUnstake }

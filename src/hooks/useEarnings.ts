@@ -4,9 +4,9 @@ import { provider } from 'web3-core'
 import BigNumber from 'bignumber.js'
 import { useWallet } from 'use-wallet'
 
-import { getEarned, getMasterChefContract } from '../sushi/utils'
-import useSushi from './useSushi'
-import useBlock from './useBlock'
+// import { getEarned, getMasterChefContract } from '../sushi/utils'
+// import useSushi from './useSushi'
+// import useBlock from './useBlock'
 import { getContract } from '../utils/pool'
 import useFarm from './useFarm'
 
@@ -22,7 +22,7 @@ const useEarnings = (pid: number) => {
   const fetchBalance = useCallback(async () => {
     const balance = await contract.methods.earned(account).call();
     setBalance(new BigNumber(balance))
-  }, [account, pid, contract])
+  }, [account, contract])
 
   useEffect(() => {
     if (account && contract) {
@@ -30,7 +30,7 @@ const useEarnings = (pid: number) => {
     }
     let refreshInterval = setInterval(fetchBalance, 10000)
     return () => clearInterval(refreshInterval)
-  }, [account, pid, setBalance, contract])
+  }, [account, pid, setBalance, contract, fetchBalance])
 
   return balance
 }

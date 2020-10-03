@@ -16,6 +16,7 @@ export const Context = createContext<ModalsContext>({
 const Modals: React.FC = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [content, setContent] = useState<React.ReactNode>()
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [modalKey, setModalKey] = useState<string>()
 
   const handlePresent = useCallback((modalContent: React.ReactNode, key?: string) => {
@@ -27,7 +28,7 @@ const Modals: React.FC = ({ children }) => {
   const handleDismiss = useCallback(() => {
     setContent(undefined)
     setIsOpen(false)
-  }, [setContent, setIsOpen, modalKey])
+  }, [setContent, setIsOpen])
 
   return (
     <Context.Provider value={{

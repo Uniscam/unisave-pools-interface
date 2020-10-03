@@ -1,10 +1,10 @@
 import { useCallback, useMemo } from 'react'
 import { provider } from 'web3-core'
 
-import useSushi from './useSushi'
+// import useSushi from './useSushi'
 import { useWallet } from 'use-wallet'
 
-import { harvest, getMasterChefContract } from '../sushi/utils'
+// import { harvest, getMasterChefContract } from '../sushi/utils'
 import { getContract } from '../utils/pool'
 import useFarm from './useFarm'
 
@@ -26,7 +26,7 @@ const useReward = (pid: number) => {
       })
       console.log(txHash)
     return ''
-  }, [account, pid])
+  }, [account, contract.methods])
 
   return { onReward: handleReward }
 }

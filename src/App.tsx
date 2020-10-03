@@ -8,12 +8,12 @@ import TopBar from './components/TopBar'
 import FarmsProvider from './contexts/Farms'
 import ModalsProvider from './contexts/Modals'
 import TransactionProvider from './contexts/Transactions'
-import SushiProvider from './contexts/SushiProvider'
+// import SushiProvider from './contexts/SushiProvider'
 import useModal from './hooks/useModal'
 import theme from './theme'
 import Farms from './views/Farms'
 import Home from './views/Home'
-import Stake from './views/Stake'
+// import Stake from './views/Stake'
 
 const App: React.FC = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
@@ -78,7 +78,7 @@ const Disclaimer: React.FC = () => {
     if (!seenDisclaimer) {
       onPresentDisclaimerModal()
     }
-  }, [])
+  }, [onPresentDisclaimerModal])
 
   return <div />
 }

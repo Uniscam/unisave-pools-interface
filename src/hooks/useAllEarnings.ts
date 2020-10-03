@@ -23,13 +23,13 @@ const useAllEarnings = () => {
       ),
     )
     setBalance(balances)
-  }, [account, masterChefContract, sushi])
+  }, [account, farms, masterChefContract])
 
   useEffect(() => {
     if (account && masterChefContract && sushi) {
       fetchAllBalances()
     }
-  }, [account, block, masterChefContract, setBalance, sushi])
+  }, [account, block, fetchAllBalances, masterChefContract, setBalance, sushi])
 
   return balances
 }

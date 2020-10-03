@@ -13,8 +13,8 @@ import useAllEarnings from '../../../hooks/useAllEarnings'
 import useAllStakedValue from '../../../hooks/useAllStakedValue'
 import useFarms from '../../../hooks/useFarms'
 import useTokenBalance from '../../../hooks/useTokenBalance'
-import useSushi from '../../../hooks/useSushi'
-import { getSushiAddress, getSushiSupply } from '../../../sushi/utils'
+// import useSushi from '../../../hooks/useSushi'
+// import { getSushiAddress, getSushiSupply } from '../../../sushi/utils'
 import { getBalanceNumber } from '../../../utils/formatBalance'
 import useBest from '../../../hooks/useBest'
 import { getTotalSupply } from '../../../utils/erc20'
@@ -36,6 +36,7 @@ const PendingRewards: React.FC = () => {
   const allStakedValue = useAllStakedValue()
 
   if (allStakedValue && allStakedValue.length) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const sumWeth = farms.reduce(
       (c, { id }, i) => c + (allStakedValue[i].totalWethValue.toNumber() || 0),
       0,
@@ -45,7 +46,7 @@ const PendingRewards: React.FC = () => {
   useEffect(() => {
     setStart(end)
     setEnd(sumEarning)
-  }, [sumEarning])
+  }, [end, sumEarning])
 
   return (
     <span
@@ -85,7 +86,7 @@ const Balances: React.FC = () => {
     if (best) {
       fetchTotalSupply()
     }
-  }, [best, setTotalSupply])
+  }, [best, ethereum, setTotalSupply])
 
   return (
     <StyledWrapper>

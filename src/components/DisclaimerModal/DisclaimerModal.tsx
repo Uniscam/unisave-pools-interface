@@ -73,7 +73,7 @@ const DisclaimerModal: React.FC<DisclaimerModal> = ({
   return (
     <Modal>
       <ModalTitle text={`Warning`} />
-      <CardIcon>⚠️</CardIcon>
+      <CardIcon><span role="img" aria-label="Warning">⚠️</span></CardIcon>
       <ModalContent>{modalContent}</ModalContent>
       <ModalActions>{button}</ModalActions>
     </Modal>

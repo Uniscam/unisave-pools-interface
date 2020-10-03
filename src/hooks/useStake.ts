@@ -1,10 +1,10 @@
 import { useCallback, useMemo } from 'react'
 import { provider } from 'web3-core'
 
-import useSushi from './useSushi'
+// import useSushi from './useSushi'
 import { useWallet } from 'use-wallet'
 
-import { stake, getMasterChefContract } from '../sushi/utils'
+// import { stake, getMasterChefContract } from '../sushi/utils'
 import useFarm from './useFarm'
 import { getContract } from '../utils/pool'
 import BigNumber from 'bignumber.js'
@@ -31,7 +31,7 @@ const useStake = (pid: number) => {
       })
       console.log(txHash)
     },
-    [account, pid, contract, farm],
+    [account, contract, farm],
   )
 
   return { onStake: handleStake }

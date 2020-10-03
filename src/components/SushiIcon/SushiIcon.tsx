@@ -14,6 +14,7 @@ const SushiIcon: React.FC<SushiIconProps> = ({ size = 36, v1, v2, v3 }) => (
       fontSize: size,
       filter: v1 ? 'saturate(0.5)' : undefined,
     }}
+    aria-label="Sushi"
   >
     🍣
   </span>

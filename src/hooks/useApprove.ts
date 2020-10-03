@@ -1,12 +1,12 @@
 import { useCallback } from 'react'
 import { ethers } from 'ethers'
 
-import useSushi from './useSushi'
+// import useSushi from './useSushi'
 import { useWallet } from 'use-wallet'
-import { provider } from 'web3-core'
+// import { provider } from 'web3-core'
 import { Contract } from 'web3-eth-contract'
 
-import { approve, getMasterChefContract } from '../sushi/utils'
+// import { approve, getMasterChefContract } from '../sushi/utils'
 import useFarm from './useFarm'
 
 const useApprove = (lpContract: Contract, pid: number) => {

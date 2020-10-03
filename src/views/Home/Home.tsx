@@ -12,7 +12,7 @@ const Home: React.FC = () => {
   return (
     <Page>
       <PageHeader
-        icon={<img src={chef} height={120} />}
+        icon={<img src={chef} height={120} alt="icon" />}
         title="MasterChef is Ready"
         subtitle="Stake Uniswap LP tokens to claim your very own yummy SUSHI!"
       />
@@ -22,7 +22,7 @@ const Home: React.FC = () => {
       </Container>
       <Spacer size="lg" />
       <StyledInfo>
-        🏆<b>Pro Tip</b>: SUSHI-ETH UNI-V2 LP token pool yields TWICE more token
+        <span role="img" aria-label="emoji">🏆</span><b>Pro Tip</b>: SUSHI-ETH UNI-V2 LP token pool yields TWICE more token
         rewards per block.
       </StyledInfo>
       <Spacer size="lg" />
