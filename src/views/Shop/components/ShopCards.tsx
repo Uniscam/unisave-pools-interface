@@ -9,17 +9,20 @@ import Loader from '../../../components/Loader'
 // } from '../../../hooks/useAllStakedValue'
 // import useFarms from '../../../hooks/useFarms'
 import ShopCard, { ShopCardInfo } from './ShopCard'
+import useClaim from '../../../hooks/nft/useClaim'
 
 const ShopCards: React.FC = () => {
+
+  const { onClaim } = useClaim()
 
   const exampleShopList: Array<ShopCardInfo> = [
     {
       name: 'NFT',
-      details: ['Claim NFT'],
+      details: ['Claim 1 NFT'],
       icon: <span role="img" aria-label="icon">📦</span>,
       buttonDisabled: false,
       buttonText: 'Claim',
-      handleClick: () => {}
+      handleClick: onClaim
     },
     {
       name: 'NFT',
