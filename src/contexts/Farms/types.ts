@@ -11,6 +11,8 @@ export interface Farm {
   id: string
   tokenSymbol: string,
   isWBNB: boolean,
+  acceleratorAddress: string,
+  nftSymbol: string,
 }
 
 export interface FarmsContext {
