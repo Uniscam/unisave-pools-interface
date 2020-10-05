@@ -80,7 +80,7 @@ export const supportedPools = [
     name: 'BNB',
     symbol: 'BNB',
     tokenSymbol: 'BNB',
-    icon: '🍣',
+    icon: '🍱',
   },
   {
     pid: 0,
@@ -93,7 +93,7 @@ export const supportedPools = [
     name: 'ETH',
     symbol: 'ETH',
     tokenSymbol: 'ETH',
-    icon: '🍣',
+    icon: '🍱',
   },
   {
     pid: 0,
@@ -106,7 +106,7 @@ export const supportedPools = [
     name: 'BTCB',
     symbol: 'BTCB',
     tokenSymbol: 'BTCB',
-    icon: '🍣',
+    icon: '🍱',
   },
   {
     pid: 0,
@@ -119,7 +119,7 @@ export const supportedPools = [
     name: 'USDT',
     symbol: 'USDT',
     tokenSymbol: 'USDT',
-    icon: '🍣',
+    icon: '🍱',
   },
   {
     pid: 0,
@@ -132,6 +132,6 @@ export const supportedPools = [
     name: 'BUSD',
     symbol: 'BUSD',
     tokenSymbol: 'BUSD',
-    icon: '🍣',
+    icon: '🍱',
   },
 ]

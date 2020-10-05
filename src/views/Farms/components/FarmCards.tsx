@@ -134,7 +134,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
       <Card>
         <CardContent>
           <StyledContent>
-            <CardIcon>{}</CardIcon>
+            <CardIcon>{farm.icon}</CardIcon>
             <StyledTitle>{farm.name}</StyledTitle>
             <StyledDetails>
               <StyledDetail>Deposit {farm.stakingToken.toUpperCase()}</StyledDetail>

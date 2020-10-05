@@ -19,6 +19,7 @@ const Farms: React.FC = ({ children }) => {
       tokenSymbol,
       stakingTokenAddresses,
       isWBNB,
+      icon,
     }: any, index) => ({
       pid: index,
       id: symbol,
@@ -30,6 +31,7 @@ const Farms: React.FC = ({ children }) => {
       earnToken: 'best',
       earnTokenAddress: '0x36eb1b02cB7Be3ffA1eE7Bd2A3c7D036002730F7',
       isWBNB,
+      icon,
     }),
   );
 

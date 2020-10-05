@@ -10,6 +10,7 @@ export const Pools = [
         symbol: 'BNB',
         tokenSymbol: 'BNB',
         isWBNB: true,
+        icon: '🍌',
     },
     {
         poolAddresses: {
@@ -22,6 +23,7 @@ export const Pools = [
         symbol: 'ETH',
         tokenSymbol: 'ETH',
         isWBNB: false,
+        icon: '🍒',
     },
     {
         poolAddresses: {
@@ -34,6 +36,7 @@ export const Pools = [
         symbol: 'BTCB',
         tokenSymbol: 'BTCB',
         isWBNB: false,
+        icon: '🍐',
     },
     {
         poolAddresses: {
@@ -46,6 +49,7 @@ export const Pools = [
         symbol: 'USDT',
         tokenSymbol: 'USDT',
         isWBNB: false,
+        icon: '🍋',
     },
     {
         poolAddresses: {
@@ -58,5 +62,6 @@ export const Pools = [
         symbol: 'BUSD',
         tokenSymbol: 'BUSD',
         isWBNB: false,
+        icon: '🍑',
     },
 ]

@@ -11,6 +11,7 @@ export interface Farm {
   id: string
   tokenSymbol: string,
   isWBNB: boolean,
+  icon: string,
 }
 
 export interface FarmsContext {
