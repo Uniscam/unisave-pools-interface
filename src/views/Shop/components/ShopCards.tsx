@@ -18,7 +18,7 @@ const ShopCards: React.FC = () => {
   const exampleShopList: Array<ShopCardInfo> = [
     {
       name: 'NFT',
-      details: ['Claim 1 NFT'],
+      details: ['Claim 1 Test NFT'],
       icon: <span role="img" aria-label="icon">📦</span>,
       buttonDisabled: false,
       buttonText: 'Claim',
