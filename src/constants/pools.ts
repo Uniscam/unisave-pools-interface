@@ -1,7 +1,7 @@
 export const Pools = [
     {
         poolAddresses: {
-            97: '0xD919DDEef06bB90D013Ef3cAC1d873c3235A0b4B',
+            97: '0x77a271c3B5970E012C77D344AbC8D0Cf08e85516',
         },
         stakingTokenAddresses: {
             97: '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd',
@@ -11,7 +11,6 @@ export const Pools = [
         tokenSymbol: 'BNB',
         isWBNB: true,
         icon: '🍌',
-        nftSymbol: 'TEST',
     },
     {
         poolAddresses: {
@@ -67,6 +66,7 @@ export const Pools = [
         tokenSymbol: 'BUSD',
         isWBNB: false,
         icon: '🍑',
+        nftSymbol: 'TEST',
     },
     {
         poolAddresses: {
