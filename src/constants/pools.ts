@@ -73,7 +73,7 @@ export const Pools = [
             97: '0x1D9AD0412880EC34545B1dC066a9f662Ec843F1E',
         },
         stakingTokenAddresses: {
-            97: '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee',
+            97: '0x2C1E720417dED34cf5ae648de344379E679DFa51',
         },
         name: 'BUSD/BNB',
         symbol: 'BUSD/BNB',
@@ -86,7 +86,7 @@ export const Pools = [
             97: '0x9d7b39511dcf270a0c6eE555D6e190e72E40cbB1',
         },
         stakingTokenAddresses: {
-            97: '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee',
+            97: '0x60A8C5CEB93a453731587d9463657e1c659A8F07',
         },
         name: 'ETH/BNB',
         symbol: 'ETH/BNB',
@@ -99,7 +99,7 @@ export const Pools = [
             97: '0x0a6eC00cB7E1967066fecdD1de158A386Fd40A17',
         },
         stakingTokenAddresses: {
-            97: '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee',
+            97: '0xE19F1D8Bf1186ac4648122fFdd430CD65972af48',
         },
         name: 'USDT/BNB',
         symbol: 'USDT/BNB',

@@ -24,7 +24,7 @@ const Farms: React.FC = ({ children }) => {
       nftSymbol,
     }: any, index) => ({
       pid: index,
-      id: symbol,
+      id: symbol.replace('/', '-'),
       name,
       poolAddress: poolAddresses[chainId],
       stakingToken: symbol,
