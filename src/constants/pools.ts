@@ -60,7 +60,7 @@ export const Pools = [
             97: '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee',
         },
         acceleratorAddresses: {
-            97: '',
+            97: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7',
         },
         name: 'BUSD',
         symbol: 'BUSD',
