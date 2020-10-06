@@ -1,10 +1,10 @@
 export const Accelerators = [
     {
         addresses: {
-            97: '0xC0794497C65e1DB2faD3E5819291a40b84d78D71'
+            97: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
         },
         poolAddresses: {
-            97: '0x21a938EB04046347FfD42a97DBfb84e15448eAf0'
+            97: '0xB9eEe48F597c551843FcC099f90013895B9c7263'
         },
         symbol: 'TEST'
     }
