@@ -1,0 +1,15 @@
+.rel-copy-btn {
+    outline: none;
+    height: 44px;
+    color: black;
+    padding: 0px 20px;
+    border: 2px solid rgb(254, 198, 0);
+    background-color: rgb(254, 198, 0);
+    border-top-right-radius: 999px;
+    border-bottom-right-radius: 999px;
+}
+
+.rel-copy-btn:hover {
+    background-color: #B58804;
+    color: white;
+}
