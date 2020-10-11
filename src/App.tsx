@@ -18,6 +18,7 @@ import Home from './views/Home'
 // import Stake from './views/Stake'
 import Shop from './views/Shop'
 import NFTs from './views/NFTs'
+import Referral from './views/Referral'
 
 const App: React.FC = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
@@ -41,6 +42,9 @@ const App: React.FC = () => {
           </Route>
           <Route path="/farms">
             <Farms />
+          </Route>
+          <Route path="/referral">
+            <Referral/>
           </Route>
           <Route path="/shop">
             <Shop />
