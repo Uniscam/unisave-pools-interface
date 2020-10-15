@@ -16,8 +16,6 @@ import { decryptText, encryptText } from '../../utils/compress'
 
 const Referral: React.FC = () => {
   const [link, setLink] = useState('')
-  const [event, setEvent] = useState<any>([])
-  const [subs, setSubs] = useState<any>([])
   const { account, reset } = useWallet()
   const RefAddress = useReferral()
 
@@ -60,7 +58,8 @@ const Referral: React.FC = () => {
   function rawSha3ToAddress(raw: string): any {
     return '0x' + raw.substring(raw.length - 40, raw.length)
   }
-
+  // @ts-ignore
+  const Ref = new web3.eth.Contract(RefABI, RefAddress.address)
   useEffect(() => {
     let text = ''
     if (account === null) text = 'Unlock Your Wallet First'
@@ -70,8 +69,6 @@ const Referral: React.FC = () => {
       const addr = decryptText(queryParse().l)
       setCookie('invite_id', addr, 9999)
     }
-    // @ts-ignore
-    const Ref = new web3.eth.Contract(RefABI, RefAddress.address)
     if (account) {
       let mySubordinates = new Set()
       Ref.getPastEvents('ReferrerSet', {
@@ -88,9 +85,10 @@ const Referral: React.FC = () => {
           }
         })
         console.log(mySubordinates)
-        // Todo 这个 mySubordinates 就是所有的下家数据
+        // Todo 这个 mySubordinates 就是所有的下家地址数据
       })
     }
+    // eslint-disable-next-line
   }, [link, account, reset])
 
   return (
@@ -99,7 +97,6 @@ const Referral: React.FC = () => {
         <span style={relTitleStyle}>Referral</span>
         <div style={commonDivStyle}>
           <input disabled style={relLinkInputStyle} value={link} />
-          <span>{event}</span>
           <button className="rel-copy-btn" onClick={copyToClipboard(link)}>Copy</button>
         </div>
       </StyledReferralBox>
