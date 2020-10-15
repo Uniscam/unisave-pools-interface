@@ -19,9 +19,11 @@ import useTokenBalance from '../../../hooks/useTokenBalance'
 import useUnstake from '../../../hooks/useUnstake'
 import { getBalanceNumber } from '../../../utils/formatBalance'
 import DepositModal from './DepositModal'
+import DepositModalWithRef from './DepositModalWithRef'
 import WithdrawModal from './WithdrawModal'
 import CardIcon from './CardIcon'
 import HarvestIcon from '../../../assets/img/harvest-icon.png'
+import { getCookie } from '../../../utils/cookie'
 
 interface StakeProps {
   lpContract: Contract
@@ -41,13 +43,21 @@ const Stake: React.FC<StakeProps> = ({ lpContract, pid, tokenName, isWBNB }) => 
 
   const stakedBalance = useStakedBalance(pid)
 
-  const { onStake } = useStake(pid)
+  const { onStake, onStakeWithRef } = useStake(pid)
   const { onUnstake } = useUnstake(pid)
 
   const [onPresentDeposit] = useModal(
     <DepositModal
       max={isWBNB ? new BigNumber(balance) : tokenBalance}
       onConfirm={onStake}
+      tokenName={tokenName}
+    />,
+  )
+
+  const [onPresentDepositWithRef] = useModal(
+    <DepositModalWithRef
+      max={isWBNB ? new BigNumber(balance) : tokenBalance}
+      onConfirm={onStakeWithRef}
       tokenName={tokenName}
     />,
   )
@@ -73,6 +83,25 @@ const Stake: React.FC<StakeProps> = ({ lpContract, pid, tokenName, isWBNB }) => 
       console.log(e)
     }
   }, [onApprove, setRequestedApproval])
+
+  function GetStakeType() {
+    const c = getCookie('invite_id')
+    console.log(c)
+    if (c) {
+      console.log('with ref')
+      return (
+        <IconButton onClick={onPresentDepositWithRef}>
+          <AddIcon />
+        </IconButton>
+      )
+    } else {
+      return (
+        <IconButton onClick={onPresentDeposit}>
+          <AddIcon />
+        </IconButton>
+      )
+    }
+  }
 
   return (
     <Card>
@@ -100,9 +129,7 @@ const Stake: React.FC<StakeProps> = ({ lpContract, pid, tokenName, isWBNB }) => 
                   onClick={onPresentWithdraw}
                 />
                 <StyledActionSpacer />
-                <IconButton onClick={onPresentDeposit}>
-                  <AddIcon />
-                </IconButton>
+                <GetStakeType />
               </>
             )}
           </StyledCardActions>
