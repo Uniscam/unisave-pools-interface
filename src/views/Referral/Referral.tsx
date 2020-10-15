@@ -16,6 +16,11 @@ import { decryptText, encryptText } from '../../utils/compress'
 
 const Referral: React.FC = () => {
   const [link, setLink] = useState('')
+  const [ invitedNum, setInvitedNum ] = useState(0)
+  const [ harvestedNum ] = useState(894382)
+  const [ rebateNum ] = useState(645)
+  const [ rebatePercent ] = useState(7)
+
   const { account, reset } = useWallet()
   const RefAddress = useReferral()
 
@@ -85,6 +90,7 @@ const Referral: React.FC = () => {
           }
         })
         console.log(mySubordinates)
+        setInvitedNum(mySubordinates.size)
         // Todo 这个 mySubordinates 就是所有的下家地址数据
       })
     }
@@ -98,6 +104,40 @@ const Referral: React.FC = () => {
         <div style={commonDivStyle}>
           <input disabled style={relLinkInputStyle} value={link} />
           <button className="rel-copy-btn" onClick={copyToClipboard(link)}>Copy</button>
+        </div>
+        <h3 className="dashboard-title">
+          Dashboard
+        </h3>
+        <div className="dashboard-card">
+          <div className="dashboard-card-invited">
+            <p className="dashboard-card-invited-title">
+              Invited
+            </p>
+            <p className="dashboard-card-invited-value">
+              {invitedNum}
+              <span>People</span>
+            </p>
+          </div>
+          <div className="dashboard-card-col">
+            <div className="dashboard-card-col-label">
+              <p className="dashboard-card-col-label-value">
+                {harvestedNum}
+                <span>Best</span>
+              </p>
+              <p className="dashboard-card-col-label-title">
+                Harvested
+              </p>
+            </div>
+            <div className="dashboard-card-col-label">
+              <p className="dashboard-card-col-label-value">
+                {rebateNum}
+                <span>Best ({rebatePercent}%)</span>
+              </p>
+              <p className="dashboard-card-col-label-title">
+                Rebate
+              </p>
+            </div>
+          </div>
         </div>
       </StyledReferralBox>
     </Page>
