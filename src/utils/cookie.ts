@@ -27,6 +27,7 @@ export function getCookie (cname: string): string {
    * @param {Number} exp     - Cookie 失效的时间，顺延时间，以 天数 为单位
    */
   export function setCookie (cname: string, token: string, exp: number): void {
+    if(getCookie(cname)) clearCookie(cname)
     const date = new Date(Date.now())
     date.setDate(date.getDate() + exp)
   

@@ -4,13 +4,27 @@ import Page from '../../components/Page'
 import { useState } from 'react'
 import "./index.css"
 import { useWallet } from 'use-wallet'
-import { encryptText } from '../../utils/compress'
+import { decryptText, encryptText } from '../../utils/compress'
 
 import theme from '../../theme'
+import { clearCookie, setCookie } from '../../utils/cookie'
 
 const Referral: React.FC = () => {
   const [link, setLink] = useState('')
   const { account, reset } = useWallet()
+
+  const queryParse = (search = window.location.search) => {
+    if (!search) return {}
+    const queryString = search[0] === '?' ? search.substring(1) : search
+    const query: any = {}
+    queryString
+        .split('&')
+        .forEach(queryStr => {
+            const [key, value] = queryStr.split('=')
+            if (key) query[decodeURIComponent(key)] = decodeURIComponent(value)
+        })
+    return query
+  }
 
   function copyToClipboard (link: string): any {
     const text = link
@@ -40,6 +54,10 @@ const Referral: React.FC = () => {
     if (account === null) text = 'Unlock Your Wallet First'
     else text = window.location.origin + '/referral?l=' + encryptText(account)
     setLink(text)
+    if (window.location.search) {
+      const addr = decryptText(queryParse().l)
+      setCookie('invite_id', addr, 9999)
+    }
   }, [link, account, reset])
 
   return (
