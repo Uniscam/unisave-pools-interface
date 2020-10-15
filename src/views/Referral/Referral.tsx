@@ -83,8 +83,6 @@ const Referral: React.FC = () => {
         res.forEach(item => {
           let refRaw = web3.utils.toHex(item.raw.topics[2])
           refRaw = rawSha3ToAddress(refRaw)
-          console.log(account)
-          console.log(refRaw)
           if (refRaw === account.toLocaleLowerCase()) {
             mySubordinates.add(rawSha3ToAddress(web3.utils.toHex(item.raw.topics[1])))
           }
