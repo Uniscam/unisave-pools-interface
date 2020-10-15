@@ -1,17 +1,23 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import Page from '../../components/Page'
 import { useState } from 'react'
-import "./index.css"
 import { useWallet } from 'use-wallet'
-import { decryptText, encryptText } from '../../utils/compress'
 
+import web3 from '../../web3/'
+
+import Page from '../../components/Page'
+import useReferral from '../../hooks/useReferral'
+import RefABI from '../../constants/abi/Ref.json'
+
+import "./index.css"
 import theme from '../../theme'
-import { clearCookie, setCookie } from '../../utils/cookie'
+import { setCookie } from '../../utils/cookie'
+import { decryptText, encryptText } from '../../utils/compress'
 
 const Referral: React.FC = () => {
   const [link, setLink] = useState('')
   const { account, reset } = useWallet()
+  const RefAddress = useReferral()
 
   const queryParse = (search = window.location.search) => {
     if (!search) return {}
@@ -49,6 +55,11 @@ const Referral: React.FC = () => {
     }
   }
 
+  function rawSha3ToAddress(raw: string): any {
+    return '0x' + raw.substring(raw.length - 40, raw.length)
+  }
+  // @ts-ignore
+  const Ref = new web3.eth.Contract(RefABI, RefAddress.address)
   useEffect(() => {
     let text = ''
     if (account === null) text = 'Unlock Your Wallet First'
@@ -58,6 +69,26 @@ const Referral: React.FC = () => {
       const addr = decryptText(queryParse().l)
       setCookie('invite_id', addr, 9999)
     }
+    if (account) {
+      let mySubordinates = new Set()
+      Ref.getPastEvents('ReferrerSet', {
+        fromBlock: 0,
+        toBlock: 'latest'
+      }, (error, res) => {
+        if (error) console.error(error)
+        // @ts-ignore
+        res.forEach(item => {
+          let refRaw = web3.utils.toHex(item.raw.topics[2])
+          refRaw = rawSha3ToAddress(refRaw)
+          if (refRaw === account.toLocaleLowerCase()) {
+            mySubordinates.add(rawSha3ToAddress(web3.utils.toHex(item.raw.topics[1])))
+          }
+        })
+        console.log(mySubordinates)
+        // Todo 这个 mySubordinates 就是所有的下家地址数据
+      })
+    }
+    // eslint-disable-next-line
   }, [link, account, reset])
 
   return (
