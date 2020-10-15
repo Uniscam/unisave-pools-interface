@@ -89,9 +89,13 @@ const Referral: React.FC = () => {
             mySubordinates.add(rawSha3ToAddress(web3.utils.toHex(item.raw.topics[1])))
           }
         })
-        console.log(mySubordinates)
         setInvitedNum(mySubordinates.size)
-        // Todo 这个 mySubordinates 就是所有的下家地址数据
+      })
+
+      // @ts-ignore
+      Ref.methods.score(account).call().then(score => {
+        console.log(score)
+        //返利总数值
       })
     }
     // eslint-disable-next-line
