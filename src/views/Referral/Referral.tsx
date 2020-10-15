@@ -17,9 +17,9 @@ import { decryptText, encryptText } from '../../utils/compress'
 const Referral: React.FC = () => {
   const [link, setLink] = useState('')
   const [ invitedNum, setInvitedNum ] = useState(0)
-  const [ harvestedNum ] = useState(894382)
-  const [ rebateNum ] = useState(645)
-  const [ rebatePercent ] = useState(7)
+  const [ harvestedNum, setHarvestedNum ] = useState(0)
+  const [ rebateNum, setRebateNum ] = useState(0)
+  const [ rebatePercent ] = useState(0.07)
 
   const { account, reset } = useWallet()
   const RefAddress = useReferral()
@@ -64,7 +64,7 @@ const Referral: React.FC = () => {
     return '0x' + raw.substring(raw.length - 40, raw.length)
   }
   // @ts-ignore
-  const Ref = new web3.eth.Contract(RefABI, RefAddress.address)
+  const Ref: any = new web3.eth.Contract(RefABI, RefAddress.address)
   useEffect(() => {
     let text = ''
     if (account === null) text = 'Unlock Your Wallet First'
@@ -79,7 +79,7 @@ const Referral: React.FC = () => {
       Ref.getPastEvents('ReferrerSet', {
         fromBlock: 0,
         toBlock: 'latest'
-      }, (error, res) => {
+      }, (error: any, res: any) => {
         if (error) console.error(error)
         // @ts-ignore
         res.forEach(item => {
@@ -92,23 +92,17 @@ const Referral: React.FC = () => {
         setInvitedNum(mySubordinates.size)
       })
 
-      // @ts-ignore
-      Ref.methods.score(account).call().then(score => {
-        console.log(score)
-        //返利总数值
+      Ref.methods.score(account).call().then((score: any) => {
+        setRebateNum(score)
+        setHarvestedNum(Number((score / rebatePercent).toFixed(3)))
       })
     }
     // eslint-disable-next-line
   }, [link, account, reset])
 
-  return (
-    <Page>
-      <StyledReferralBox>
-        <span style={relTitleStyle}>Referral</span>
-        <div style={commonDivStyle}>
-          <input disabled style={relLinkInputStyle} value={link} />
-          <button className="rel-copy-btn" onClick={copyToClipboard(link)}>Copy</button>
-        </div>
+  function InvitedDashboard() {
+    const dashboardHtml = (
+      <div>
         <h3 className="dashboard-title">
           Dashboard
         </h3>
@@ -135,7 +129,7 @@ const Referral: React.FC = () => {
             <div className="dashboard-card-col-label">
               <p className="dashboard-card-col-label-value">
                 {rebateNum}
-                <span>Best ({rebatePercent}%)</span>
+                <span>Best ({Math.round(rebatePercent * 100)}%)</span>
               </p>
               <p className="dashboard-card-col-label-title">
                 Rebate
@@ -143,6 +137,35 @@ const Referral: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
+    )
+    const notLogged = (
+      <div>
+        <h3 className="dashboard-title">
+          Dashboard
+        </h3>
+        <div className="dashboard-card">
+          <div className="dashboard-card-invited">
+            <p className="dashboard-card-invited-title">
+              Not logged
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+    if (account) return dashboardHtml
+    else return notLogged
+  }
+
+  return (
+    <Page>
+      <StyledReferralBox>
+        <span style={relTitleStyle}>Referral</span>
+        <div style={commonDivStyle}>
+          <input disabled style={relLinkInputStyle} value={link} />
+          <button className="rel-copy-btn" onClick={copyToClipboard(link)}>Copy</button>
+        </div>
+        <InvitedDashboard />
       </StyledReferralBox>
     </Page>
   )
