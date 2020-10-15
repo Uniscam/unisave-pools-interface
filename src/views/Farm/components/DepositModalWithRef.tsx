@@ -32,7 +32,7 @@ const DepositModalWithRef: React.FC<DepositModalProps> = ({
       console.log('inviter is', c)
       setAddr(c)
     }
-  })
+  }, [account])
 
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max)
