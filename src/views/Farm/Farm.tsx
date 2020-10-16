@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { useWallet } from 'use-wallet'
@@ -12,7 +12,8 @@ import useFarm from '../../hooks/useFarm'
 import { getContract } from '../../utils/erc20'
 import Harvest from './components/Harvest'
 import Stake from './components/Stake'
-import TokenIcon from './components/TokenIcon'
+import FarmSingleTokenIcon from './components/FarmSingleTokenIcon'
+import FarmPairTokenIcon from './components/FarmPairTokenIcon'
 
 const Farm: React.FC = () => {
   const { farmId } = useParams<{ farmId?: string}>()
@@ -22,7 +23,6 @@ const Farm: React.FC = () => {
     stakingTokenAddress,
     earnToken,
     isWBNB,
-    icon,
   } = useFarm(farmId) || {
     pid: 0,
     stakingToken: '',
@@ -32,17 +32,9 @@ const Farm: React.FC = () => {
     isWBNB: false,
   }
 
-  const [imagePath, setImagePath ] = useState('')
-  const loadTokenImage = (name: string): void => {
-    import(`../../assets/img/token/${name}.png`).then(path => {
-      setImagePath(path.default)
-    })
-  }
-
   useEffect(() => {
     window.scrollTo(0, 0)
-    loadTokenImage(icon)
-  }, [icon])
+  }, [])
 
   // const sushi = useSushi()
   const { ethereum } = useWallet()
@@ -62,11 +54,9 @@ const Farm: React.FC = () => {
   }, [earnToken])
 
   return (
-    <StyledPage>
-      <Spacer size="lg" />
-      <Spacer size="lg" />
+    <>
       <PageHeader
-        icon={<TokenIcon path={imagePath} />}
+        icon={lpTokenName.includes('/') ? <FarmPairTokenIcon /> : <FarmSingleTokenIcon />}
         title={`Deposit ${lpTokenName} Tokens and earn ${earnTokenName}`}
       />
       <StyledFarm>
@@ -86,17 +76,9 @@ const Farm: React.FC = () => {
         </StyledCardsWrapper>
         <Spacer size="lg" />
       </StyledFarm>
-    </StyledPage>
+    </>
   )
 }
-
-const StyledPage = styled.div`
-  background-color: rgba(0,0,0,0.4);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: -1;
-`
 
 const StyledFarm = styled.div`
   align-items: center;
