@@ -13,6 +13,7 @@ import useAllStakedValue, {
   StakedValue,
 } from '../../../hooks/useAllStakedValue'
 import useFarms from '../../../hooks/useFarms'
+import { useRewardPerToken } from '../../../hooks/useRewardPerToken';
 import useSushi from '../../../hooks/useSushi'
 import { getEarned, getMasterChefContract } from '../../../sushi/utils'
 import { bnToDec } from '../../../utils'
@@ -25,18 +26,20 @@ const FarmCards: React.FC = () => {
   const [farms] = useFarms()
   // const { account } = useWallet()
   const stakedValue = useAllStakedValue()
-
-  const sushiIndex = farms.findIndex(
-    ({ tokenSymbol }) => tokenSymbol === 'SUSHI',
+  const REWARD_TOKEN_SYMBOL = 'EDC'
+  const rewardTokenIndex = farms.findIndex(
+    ({ tokenSymbol }) => tokenSymbol === REWARD_TOKEN_SYMBOL,
   )
 
-  const sushiPrice =
-    sushiIndex >= 0 && stakedValue[sushiIndex]
-      ? stakedValue[sushiIndex].tokenPriceInWeth
+  const sushiPrice = 
+    rewardTokenIndex >= 0 && stakedValue[rewardTokenIndex]
+      ? stakedValue[rewardTokenIndex].tokenPriceInWeth
       : new BigNumber(0)
 
+  console.info('sushiPrice', sushiPrice.toString())
   const BLOCKS_PER_YEAR = new BigNumber(2336000)
   const SUSHI_PER_BLOCK = new BigNumber(1000)
+
 
   const rows = farms.reduce<FarmWithStakedValue[][]>(
     (farmRows, farm, i) => {
@@ -89,6 +92,8 @@ interface FarmCardProps {
 }
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
+  const { rewardPerToken } = useRewardPerToken(farm.poolAddress)
+  const apy = ((Number(rewardPerToken) / (1e18)) * 100).toFixed(2)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [startTime, setStartTime] = useState(0)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -163,7 +168,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
               </StyledDetail>
               <StyledDetail>
                 <StyledDetailSpan>APY</StyledDetailSpan>
-                <StyledDetailSpan>500.38%</StyledDetailSpan>
+                <StyledDetailSpan>{ apy }%</StyledDetailSpan>
               </StyledDetail>
             </StyledDetails>
             <Spacer />
