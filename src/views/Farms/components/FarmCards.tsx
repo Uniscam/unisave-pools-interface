@@ -26,7 +26,7 @@ interface FarmWithStakedValue extends Farm, StakedValue {
 }
 
 const FarmCards: React.FC = () => {
-  const priceOfEDC = useEDCPrice()
+  const edcPrice = useEDCPrice()
   const [farms] = useFarms()
   // const { account } = useWallet()
   const stakedValue = useAllStakedValue()
@@ -35,19 +35,15 @@ const FarmCards: React.FC = () => {
     ({ tokenSymbol }) => tokenSymbol === REWARD_TOKEN_SYMBOL,
   )
 
-  const sushiPrice =
-    rewardTokenIndex >= 0 && stakedValue[rewardTokenIndex]
-      ? stakedValue[rewardTokenIndex].tokenPriceInWeth
-      : new BigNumber(0)
+  const sushiPrice = edcPrice.priceInWETH
+    // rewardTokenIndex >= 0 && stakedValue[rewardTokenIndex]
+    //   ? stakedValue[rewardTokenIndex].tokenPriceInWeth
+    //   : new BigNumber(0)
 
   console.info('sushiPrice', sushiPrice.toString())
   const BLOCKS_PER_YEAR = new BigNumber(2336000)
   const SUSHI_PER_BLOCK = new BigNumber(1000)
 
-  useEffect(() => {
-    console.log('priceOfEDC in WETH', utils.formatUnits(priceOfEDC.priceInWETH, 18))
-    console.log('priceOfEDC in USDT', utils.formatUnits(priceOfEDC.priceInUSDT, 6))
-  })
 
   const rows = farms.reduce<FarmWithStakedValue[][]>(
     (farmRows, farm, i) => {
@@ -176,7 +172,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
               </StyledDetail>
               <StyledDetail>
                 <StyledDetailSpan>APY</StyledDetailSpan>
-                <StyledDetailSpan>500.38%</StyledDetailSpan>
+                <StyledDetailSpan>{ farm.apy }%</StyledDetailSpan>
               </StyledDetail>
             </StyledDetails>
             <Spacer />
