@@ -1,11 +1,11 @@
 {
-  "short_name": "SushiSwap",
-  "name": "Farm SUSHI with Uniswap LP Tokens",
+  "short_name": "Uniswap",
+  "name": "Farm Y3D with Uniswap LP Tokens",
   "icons": [
     {
       "src": "favicon.png",
       "type": "image/png",
-      "sizes": "240x240"
+      "sizes": "128x128"
     }
   ],
   "start_url": ".",
