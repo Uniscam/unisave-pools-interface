@@ -184,16 +184,6 @@ const Referral: React.FC = () => {
     })
   }
 
-  function AddressList(props: any): any {
-    return props.list.map((item: string, index: number) => {
-      return (
-        <p className="address-list-entry">
-          {index + 1}. {item}
-        </p>
-      )
-    })
-  }
-
   return (
     <Page>
       <StyledReferralBox>
