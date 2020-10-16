@@ -93,3 +93,28 @@
     color: #B2B2B2;
     line-height: 20px;
 }
+
+.address-list {
+    max-width: 720px;
+    margin: 24px auto 0;
+}
+
+.address-list-title {
+    margin: 0 0 10px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: #FEC600;
+    line-height: 45px;
+    letter-spacing: 1px;
+}
+
+.address-list-entry {
+    text-align: center;
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #FFD947;
+    line-height: 20px;
+    letter-spacing: 1px;
+}
