@@ -1,5 +1,4 @@
 import BigNumber from 'bignumber.js'
-import { utils } from "ethers";
 import React, { useEffect, useState } from 'react'
 import Countdown, { CountdownRenderProps } from 'react-countdown'
 import styled, { keyframes } from 'styled-components'
@@ -13,7 +12,6 @@ import { Farm } from '../../../contexts/Farms'
 import useAllStakedValue, {
   StakedValue,
 } from '../../../hooks/useAllStakedValue'
-import { useEDCPrice } from '../../../hooks/useEDCPrice'
 import useFarms from '../../../hooks/useFarms'
 import { useRewardPerToken } from '../../../hooks/useRewardPerToken';
 import useSushi from '../../../hooks/useSushi'

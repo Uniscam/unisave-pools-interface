@@ -10,7 +10,7 @@ export function useRewardPerToken(poolAddress: string) {
 
     const contract = useMemo(() => {
         return getContract(ethereum as provider, poolAddress)
-    }, [ethereum])
+    }, [ethereum, poolAddress])
 
     const update = useCallback(async () => {
         const _rewardPerToken = await contract.methods.rewardPerToken().call();
