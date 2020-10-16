@@ -16,10 +16,8 @@ import useAllStakedValue, {
 import { useEDCPrice } from '../../../hooks/useEDCPrice'
 import useFarms from '../../../hooks/useFarms'
 import useSushi from '../../../hooks/useSushi'
-import useTotalSupply from '../../../hooks/useTotalSupply'
 import { getEarned, getMasterChefContract } from '../../../sushi/utils'
 import { bnToDec } from '../../../utils'
-import { getBalanceNumber } from '../../../utils/formatBalance'
 
 interface FarmWithStakedValue extends Farm, StakedValue {
   apy: BigNumber
@@ -103,10 +101,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
   const [imagePath, setImagePath ] = useState('')
 
   const { account } = useWallet()
-  const { stakingTokenAddress, pid, name: symbol } = farm
+  const { stakingTokenAddress } = farm
   const sushi = useSushi()
-
-  const totalSupply = useTotalSupply(pid)
 
   const renderer = (countdownProps: CountdownRenderProps) => {
     const { hours, minutes, seconds } = countdownProps
@@ -191,8 +187,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
             <Spacer />
             <StyledDetails style={{ marginTop: 0 }}>
               <StyledDetail>
-                <StyledDetailSpan>Total Staked</StyledDetailSpan>
-                <StyledDetailSpan>{ getBalanceNumber(totalSupply) } {symbol}</StyledDetailSpan>
+                <StyledDetailSpan>Total Liquidity</StyledDetailSpan>
+                <StyledDetailSpan>$41,270,688</StyledDetailSpan>
               </StyledDetail>
             </StyledDetails>
           </StyledContent>
