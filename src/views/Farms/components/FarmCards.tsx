@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js'
+import { utils } from "ethers";
 import React, { useEffect, useState } from 'react'
 import Countdown, { CountdownRenderProps } from 'react-countdown'
 import styled, { keyframes } from 'styled-components'
@@ -12,6 +13,7 @@ import { Farm } from '../../../contexts/Farms'
 import useAllStakedValue, {
   StakedValue,
 } from '../../../hooks/useAllStakedValue'
+import { useEDCPrice } from '../../../hooks/useEDCPrice'
 import useFarms from '../../../hooks/useFarms'
 import useSushi from '../../../hooks/useSushi'
 import { getEarned, getMasterChefContract } from '../../../sushi/utils'
@@ -22,21 +24,28 @@ interface FarmWithStakedValue extends Farm, StakedValue {
 }
 
 const FarmCards: React.FC = () => {
+  const priceOfEDC = useEDCPrice()
   const [farms] = useFarms()
   // const { account } = useWallet()
   const stakedValue = useAllStakedValue()
-
-  const sushiIndex = farms.findIndex(
-    ({ tokenSymbol }) => tokenSymbol === 'SUSHI',
+  const REWARD_TOKEN_SYMBOL = 'EDC'
+  const rewardTokenIndex = farms.findIndex(
+    ({ tokenSymbol }) => tokenSymbol === REWARD_TOKEN_SYMBOL,
   )
 
   const sushiPrice =
-    sushiIndex >= 0 && stakedValue[sushiIndex]
-      ? stakedValue[sushiIndex].tokenPriceInWeth
+    rewardTokenIndex >= 0 && stakedValue[rewardTokenIndex]
+      ? stakedValue[rewardTokenIndex].tokenPriceInWeth
       : new BigNumber(0)
 
+  console.info('sushiPrice', sushiPrice.toString())
   const BLOCKS_PER_YEAR = new BigNumber(2336000)
   const SUSHI_PER_BLOCK = new BigNumber(1000)
+
+  useEffect(() => {
+    console.log('priceOfEDC in WETH', utils.formatUnits(priceOfEDC.priceInWETH, 18))
+    console.log('priceOfEDC in USDT', utils.formatUnits(priceOfEDC.priceInUSDT, 6))
+  })
 
   const rows = farms.reduce<FarmWithStakedValue[][]>(
     (farmRows, farm, i) => {

@@ -4,7 +4,7 @@ import { utils } from "ethers";
 import { useWallet } from "use-wallet";
 import { getUniswapRouter02 } from "../utils/uniswap";
 
-export async function useEDCPrice() {
+export function useEDCPrice() {
     const { account, ethereum } = useWallet()
     const [ priceInWETH, updatePriceInWETH ] = useState("0")
     const [ priceInUSDT, updatePriceInUSDT ] = useState("0")
@@ -14,24 +14,24 @@ export async function useEDCPrice() {
     }, [ethereum])
 
     const fetchPrice = useCallback(async () => {
-        const inWeth = await contract.methods.getAmountsOut(utils.parseUnits("1", 18), [
+        const [, outputWETH] = await contract.methods.getAmountsOut(utils.parseUnits("1", 18), [
             '0xae66bea480f7a6c91f07c58f2aee185883558fb8', // EDC
             '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' // WETH
         ]).call();
-        const inUSDT = await contract.methods.getAmountsOut(utils.parseUnits("1", 18), [
+        const [,,outputUSDT] = await contract.methods.getAmountsOut(utils.parseUnits("1", 18), [
             '0xae66bea480f7a6c91f07c58f2aee185883558fb8', // EDC
             '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', // WETH
             '0xdAC17F958D2ee523a2206206994597C13D831ec7'
         ]).call();
-        updatePriceInWETH(inWeth)
-        updatePriceInUSDT(inUSDT)
-      }, [account, contract])
+        updatePriceInWETH(outputWETH)
+        updatePriceInUSDT(outputUSDT)
+      }, [contract])
 
       useEffect(() => {
         if (account && contract) {
             fetchPrice()
         }
-      }, [contract])
+      }, [contract, account, fetchPrice])
 
-      return { priceInUSDT, priceInWETH }
+      return { priceInUSDT, priceInWETH, fetchPrice }
 }
