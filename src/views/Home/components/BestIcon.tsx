@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import BestImage from '../../../assets/img/best-icon.png'
+import BestImage from '../../../assets/img/y3d-icon.png'
 
 const BestIcon: React.FC = () => {
   return (
-    <StyledImage src={BestImage} alt='best-icon' />
+    <StyledImage src={BestImage} alt='y3d-icon' />
   )
 }
 
