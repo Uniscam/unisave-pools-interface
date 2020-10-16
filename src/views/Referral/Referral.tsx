@@ -94,6 +94,14 @@ const Referral: React.FC = () => {
         setInvitedNum(mySubordinates.size)
       })
 
+      Ref.getPastEvents('ScoreAdded', {
+        fromBlock: 0,
+        toBlock: 'latest'
+      }, (error: any, res: any) => {
+        if (error) console.error(error)
+        console.log(res)
+      })
+
       Ref.methods.score(account).call().then((score: any) => {
         setRebateNum(score)
         setHarvestedNum(Number((score / rebatePercent).toFixed(3)))
