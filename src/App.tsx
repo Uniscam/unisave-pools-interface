@@ -67,9 +67,9 @@ const Providers: React.FC = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <UseWalletProvider
-        chainId={97}
+        chainId={1}
         connectors={{
-          walletconnect: { rpcUrl: 'https://data-seed-prebsc-1-s1.binance.org:8545/' },
+          walletconnect: { rpcUrl: 'https://mainnet.infura.io/v3/1ca6d03c37aa427a865f3ac6ab23c09a' },
         }}
       >
           <TransactionProvider>
