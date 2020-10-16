@@ -112,7 +112,7 @@ const Balances: React.FC = () => {
           <FootnoteValue>
             <PendingRewards />
             {' '}
-            <span style={{ color: '#FFD201' }}>BEST</span>
+            <span style={{ color: '#6ec0ff' }}>BEST</span>
           </FootnoteValue>
         </Footnote>
       </Card>
@@ -126,7 +126,7 @@ const Balances: React.FC = () => {
         </CardContent>
         <Footnote>
           New rewards per block
-          <FootnoteValue>1,000 <span style={{ color: '#FFD201' }}>BEST</span></FootnoteValue>
+          <FootnoteValue>1,000 <span style={{ color: '#6ec0ff' }}>BEST</span></FootnoteValue>
         </Footnote>
       </Card>
     </StyledWrapper>
@@ -137,7 +137,7 @@ const Footnote = styled.div`
   font-size: 14px;
   padding: 8px 38px;
   color: #000000;
-  border-top: solid 1px #FFE9C7;
+  border-top: solid 1px #6ec0ff;
 `
 const FootnoteValue = styled.div`
   font-family: 'Roboto Mono', monospace;

@@ -46,14 +46,14 @@ const StyledSwitcherWrapper = styled.div`
 
 const StyledSwitcherLine = styled.div`
   width: 100%;
-  border-bottom: 2px solid rgba(255,255,255,0.6);
+  border-bottom: 2px solid #6ec0ff;
   position: absolute;
   bottom: 0;
   z-index: -1;
 `
 
 const StyledSwitcherItem = styled.div<SwitcherItemProps>`
-  color: ${props => props.isActive ? '#FEC600' : '#6E6E6E'};
+  color: ${props => props.isActive ? '#6ec0ff' : '#6E6E6E'};
   font-size: 14px;
   font-weight: 600;
   text-align: center;
@@ -61,11 +61,11 @@ const StyledSwitcherItem = styled.div<SwitcherItemProps>`
   padding-left: 16px;
   padding-right: 16px;
   padding-bottom: 10px;
-  border-bottom: 2px solid ${props => props.isActive ? '#FEC600' : 'transparent'};
+  border-bottom: 2px solid ${props => props.isActive ? '#6ec0ff' : 'transparent'};
   cursor: pointer;
   &:hover {
-    color: #FEC600;
-    border-color: #FEC600;
+    color: #0091FF;
+    border-color: #0091FF;
   }
 `
 

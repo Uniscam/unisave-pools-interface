@@ -112,7 +112,7 @@ const StyledButton = styled.button`
   display: block;
   width: 146px;
   height: 34px;
-  color: #F5C523;
+  color: #6ec0ff;
   background-color: #000000;
   font-size: 10px;
   font-weight: 600;

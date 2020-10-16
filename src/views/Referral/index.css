@@ -3,14 +3,14 @@
     height: 44px;
     color: black;
     padding: 0px 20px;
-    border: 2px solid rgb(254, 198, 0);
-    background-color: rgb(254, 198, 0);
+    border: 2px solid #6ec0ff;
+    background-color: #6ec0ff;
     border-top-right-radius: 999px;
     border-bottom-right-radius: 999px;
 }
 
 .rel-copy-btn:hover {
-    background-color: #B58804;
+    background-color: #0091FF;
     color: white;
 }
 
@@ -20,7 +20,7 @@
     text-align: center;
     font-size: 32px;
     font-weight: 500;
-    color: #FEC600;
+    color: #6ec0ff;
     line-height: 45px;
     letter-spacing: 1px;
 }
@@ -31,7 +31,7 @@
     margin: 24px auto 0;
     background: #333333;
     border-radius: 32px;
-    border: 2px solid #FEC600;
+    border: 2px solid #6ec0ff;
     padding: 24px;
     box-sizing: border-box;
 }
@@ -45,7 +45,7 @@
     margin: 0 0 20px;
     font-size: 16px;
     font-weight: 500;
-    color: #FEC600;
+    color: #6ec0ff;
     line-height: 22px;
 }
 
@@ -54,7 +54,7 @@
     margin: 0;
     font-size: 32px;
     font-weight: 500;
-    color: #FFD947;
+    color: #6ec0ff;
     line-height: 45px;
     letter-spacing: 1px;
 }
@@ -104,7 +104,7 @@
     text-align: center;
     font-size: 24px;
     font-weight: 500;
-    color: #FEC600;
+    color: #6ec0ff;
     line-height: 45px;
     letter-spacing: 1px;
 }
@@ -114,7 +114,7 @@
     margin: 0 0 10px;
     font-size: 14px;
     font-weight: 500;
-    color: #FFD947;
+    color: #6ec0ff;
     line-height: 20px;
     letter-spacing: 1px;
 }

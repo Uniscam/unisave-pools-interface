@@ -23,12 +23,6 @@ const Nav: React.FC = () => {
       <StyledLink exact activeClassName="active" to="/nfts">
         NFTs
       </StyledLink>
-      <StyledAbsoluteLink
-        href="https://medium.com/sushiswap/the-sushiswap-project-c4049ea9941e"
-        target="_blank"
-      >
-        About
-      </StyledAbsoluteLink>
     </StyledNav>
   )
 }
@@ -39,25 +33,6 @@ const StyledNav = styled.nav`
 `
 
 const StyledLink = styled(NavLink)`
-  color: ${(props) => props.theme.color.yellow};
-  font-weight: normal;
-  padding-left: ${(props) => props.theme.spacing[3]}px;
-  padding-right: ${(props) => props.theme.spacing[3]}px;
-  text-decoration: none;
-  &:hover {
-    color: ${(props) => props.theme.color.yellow};
-  }
-  &.active {
-    color: ${(props) => props.theme.color.yellow};
-    font-weight: bold;
-  }
-  @media (max-width: 400px) {
-    padding-left: ${(props) => props.theme.spacing[2]}px;
-    padding-right: ${(props) => props.theme.spacing[2]}px;
-  }
-`
-
-const StyledAbsoluteLink = styled.a`
   color: ${(props) => props.theme.color.yellow};
   font-weight: normal;
   padding-left: ${(props) => props.theme.spacing[3]}px;

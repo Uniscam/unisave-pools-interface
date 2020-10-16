@@ -1,6 +1,6 @@
 export const white = '#FFF'
 export const black = '#000'
-export const yellow = '#FEC600'
+export const yellow = '#6ec0ff'
 
 export const green = {
   500: '##00d1810',
