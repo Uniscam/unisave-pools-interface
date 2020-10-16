@@ -74,7 +74,6 @@ const PendingRewards: React.FC = () => {
 
 const Balances: React.FC = () => {
   const [totalSupply, setTotalSupply] = useState<BigNumber>()
-  const [totalReward, setTotalReward] = useState<BigNumber>()
   const best = useBest()
   const sushiBalance = useTokenBalance(best.address)
   const { account, ethereum }: { account: any; ethereum: any } = useWallet()
@@ -83,7 +82,6 @@ const Balances: React.FC = () => {
     async function fetchTotalSupply() {
       const supply = new BigNumber(await getTotalSupply(ethereum, best.address))
       setTotalSupply(supply)
-      setTotalReward(new BigNumber(0))
     }
     if (best) {
       fetchTotalSupply()
