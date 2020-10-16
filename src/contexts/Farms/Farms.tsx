@@ -32,7 +32,7 @@ const Farms: React.FC = ({ children }) => {
       stakingTokenAddress: stakingTokenAddresses[chainId],
       acceleratorAddress: acceleratorAddresses?.[chainId],
       tokenSymbol,
-      earnToken: 'best',
+      earnToken: 'y3d',
       earnTokenAddress: '0x36eb1b02cB7Be3ffA1eE7Bd2A3c7D036002730F7',
       isWBNB,
       icon,
