@@ -16,5 +16,23 @@ export const Pools = [
         icon: 'y3d',
         nftSymbol: 'TEST',
         magnification: 1,
+    },
+    {
+        poolAddresses: {
+            56: '0xB10fD0F525cBDeCef941a594dD7808427B3e87e2',
+        },
+        stakingTokenAddresses: {
+            56: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
+        },
+        acceleratorAddresses: {
+            56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
+        },
+        name: 'USDT',
+        symbol: 'USDT',
+        tokenSymbol: 'USDT',
+        isWBNB: false,
+        icon: 'y3d',
+        nftSymbol: 'TEST',
+        magnification: 1,
     }
 ]
