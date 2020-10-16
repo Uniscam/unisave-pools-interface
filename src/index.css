@@ -17,6 +17,7 @@ code {
 
 .layout-y3dv2 {
   z-index: -1;
+  filter: brightness(0.7);
   position: fixed;
   top: 0;
   left: 0;
