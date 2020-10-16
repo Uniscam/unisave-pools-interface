@@ -74,6 +74,7 @@ const PendingRewards: React.FC = () => {
 
 const Balances: React.FC = () => {
   const [totalSupply, setTotalSupply] = useState<BigNumber>()
+  const [totalReward, setTotalReward] = useState<BigNumber>()
   const best = useBest()
   const sushiBalance = useTokenBalance(best.address)
   const { account, ethereum }: { account: any; ethereum: any } = useWallet()
@@ -82,6 +83,7 @@ const Balances: React.FC = () => {
     async function fetchTotalSupply() {
       const supply = new BigNumber(await getTotalSupply(ethereum, best.address))
       setTotalSupply(supply)
+      setTotalReward(new BigNumber(0))
     }
     if (best) {
       fetchTotalSupply()
@@ -126,7 +128,7 @@ const Balances: React.FC = () => {
         </CardContent>
         <Footnote>
           New rewards per block
-          <FootnoteValue>1,000 <span style={{ color: '#6ec0ff' }}>Y3D</span></FootnoteValue>
+        <FootnoteValue>0.000 <span style={{ color: '#6ec0ff' }}>Y3D</span></FootnoteValue>
         </Footnote>
       </Card>
     </StyledWrapper>

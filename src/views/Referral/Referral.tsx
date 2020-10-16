@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import { useHistory } from 'react-router-dom'
 import { useState } from 'react'
 import { useWallet } from 'use-wallet'
 
@@ -17,10 +18,10 @@ import { decryptText, encryptText } from '../../utils/compress'
 const Referral: React.FC = () => {
   const [link, setLink] = useState('')
   const [ invitedNum, setInvitedNum ] = useState(0)
-  const [ harvestedNum, setHarvestedNum ] = useState(0)
   const [ rebateNum, setRebateNum ] = useState(0)
   const [ rebatePercent ] = useState(0.07)
   const [ invitedList, setInvitedList ] = useState([])
+  const history = useHistory()
 
   const { account, reset } = useWallet()
   const RefAddress = useReferral()
@@ -67,14 +68,15 @@ const Referral: React.FC = () => {
   // @ts-ignore
   const Ref: any = new web3.eth.Contract(RefABI, RefAddress.address)
   useEffect(() => {
+    if (window.location.search) {
+      const addr = decryptText(queryParse().l)
+      setCookie('invite_id', addr, 9999)
+      history.push('./')
+    }
     let text = ''
     if (account === null) text = 'Unlock Your Wallet First'
     else text = window.location.origin + '/referral?l=' + encryptText(account)
     setLink(text)
-    if (window.location.search) {
-      const addr = decryptText(queryParse().l)
-      setCookie('invite_id', addr, 9999)
-    }
     if (account) {
       let mySubordinates = new Set()
       Ref.getPastEvents('ReferrerSet', {
@@ -104,7 +106,6 @@ const Referral: React.FC = () => {
 
       Ref.methods.score(account).call().then((score: any) => {
         setRebateNum(score)
-        setHarvestedNum(Number((score / rebatePercent).toFixed(3)))
       })
     }
     // eslint-disable-next-line
@@ -129,17 +130,8 @@ const Referral: React.FC = () => {
           <div className="dashboard-card-col">
             <div className="dashboard-card-col-label">
               <p className="dashboard-card-col-label-value">
-                {harvestedNum}
-                <span>Best</span>
-              </p>
-              <p className="dashboard-card-col-label-title">
-                Harvested
-              </p>
-            </div>
-            <div className="dashboard-card-col-label">
-              <p className="dashboard-card-col-label-value">
                 {rebateNum}
-                <span>Best ({Math.round(rebatePercent * 100)}%)</span>
+                <span>Y3D ({Math.round(rebatePercent * 100)}%)</span>
               </p>
               <p className="dashboard-card-col-label-title">
                 Rebate
