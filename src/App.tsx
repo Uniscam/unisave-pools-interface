@@ -19,7 +19,6 @@ import Home from './views/Home'
 import Shop from './views/Shop'
 import NFTs from './views/NFTs'
 import Referral from './views/Referral'
-import VestNFT from './views/VestNFT'
 
 const App: React.FC = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
@@ -43,9 +42,6 @@ const App: React.FC = () => {
           </Route>
           <Route path="/farms">
             <Farms />
-          </Route>
-          <Route path="/vestnft">
-            <VestNFT />
           </Route>
           <Route path="/referral">
             <Referral />
