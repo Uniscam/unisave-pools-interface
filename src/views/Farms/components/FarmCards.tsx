@@ -15,6 +15,7 @@ import useAllStakedValue, {
 } from '../../../hooks/useAllStakedValue'
 import { useEDCPrice } from '../../../hooks/useEDCPrice'
 import useFarms from '../../../hooks/useFarms'
+import { useRewardPerToken } from '../../../hooks/useRewardPerToken';
 import useSushi from '../../../hooks/useSushi'
 import { getEarned, getMasterChefContract } from '../../../sushi/utils'
 import { bnToDec } from '../../../utils'
@@ -94,6 +95,8 @@ interface FarmCardProps {
 }
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
+  const { rewardPerToken } = useRewardPerToken(farm.poolAddress)
+  const apy = ((Number(rewardPerToken) / (1e18)) * 100).toFixed(2)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [startTime, setStartTime] = useState(0)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -168,7 +171,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
               </StyledDetail>
               <StyledDetail>
                 <StyledDetailSpan>APY</StyledDetailSpan>
-                <StyledDetailSpan>{ farm.apy }%</StyledDetailSpan>
+                <StyledDetailSpan>{ apy }%</StyledDetailSpan>
               </StyledDetail>
             </StyledDetails>
             <Spacer />
