@@ -3,7 +3,9 @@ import { provider } from 'web3-core'
 import { utils } from "ethers";
 import { useWallet } from "use-wallet";
 import { getUniswapRouter02 } from "../utils/uniswap";
-import { BigNumber } from "../sushi";
+// import { BigNumber } from "../sushi";
+
+const { BigNumber } = utils
 
 export function useEDCPrice() {
     const { account, ethereum } = useWallet()

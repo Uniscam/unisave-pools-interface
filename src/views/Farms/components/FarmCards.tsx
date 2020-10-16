@@ -25,7 +25,6 @@ interface FarmWithStakedValue extends Farm, StakedValue {
 }
 
 const FarmCards: React.FC = () => {
-  const edcPrice = useEDCPrice()
   const [farms] = useFarms()
   // const { account } = useWallet()
   const stakedValue = useAllStakedValue()
@@ -34,10 +33,10 @@ const FarmCards: React.FC = () => {
     ({ tokenSymbol }) => tokenSymbol === REWARD_TOKEN_SYMBOL,
   )
 
-  const sushiPrice = edcPrice.priceInWETH
-    // rewardTokenIndex >= 0 && stakedValue[rewardTokenIndex]
-    //   ? stakedValue[rewardTokenIndex].tokenPriceInWeth
-    //   : new BigNumber(0)
+  const sushiPrice = 
+    rewardTokenIndex >= 0 && stakedValue[rewardTokenIndex]
+      ? stakedValue[rewardTokenIndex].tokenPriceInWeth
+      : new BigNumber(0)
 
   console.info('sushiPrice', sushiPrice.toString())
   const BLOCKS_PER_YEAR = new BigNumber(2336000)
