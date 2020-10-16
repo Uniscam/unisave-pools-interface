@@ -20,6 +20,7 @@ const Referral: React.FC = () => {
   const [ harvestedNum, setHarvestedNum ] = useState(0)
   const [ rebateNum, setRebateNum ] = useState(0)
   const [ rebatePercent ] = useState(0.07)
+  const [ invitedList, setInvitedList ] = useState([])
 
   const { account, reset } = useWallet()
   const RefAddress = useReferral()
@@ -89,6 +90,7 @@ const Referral: React.FC = () => {
             mySubordinates.add(rawSha3ToAddress(web3.utils.toHex(item.raw.topics[1])))
           }
         })
+        setInvitedList(Array.from(mySubordinates.values()))
         setInvitedNum(mySubordinates.size)
       })
 
@@ -137,6 +139,13 @@ const Referral: React.FC = () => {
             </div>
           </div>
         </div>
+        <div className="address-list">
+          <h3 className="address-list-title">
+            Invited People
+          </h3>
+          <AddressList list={invitedList} />
+          { invitedList.length ? null : <p className="address-list-entry">No invited people</p> }
+        </div>
       </div>
     )
     const notLogged = (
@@ -155,6 +164,16 @@ const Referral: React.FC = () => {
     )
     if (account) return dashboardHtml
     else return notLogged
+  }
+
+  function AddressList(props: any): any {
+    return props.list.map((item: string, index: number) => {
+      return (
+        <p className="address-list-entry">
+          {index + 1}. {item}
+        </p>
+      )
+    })
   }
 
   return (
