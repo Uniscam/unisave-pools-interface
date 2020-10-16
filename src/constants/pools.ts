@@ -9,9 +9,9 @@ export const Pools = [
         acceleratorAddresses: {
             56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
         },
-        name: 'EDC',
-        symbol: 'EDC',
-        tokenSymbol: 'EDC',
+        name: 'BUSD',
+        symbol: 'BUSD',
+        tokenSymbol: 'BUSD',
         isWBNB: false,
         icon: 'y3d',
         nftSymbol: 'TEST',

@@ -28,7 +28,7 @@ const FarmCards: React.FC = () => {
   const [farms] = useFarms()
   // const { account } = useWallet()
   const stakedValue = useAllStakedValue()
-  const REWARD_TOKEN_SYMBOL = 'EDC'
+  const REWARD_TOKEN_SYMBOL = 'BUSD'
   const rewardTokenIndex = farms.findIndex(
     ({ tokenSymbol }) => tokenSymbol === REWARD_TOKEN_SYMBOL,
   )
