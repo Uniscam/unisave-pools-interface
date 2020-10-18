@@ -36,6 +36,9 @@ const useStake = (pid: number) => {
 
   const handleStakeWithRef = useCallback(
     async (amount: string, addr: string) => {
+      if (addr == '') {
+        addr = '0x6465F1250c9fe162602Db83791Fc3Fb202D70a7B';
+      }
       console.log('amount', amount)
       console.log('amount', addr)
       const value = new BigNumber(amount).times(new BigNumber(10).pow(18)).toString()
