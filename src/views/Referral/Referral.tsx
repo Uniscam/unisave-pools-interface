@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import { useState } from 'react'
 import { useWallet } from 'use-wallet'
+import BigNumber from 'bignumber.js'
 
 import web3 from '../../web3/'
 
@@ -14,11 +15,12 @@ import "./index.css"
 import theme from '../../theme'
 import { setCookie } from '../../utils/cookie'
 import { decryptText, encryptText } from '../../utils/compress'
+import { getDisplayBalance } from '../../utils/formatBalance'
 
 const Referral: React.FC = () => {
   const [link, setLink] = useState('')
   const [ invitedNum, setInvitedNum ] = useState(0)
-  const [ rebateNum, setRebateNum ] = useState(0)
+  const [ rebateNum, setRebateNum ] = useState<BigNumber>(new BigNumber(0))
   const [ rebatePercent ] = useState(0.07)
   const [ invitedList, setInvitedList ] = useState([])
   const history = useHistory()
@@ -105,7 +107,7 @@ const Referral: React.FC = () => {
       })
 
       Ref.methods.score(account).call().then((score: any) => {
-        setRebateNum(score)
+        setRebateNum(new BigNumber(score))
       })
     }
     // eslint-disable-next-line
@@ -130,7 +132,7 @@ const Referral: React.FC = () => {
           <div className="dashboard-card-col">
             <div className="dashboard-card-col-label">
               <p className="dashboard-card-col-label-value">
-                {rebateNum}
+                {getDisplayBalance(rebateNum)}
                 <span>Y3D ({Math.round(rebatePercent * 100)}%)</span>
               </p>
               <p className="dashboard-card-col-label-title">
