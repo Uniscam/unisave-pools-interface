@@ -117,18 +117,6 @@ const Balances: React.FC = () => {
         </Footnote>
       </Card>
       <Spacer />
-      <Card>
-        <CardContent>
-          <Label text="Total Y3D Supply" />
-          <Value
-            value={(!!account && totalSupply) ? getBalanceNumber(totalSupply) : 'Locked'}
-          />
-        </CardContent>
-        <Footnote>
-          New rewards per block
-        <FootnoteValue>0.000 <span style={{ color: '#6ec0ff' }}>Y3D</span></FootnoteValue>
-        </Footnote>
-      </Card>
     </StyledWrapper>
   )
 }
