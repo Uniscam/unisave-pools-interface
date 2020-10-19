@@ -19,6 +19,8 @@ import Home from './views/Home'
 import Shop from './views/Shop'
 import NFTs from './views/NFTs'
 import Referral from './views/Referral'
+import VestNFT from './views/VestNFT'
+import MyNFT from './views/MyNFT'
 
 const App: React.FC = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
@@ -43,6 +45,12 @@ const App: React.FC = () => {
           <Route path="/farms">
             <Farms />
           </Route>
+          <Route path="/vestnft">
+            <VestNFT />
+          </Route>
+          <Route path="/mynft">
+            <MyNFT />
+          </Route>
           <Route path="/referral">
             <Referral />
           </Route>
@@ -63,9 +71,9 @@ const Providers: React.FC = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <UseWalletProvider
-        chainId={56}
+        chainId={97}
         connectors={{
-          walletconnect: { rpcUrl: 'https://bsc-dataseed.binance.org/' },
+          walletconnect: { rpcUrl: 'https://data-seed-prebsc-1-s1.binance.org:8545/' },
         }}
       >
           <TransactionProvider>

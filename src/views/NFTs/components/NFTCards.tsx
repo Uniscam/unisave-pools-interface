@@ -20,7 +20,7 @@ const NFTCard: React.FC<NFTCardProps> = ({ nft }) => {
                         <StyledTitle>{nft.name}</StyledTitle>
                         <Spacer />
                         <Button
-                        // to={`/nfts/${nft.symbol}`}
+                        to={`/nfts/${nft.symbol}`}
                         >
                             View my holdings
                         </Button>

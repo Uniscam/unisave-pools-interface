@@ -11,15 +11,27 @@ const Nav: React.FC = () => {
       <StyledLink exact activeClassName="active" to="/farms">
         Menu
       </StyledLink>
+      <StyledLink exact activeClassName="active" to="/vestnft">
+        Vest NFT
+      </StyledLink>
+      <StyledLink exact activeClassName="active" to="/mynft">
+        My NFT
+      </StyledLink>
       <StyledLink exact activeClassName="active" to="/referral">
         Referral
       </StyledLink>
-      <StyledLink exact activeClassName="active" to="/shop">
+      {/* <StyledLink exact activeClassName="active" to="/shop">
         Shop
       </StyledLink>
       <StyledLink exact activeClassName="active" to="/nfts">
         NFTs
-      </StyledLink>
+      </StyledLink> */}
+      <StyledAbsoluteLink
+        href="https://peaceful-panini-8ac107.netlify.app/#/swap"
+        target="_blank"
+      >
+        Swap
+      </StyledAbsoluteLink>
     </StyledNav>
   )
 }
@@ -36,10 +48,29 @@ const StyledLink = styled(NavLink)`
   padding-right: ${(props) => props.theme.spacing[3]}px;
   text-decoration: none;
   &:hover {
-    color: ${(props) => props.theme.color.yellow};
+    color: ${(props) => props.theme.color.white};
   }
   &.active {
-    color: ${(props) => props.theme.color.yellow};
+    color: ${(props) => props.theme.color.white};
+    font-weight: bold;
+  }
+  @media (max-width: 400px) {
+    padding-left: ${(props) => props.theme.spacing[2]}px;
+    padding-right: ${(props) => props.theme.spacing[2]}px;
+  }
+`
+
+const StyledAbsoluteLink = styled.a`
+  color: ${(props) => props.theme.color.yellow};
+  font-weight: normal;
+  padding-left: ${(props) => props.theme.spacing[3]}px;
+  padding-right: ${(props) => props.theme.spacing[3]}px;
+  text-decoration: none;
+  &:hover {
+    color: ${(props) => props.theme.color.white};
+  }
+  &.active {
+    color: ${(props) => props.theme.color.white};
     font-weight: bold;
   }
   @media (max-width: 400px) {

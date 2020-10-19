@@ -1,9 +1,3 @@
-<h1 align="center">Bestswap Pool Interface</h1>
-<p align="center">
-  <img src="https://api.netlify.com/api/v1/badges/572ec545-6735-4f4f-b155-95804fffa6bb/deploy-status" />
-</p>
-
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

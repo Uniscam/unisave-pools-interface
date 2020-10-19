@@ -34,29 +34,7 @@ const useStake = (pid: number) => {
     [account, contract, farm],
   )
 
-  const handleStakeWithRef = useCallback(
-    async (amount: string, addr: string) => {
-      if (addr === '') {
-        addr = '0x6465F1250c9fe162602Db83791Fc3Fb202D70a7B'
-      }
-      console.log('amount', amount)
-      console.log('amount', addr)
-      const value = new BigNumber(amount).times(new BigNumber(10).pow(18)).toString()
-
-      const call = !farm.isWBNB
-        ? contract.methods.stakeWithRef(value, addr).send({ from: account })
-        : contract.methods.stakeWithRef(addr).send({ from: account, value })
-
-      const txHash = call.on('transactionHash', (tx: any) => {
-        console.log(tx)
-        return tx.transactionHash
-      })
-      console.log(txHash)
-    },
-    [account, contract, farm],
-  )
-
-  return { onStake: handleStake, onStakeWithRef: handleStakeWithRef }
+  return { onStake: handleStake }
 }
 
 export default useStake

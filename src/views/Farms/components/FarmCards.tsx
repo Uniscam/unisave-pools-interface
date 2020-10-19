@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import Countdown, { CountdownRenderProps } from 'react-countdown'
 import styled, { keyframes } from 'styled-components'
 import { useWallet } from 'use-wallet'
-import Button from '../../../components/Button'
-import Card from '../../../components/Card'
+import BlackButton from '../../../components/Button/BlackButton'
+import Card from '../../Home/components/Card'
 import CardContent from '../../../components/CardContent'
 import Loader from '../../../components/Loader'
 import Spacer from '../../../components/Spacer'
@@ -13,9 +13,8 @@ import useAllStakedValue, {
   StakedValue,
 } from '../../../hooks/useAllStakedValue'
 import useFarms from '../../../hooks/useFarms'
-import { useRewardPerToken } from '../../../hooks/useRewardPerToken';
-import useTotalSupply from '../../../hooks/useTotalSupply'
 import useSushi from '../../../hooks/useSushi'
+import useTotalSupply from '../../../hooks/useTotalSupply'
 import { getEarned, getMasterChefContract } from '../../../sushi/utils'
 import { bnToDec } from '../../../utils'
 import { getBalanceNumber } from '../../../utils/formatBalance'
@@ -28,20 +27,18 @@ const FarmCards: React.FC = () => {
   const [farms] = useFarms()
   // const { account } = useWallet()
   const stakedValue = useAllStakedValue()
-  const REWARD_TOKEN_SYMBOL = 'BUSD'
-  const rewardTokenIndex = farms.findIndex(
-    ({ tokenSymbol }) => tokenSymbol === REWARD_TOKEN_SYMBOL,
+
+  const sushiIndex = farms.findIndex(
+    ({ tokenSymbol }) => tokenSymbol === 'SUSHI',
   )
 
-  const sushiPrice = 
-    rewardTokenIndex >= 0 && stakedValue[rewardTokenIndex]
-      ? stakedValue[rewardTokenIndex].tokenPriceInWeth
+  const sushiPrice =
+    sushiIndex >= 0 && stakedValue[sushiIndex]
+      ? stakedValue[sushiIndex].tokenPriceInWeth
       : new BigNumber(0)
 
-  console.info('sushiPrice', sushiPrice.toString())
   const BLOCKS_PER_YEAR = new BigNumber(2336000)
   const SUSHI_PER_BLOCK = new BigNumber(1000)
-
 
   const rows = farms.reduce<FarmWithStakedValue[][]>(
     (farmRows, farm, i) => {
@@ -94,8 +91,6 @@ interface FarmCardProps {
 }
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
-  const { rewardPerToken } = useRewardPerToken(farm.poolAddress)
-  const apy = ((Number(rewardPerToken) / (1e18)) * 100).toFixed(2)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [startTime, setStartTime] = useState(0)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -127,7 +122,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
     })
   }
 
-  const isPairToken = farm.icon.includes('-')
+  // const isPairToken = farm.icon.includes('-')
 
   useEffect(() => {
     loadTokenImage(farm.icon)
@@ -154,8 +149,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
         <CardContent>
           <StyledContent>
             <StyledMagnification>{farm.magnification}X</StyledMagnification>
-            <StyledCardIcon style={ isPairToken ? { height: '40px', marginTop: '30px' } : {}}>
-              <StyledIconImage style={ isPairToken ? { height: '40px' } : {}} src={imagePath} alt="token-icon" />
+            <StyledCardIcon>
+              <StyledIconImage src={imagePath} alt="token-icon" />
             </StyledCardIcon>
             <StyledDetails>
               <StyledDetail>
@@ -172,11 +167,11 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
               </StyledDetail>
               <StyledDetail>
                 <StyledDetailSpan>APY</StyledDetailSpan>
-                <StyledDetailSpan>{ apy }%</StyledDetailSpan>
+                <StyledDetailSpan>500.38%</StyledDetailSpan>
               </StyledDetail>
             </StyledDetails>
             <Spacer />
-            <Button
+            <BlackButton
               disabled={!poolActive}
               text={poolActive ? 'Select' : undefined}
               to={`/farms/${farm.id}`}
@@ -187,16 +182,12 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
                   renderer={renderer}
                 />
               )}
-            </Button>
+            </BlackButton>
             <Spacer />
             <StyledDetails style={{ marginTop: 0 }}>
               <StyledDetail>
-                <StyledDetailSpan>Total Liquidity</StyledDetailSpan>
-                <StyledDetailSpan>$41,270,688</StyledDetailSpan>
-              </StyledDetail>
-              <StyledDetail>
                 <StyledDetailSpan>Total Staked</StyledDetailSpan>
-                <StyledDetailSpan>{ getBalanceNumber(totalSupply).toFixed(4) } {symbol}</StyledDetailSpan>
+                <StyledDetailSpan>{ getBalanceNumber(totalSupply) } {symbol}</StyledDetailSpan>
               </StyledDetail>
             </StyledDetails>
           </StyledContent>
@@ -282,7 +273,7 @@ const StyledCardIcon = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
-  margin: 0 auto ${props => props.theme.spacing[3]}px;
+  margin: ${props => props.theme.spacing[4]}px auto ${props => props.theme.spacing[3]}px;
 `
 
 const StyledIconImage = styled.img`
@@ -336,8 +327,8 @@ const StyledMagnification = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #F7CA2D;
-  border-radius: 13px;
+  background-color: #FEC025;
+  border-radius: 3px;
   width: 52px;
   height: 24px;
   line-height: 24px;

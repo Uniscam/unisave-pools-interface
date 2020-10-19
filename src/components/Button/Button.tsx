@@ -97,7 +97,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   align-items: center;
   background-color: ${props => props.theme.color.yellow};
   border: 0;
-  border-radius: 8px;
+  border-radius: 3px;
   box-shadow: ${props => props.boxShadow};
   color: ${props => !props.disabled ? props.color : `${props.color}55`};
   cursor: pointer;

@@ -95,7 +95,7 @@ const Balances: React.FC = () => {
           <StyledBalances>
             <StyledBalance>
               <div style={{ flex: 1 }}>
-                <Label text="Your Y3D Balance" />
+                <Label text="Your BEST Balance" />
                 <StyledBalanceWrapper>
                   <BestIcon />
                   <Spacer size='md' />
@@ -112,21 +112,21 @@ const Balances: React.FC = () => {
           <FootnoteValue>
             <PendingRewards />
             {' '}
-            <span style={{ color: '#6ec0ff' }}>Y3D</span>
+            <span style={{ color: '#FFD201' }}>BEST</span>
           </FootnoteValue>
         </Footnote>
       </Card>
       <Spacer />
       <Card>
         <CardContent>
-          <Label text="Total Y3D Supply" />
+          <Label text="Total BEST Supply" />
           <Value
             value={(!!account && totalSupply) ? getBalanceNumber(totalSupply) : 'Locked'}
           />
         </CardContent>
         <Footnote>
           New rewards per block
-        <FootnoteValue>0.000 <span style={{ color: '#6ec0ff' }}>Y3D</span></FootnoteValue>
+          <FootnoteValue>1,000 <span style={{ color: '#FFD201' }}>BEST</span></FootnoteValue>
         </Footnote>
       </Card>
     </StyledWrapper>
@@ -137,7 +137,7 @@ const Footnote = styled.div`
   font-size: 14px;
   padding: 8px 38px;
   color: #000000;
-  border-top: solid 1px #6ec0ff;
+  border-top: solid 1px #FFE9C7;
 `
 const FootnoteValue = styled.div`
   font-family: 'Roboto Mono', monospace;

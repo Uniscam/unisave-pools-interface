@@ -7,6 +7,8 @@ import useAccelerator from "../../hooks/useAccelerator"
 import useHoldings from "../../hooks/useHoldings"
 import useNFT from "../../hooks/useNFT"
 import useStakedNFT from "../../hooks/useStakedNFT"
+import useMyNFT from "../../hooks/useMyNFT"
+import useRefReward from "../../hooks/useRefReward"
 import Holding from './Holding'
 
 const NFT: React.FC = () => {
@@ -15,6 +17,8 @@ const NFT: React.FC = () => {
   const { address: accAddress } = useAccelerator(nftSymbol)
   const [holdings, fetchHoldings] = useHoldings(address)
   const [staked, quality, fetchStaked] = useStakedNFT(symbol)
+  const [ myNFT, nftUri ]= useMyNFT()
+  const { rewardStatus, onClaimNFT } = useRefReward()
 
   const fetch = () => {
     fetchHoldings()
@@ -59,6 +63,12 @@ const NFT: React.FC = () => {
           ))
         ) : (
           <StyledLoadingWrapper>
+            
+            <WhiteBlock>
+              <h1>{myNFT}</h1>
+              <h1>{rewardStatus.toString()}</h1>
+              <h1>{}</h1>
+            </WhiteBlock>
             <Loader text="Cooking the rice ..." />
           </StyledLoadingWrapper>
         )}
@@ -95,6 +105,10 @@ const StyledRow = styled.div`
 const StyledSpacer = styled.div`
   height: ${(props) => props.theme.spacing[4]}px;
   width: ${(props) => props.theme.spacing[4]}px;
+`
+
+const WhiteBlock = styled.div`
+  color: #fff;
 `
 
 export default NFT
