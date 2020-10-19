@@ -7,7 +7,7 @@ import { useWallet } from 'use-wallet'
 import { decryptText, encryptText } from '../../utils/compress'
 
 import theme from '../../theme'
-import { clearCookie, setCookie } from '../../utils/cookie'
+import { setCookie } from '../../utils/cookie'
 
 const Referral: React.FC = () => {
   const [link, setLink] = useState('')
