@@ -109,6 +109,13 @@
     letter-spacing: 1px;
 }
 
+.address-list-item {
+    color: #6ec0ff;
+}
+.address-list-item:visited {
+    color: #6ec0ff;
+}
+
 .address-list-entry {
     text-align: center;
     margin: 0 0 10px;
