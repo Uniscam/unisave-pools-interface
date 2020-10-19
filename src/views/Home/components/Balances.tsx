@@ -87,7 +87,7 @@ const Balances: React.FC = () => {
       fetchTotalSupply()
     }
   }, [best, ethereum, setTotalSupply])
-
+  console.log(totalSupply);
   return (
     <StyledWrapper>
       <Card>
