@@ -222,6 +222,16 @@ const Referral: React.FC = () => {
           <button className="rel-copy-btn" onClick={copyToClipboard(link)}>Copy</button>
         </div>
         <InvitedDashboard />
+        <div className="ref-help">
+          <h4>
+            Invitation description:
+          </h4>
+          <p>
+            Step1. Copy your invitation link and send it to friends
+            <br />
+            Step2. You will get rewards if your friends bind addresses to participate in mining
+          </p>
+        </div>
       </StyledReferralBox>
     </Page>
   )
