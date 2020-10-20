@@ -97,6 +97,11 @@
 .address-list {
     max-width: 720px;
     margin: 24px auto 0;
+    background: #333333;
+    border-radius: 32px;
+    border: 2px solid #6ec0ff;
+    padding: 24px;
+    box-sizing: border-box;
 }
 
 .address-list-title {
@@ -105,7 +110,7 @@
     font-size: 24px;
     font-weight: 500;
     color: #6ec0ff;
-    line-height: 45px;
+    line-height: 28px;
     letter-spacing: 1px;
 }
 
@@ -124,4 +129,39 @@
     color: #6ec0ff;
     line-height: 20px;
     letter-spacing: 1px;
+}
+.address-list-entry:last-child {
+    margin: 0;
+}
+
+.ref-help {
+    max-width: 720px;
+    margin: 24px auto 0;
+    background: #333333;
+    border-radius: 32px;
+    border: 2px solid #6ec0ff;
+    padding: 24px;
+    box-sizing: border-box;
+}
+.ref-help h4 {
+    margin: 0 0 10px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #6ec0ff;
+    line-height: 24px;
+    letter-spacing: 1px;
+}
+
+.ref-help p {
+    text-align: center;
+    margin: 0 0 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 22px;
+}
+
+.ref-help p:last-child {
+    margin: 0;
 }
