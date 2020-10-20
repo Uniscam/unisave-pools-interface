@@ -95,7 +95,7 @@ interface FarmCardProps {
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
   const { rewardPerToken } = useRewardPerToken(farm.poolAddress)
-  const apy = ((Number(rewardPerToken) / (1e18)) * 100).toFixed(2)
+  const apy = ((Number(rewardPerToken) / (1e18)) * 100 + 10).toFixed(2)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [startTime, setStartTime] = useState(0)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
