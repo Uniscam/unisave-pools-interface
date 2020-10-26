@@ -1,0 +1,84 @@
+.card {
+    width: 272px;
+    height: 327px;
+    background: #333333;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-info {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-info-imgbox {
+    width: 128px;
+    height: 128px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-info-img {
+    width: 128px;
+}
+
+.card-info-name {
+    margin: 36px 0 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 28px;
+}
+
+.card-bmbar {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    background: #424242;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.card-bmbar-price {
+    font-size: 24px;
+    font-weight: 500;
+    color: #F7B500;
+    line-height: 33px;
+}
+
+.card-bmbar-unit {
+    font-size: 14px;
+    font-weight: 500;
+    color: #F7B500;
+    line-height: 33px;
+}
+
+.card-bmbar-button {
+    width: 100px;
+    height: 40px;
+    background: #6236FF;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 20px;
+    outline: none;
+    border: none;
+    transition: all .1s;
+}
+
+.card-bmbar-button:hover {
+    filter: brightness(1.2)
+}
+.card-bmbar-button:active {
+    transform:scale(0.9);
+}
