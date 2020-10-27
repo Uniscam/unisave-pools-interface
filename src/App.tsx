@@ -19,6 +19,7 @@ import Home from './views/Home'
 import Shop from './views/Shop'
 import NFTs from './views/NFTs'
 import VestNFT from './views/VestNFT'
+import MyNFT from './views/MyNFT'
 import Referral from './views/Referral'
 
 const App: React.FC = () => {
@@ -55,6 +56,9 @@ const App: React.FC = () => {
           </Route>
           <Route path="/vestnft">
             <VestNFT />
+          </Route>
+          <Route path="/mynft">
+            <MyNFT />
           </Route>
         </Switch>
       </Router>
