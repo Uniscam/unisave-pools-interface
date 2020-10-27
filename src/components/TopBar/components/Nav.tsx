@@ -23,6 +23,9 @@ const Nav: React.FC = () => {
       <StyledLink exact activeClassName="active" to="/vestnft">
         VestNFT
       </StyledLink>
+      <StyledLink exact activeClassName="active" to="/mynft">
+        MyNFT
+      </StyledLink>
     </StyledNav>
   )
 }
