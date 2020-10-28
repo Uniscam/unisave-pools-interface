@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
 import { VestNFTList, NftAssets } from '../../constants/vestNFTs'
-import { useLocation } from "react-router-dom"
 import { queryParse, setQuery } from "../../utils/router"
 
 import Page from '../../components/Page'

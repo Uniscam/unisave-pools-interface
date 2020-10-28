@@ -1,6 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
-import { useState } from 'react'
 
 import './index.css'
 
@@ -21,7 +19,7 @@ const NFTCard: React.FC<NFTCardProps> = ({
     <div className="card">
       <div className="card-info">
         <div className="card-info-imgbox">
-          <img className="card-info-img" src={image_url} alt='card-image' />
+          <img className="card-info-img" src={image_url} alt='card' />
         </div>
         <p className="card-info-name">
           {name}
