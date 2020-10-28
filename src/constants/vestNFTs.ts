@@ -37,7 +37,7 @@ export type VestNFT = {
   image: string
 }
 
-export const VestNFTAddress = '0xdcf2a17bf95840bbe513ce2d9030bb03191570cf'
+export const VestNFTAddress = '0x97bC42A3635453FaC5e1c7AF2d1fb2113cF4b25E'
 
 export const VestNFTList: Array<NftAssets> = [
   {

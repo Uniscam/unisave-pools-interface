@@ -1,10 +1,10 @@
 export const NFTs = [
   {
     addresses: {
-        56: '0xdf01427D5B686282BC5c0d4b7a75EC4D7F9078A7',
+        56: '0x97bC42A3635453FaC5e1c7AF2d1fb2113cF4b25E',
     },
-    name: 'Test NFT',
-    symbol: 'TEST',
+    name: 'Y3DScam NFT',
+    symbol: 'VEST',
   },
 ]
 
