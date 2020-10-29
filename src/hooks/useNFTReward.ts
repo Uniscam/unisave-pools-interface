@@ -19,12 +19,12 @@ const useRefReward = () => {
       console.log('useRefReward::fetchRewardStatus token1:', token1, 'token2:', token2, 'token3:', token3, 'token4:', token4, 'token5:', token5,)
       setRewardStatus([token1, token2, token3, token4, token5])
     }, [account, contract])
-
+    /* eslint-disable */
     useEffect(() => {
       if (account && contract) {
         fetchRewardStatus()
       }
-    }, [account, fetchRewardStatus, contract, setRewardStatus])
+    }, [account])
 
     const handleClaimNFT = useCallback(
       async (id: number) => {

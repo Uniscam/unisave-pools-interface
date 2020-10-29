@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
 // import web3 from '../../web3/'
@@ -52,7 +52,6 @@ const findAssetsByType = (
   balance: Array<any>
   // NFTId: string
 ): Array<MetadataWithStatus> => {
-  console.log('选择的 name 是', name)
   const metadataWithStatus = metadataList.map((data, i) => {
     let resBody = {
       ...data,
@@ -110,33 +109,20 @@ const Referral: React.FC = () => {
   const { metadataList } = useFetchMetadata(tokenList)
   const { NFTBalance } = useMyNFT()
 
-  let selectedList: any = []
-
-  const handleNavChange = useCallback(
-    async (nav: string) => {
-      // const accelerator = new web3.eth.Contract(AcceleratorABI as any, ACC)
-      // @ts-ignore
-      // const NFTId = await accelerator.methods.getStaked(account).call()
-      // const list = findAssetsByType(name, metadataList, rewardStatus, tokenList, NFTBalance, NFTId)
-      const list = findAssetsByType(nav, metadataList, rewardStatus, tokenList, NFTBalance)
-      console.log(list)
-      // eslint-disable-next-line
-      selectedList = list
-    },
-    [NFTBalance, metadataList, rewardStatus]
-  )
-
   function CardList(props: any): any {
-    const { onChange } = props
-    onChange(queryNav)
-    console.log(selectedList)
+    // const accelerator = new web3.eth.Contract(AcceleratorABI as any, ACC)
+    // @ts-ignore
+    // const NFTId = await accelerator.methods.getStaked(account).call()
+    // const list = findAssetsByType(name, metadataList, rewardStatus, tokenList, NFTBalance, NFTId)
+    const list = findAssetsByType(nav, metadataList, rewardStatus, tokenList, NFTBalance)
+    // eslint-disable-next-line
+    console.log(list)
     return (
       <div className="mynft-list">
         {
           // @ts-ignore
-          selectedList.map((item, index) => {
+          list.map((item, index) => {
             return (
-              // @ts-ignore
               <NFTCard info={item} key={index} />
             )
           })
@@ -164,7 +150,7 @@ const Referral: React.FC = () => {
               Recieved
         </p>
           </div>
-          <CardList onChange={handleNavChange} />
+          <CardList />
         </div>
       </StyledReferralBox>
     </Page>

@@ -9,11 +9,11 @@ export interface NFTCardProps {
 const NFTCard: React.FC<NFTCardProps> = ({
   info
 }) => {
-  const { name, balance, image, attributes } = info
+  const { name, balance, attributes } = info
   let imageUrl
   if (!info) return
-  if (!image) imageUrl = info.image_url
-  else imageUrl = image
+  if (!info.image) imageUrl = info.image_url
+  else imageUrl = info.image
   // @ts-ignore
   const price = { ...attributes.find(trait => trait.trait_type === 'Y3D Auction Base') }.value || '0'
   // const [imagePath, setImagePath] = useState('')
