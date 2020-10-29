@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
 // import web3 from '../../web3/'
@@ -8,7 +8,6 @@ import useFetchMetadata, {
 } from '../../hooks/nft/useFetchMetadata'
 import useRefReward from '../../hooks/useNFTReward'
 import useMyNFT from '../../hooks/useMyNFT'
-import { VestNFTList, NftAssets } from '../../constants/vestNFTs'
 import { queryParse, setQuery } from "../../utils/router"
 
 import Page from '../../components/Page'
@@ -121,6 +120,7 @@ const Referral: React.FC = () => {
       // const list = findAssetsByType(name, metadataList, rewardStatus, tokenList, NFTBalance, NFTId)
       const list = findAssetsByType(nav, metadataList, rewardStatus, tokenList, NFTBalance)
       console.log(list)
+      // eslint-disable-next-line
       selectedList = list
     },
     [ NFTBalance, metadataList, rewardStatus ]
@@ -151,6 +151,7 @@ const Referral: React.FC = () => {
   }
 
   function Nav(): any {
+    /*eslint-disable */
     return (
       <div className="mynft-nav">
         <p className={nav === 'pending' && 'mynft-nav-active' || undefined} onClick={(e) => setQueryNav('pending')}>

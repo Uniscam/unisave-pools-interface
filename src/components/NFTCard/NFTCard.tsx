@@ -2,8 +2,6 @@ import React from 'react'
 
 import './index.css'
 
-import { NftAssets } from '../../constants/vestNFTs'
-
 export interface NFTCardProps {
   info: any,
 }

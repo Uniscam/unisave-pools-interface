@@ -1,5 +1,5 @@
 // import BigNumber from "bignumber.js"
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useWallet } from "use-wallet"
 import web3 from '../web3'
 import RefReward from '../constants/abi/RefReward.json'
