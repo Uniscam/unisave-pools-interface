@@ -1,23 +1,23 @@
 // import BigNumber from "bignumber.js"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { useWallet } from "use-wallet"
-import { provider } from 'web3-core'
-import { getContract } from '../utils/NFTReward'
+import web3 from '../web3'
+import RefReward from '../constants/abi/RefReward.json'
 
 const useRefReward = () => {
     const [rewardStatus, setRewardStatus] = useState([false, false, false])
-    const { account, ethereum } = useWallet()
+    const { account } = useWallet()
 
-    const contract = useMemo(() => {
-      return getContract(ethereum as provider, '0x1F8BAAcdE5489d8BA634f5F30d45672560C119Dd')
-    }, [ethereum])
+    const contract = new web3.eth.Contract(RefReward as any, '0x1F8BAAcdE5489d8BA634f5F30d45672560C119Dd')
 
     const fetchRewardStatus = useCallback(async () => {
       const token1 = await contract.methods.canReward(account, 0).call()
       const token2 = await contract.methods.canReward(account, 1).call()
       const token3 = await contract.methods.canReward(account, 2).call()
-      console.log('useRefReward::fetchRewardStatus token1:', token1, 'token2:', token2, 'token3:', token3)
-      setRewardStatus([token1, token2, token3])
+      const token4 = await contract.methods.canReward(account, 3).call()
+      const token5 = await contract.methods.canReward(account, 4).call()
+      console.log('useRefReward::fetchRewardStatus token1:', token1, 'token2:', token2, 'token3:', token3, 'token4:', token4, 'token5:', token5,)
+      setRewardStatus([token1, token2, token3, token4, token5])
     }, [account, contract])
 
     useEffect(() => {

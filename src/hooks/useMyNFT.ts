@@ -6,7 +6,7 @@ import { getContract } from '../utils/Y3DNFT'
 import { ACC } from '../constants/acc'
 
 const useNFTBalance = () => {
-  const [NFTBalance, setNFTBalance] = useState([0, 0, 0])
+  const [NFTBalance, setNFTBalance] = useState([0, 0, 0, 0, 0])
   const [approveState, setApproveState] = useState(false)
   const { account, ethereum } = useWallet()
 
@@ -19,9 +19,8 @@ const useNFTBalance = () => {
 
   const fetchNFTBalance = useCallback(async () => {
     const balance = await contract.methods
-      .balanceOfBatch([account, account, account], [1, 2, 3])
+      .balanceOfBatch([account, account, account, account, account], [1, 2, 3, 4, 5])
       .call()
-    console.log('useNFTBalance::fetchNFTBalance balance:', balance)
     setNFTBalance(balance)
   }, [account, contract.methods])
 
@@ -62,8 +61,6 @@ const useNFTBalance = () => {
     },
     [contract.methods, account],
   )
-
-  console.log('useNFTBalance NFTBalance:', NFTBalance)
 
   return { NFTBalance, nftUri, setApprovalForAll, approveState }
 }

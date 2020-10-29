@@ -1,29 +1,29 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback } from 'react'
+import web3 from '../../web3'
+import RefReward from '../../constants/abi/RefReward.json'
+
 import { useWallet } from 'use-wallet'
-import { provider } from 'web3-core'
-import { getContract } from '../../utils/nft'
-import { NFT_CLAIMER_ADDRESS } from '../../constants/tokenAddresses'
 
 const useClaim = () => {
-  const { account, ethereum } = useWallet()
-  const nftClaimerAddr = NFT_CLAIMER_ADDRESS
+  const { account } = useWallet()
+  const refRewardAddress = '0x153f07b2cc2a2e3a3fd55eb4479a22f1d680822b'
 
-  const contract = useMemo(() => {
-    return getContract(ethereum as provider, nftClaimerAddr)
-  }, [ethereum, nftClaimerAddr])
+  const contract = new web3.eth.Contract(RefReward as any, refRewardAddress)
 
-  const handleNftClaim = useCallback(async () => {
-    const call = contract.methods.claim().send({ from: account })
+  const handleClaim = useCallback(
+    async () => {
+      const call = await contract.methods.claim().send({ from: account })
+      const txHash = call.on('transactionHash', (tx: any) => {
+        console.log(tx)
+        return tx.transactionHash
+      })
+      console.log(txHash)
+      window.location.reload()
+    },
+    [account, contract],
+  )
 
-    const txHash = await call.on('transactionHash', (tx: any) => {
-      console.log('NFT::useClaim::handleNftClaim tx:', tx)
-      return tx.transactionHash
-    })
-
-    console.log('NFT::useClaim::handleNftClaim txHash:', txHash)
-  }, [account, contract.methods])
-
-  return { onClaim: handleNftClaim }
+  return { onClaim: handleClaim, refRewardContract: contract }
 }
 
 export default useClaim
