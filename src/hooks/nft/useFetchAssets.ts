@@ -30,7 +30,7 @@ export interface NftAssets {
   description: string
   asset_contract: NftAssetsContract
   decimals: number | null
-  traits: Array<NftAssetsTraits>
+  attributes: Array<NftAssetsTraits>
 }
 
 interface NftAssetsPromise {
@@ -55,9 +55,8 @@ const useFetchAssets = () => {
       //     limit: 50,
       //   },
       // })
-      const staticData: NftAssetsPromise = {
-        assets: VestNFTList
-      }
+
+      const staticData: NftAssetsPromise = { assets: VestNFTList }
 
       const data = staticData
 
@@ -66,7 +65,7 @@ const useFetchAssets = () => {
 
         const typeList = new Set<string>()
         data.assets.forEach((item) => {
-          item.traits.forEach((trait) => {
+          item.attributes.forEach((trait) => {
             if (trait.trait_type === 'Type') {
               typeList.add(trait.value.toString())
             }

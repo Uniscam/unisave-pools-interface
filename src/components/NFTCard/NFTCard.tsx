@@ -10,7 +10,10 @@ const NFTCard: React.FC<NFTCardProps> = ({
   info
 }) => {
   const { name, balance, image, attributes } = info
-  console.log(info)
+  let imageUrl
+  if (!info) return
+  if (!image) imageUrl = info.image_url
+  else imageUrl = image
   // @ts-ignore
   const price = { ...attributes.find(trait => trait.trait_type === 'Y3D Auction Base') }.value || '0'
   // const [imagePath, setImagePath] = useState('')
@@ -36,7 +39,7 @@ const NFTCard: React.FC<NFTCardProps> = ({
     <div className="card">
       <div className="card-info">
         <div className="card-info-imgbox">
-          <img className="card-info-img" src={image} alt='card' />
+          <img className="card-info-img" src={imageUrl} alt='card' />
         </div>
         <p className="card-info-name">
           {name}

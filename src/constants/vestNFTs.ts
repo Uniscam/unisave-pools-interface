@@ -25,7 +25,7 @@ export interface NftAssets {
   description: string
   asset_contract: NftAssetsContract
   decimals: number | null
-  traits: Array<NftAssetsTraits>
+  attributes: Array<NftAssetsTraits>
 }
 
 export type VestNFT = {
@@ -56,7 +56,7 @@ export const VestNFTList: Array<NftAssets> = [
       symbol: 'MEME',
     },
     decimals: null,
-    traits: [
+    attributes: [
       {
         trait_type: 'Level',
         value: 1,
@@ -99,7 +99,7 @@ export const VestNFTList: Array<NftAssets> = [
       symbol: 'MEME',
     },
     decimals: null,
-    traits: [
+    attributes: [
       {
         trait_type: 'Level',
         value: 2,
@@ -142,7 +142,7 @@ export const VestNFTList: Array<NftAssets> = [
       symbol: 'MEME',
     },
     decimals: null,
-    traits: [
+    attributes: [
       {
         trait_type: 'Level',
         value: 3,
@@ -185,7 +185,7 @@ export const VestNFTList: Array<NftAssets> = [
       symbol: 'MEME',
     },
     decimals: null,
-    traits: [
+    attributes: [
       {
         trait_type: 'Level',
         value: 4,
@@ -228,7 +228,7 @@ export const VestNFTList: Array<NftAssets> = [
       symbol: 'MEME',
     },
     decimals: null,
-    traits: [
+    attributes: [
       {
         trait_type: 'Level',
         value: 5,
@@ -271,7 +271,7 @@ export const VestNFTList: Array<NftAssets> = [
       symbol: 'MEME',
     },
     decimals: null,
-    traits: [
+    attributes: [
       {
         trait_type: 'Level',
         value: 1,
@@ -314,7 +314,7 @@ export const VestNFTList: Array<NftAssets> = [
       symbol: 'MEME',
     },
     decimals: null,
-    traits: [
+    attributes: [
       {
         trait_type: 'Level',
         value: 2,
@@ -357,7 +357,7 @@ export const VestNFTList: Array<NftAssets> = [
       symbol: 'MEME',
     },
     decimals: null,
-    traits: [
+    attributes: [
       {
         trait_type: 'Level',
         value: 3,

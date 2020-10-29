@@ -123,7 +123,7 @@ const Referral: React.FC = () => {
       // eslint-disable-next-line
       selectedList = list
     },
-    [ NFTBalance, metadataList, rewardStatus ]
+    [NFTBalance, metadataList, rewardStatus]
   )
 
   function CardList(props: any): any {
@@ -150,26 +150,20 @@ const Referral: React.FC = () => {
     setQuery('nav', value)
   }
 
-  function Nav(): any {
-    /*eslint-disable */
-    return (
-      <div className="mynft-nav">
-        <p className={nav === 'pending' && 'mynft-nav-active' || undefined} onClick={(e) => setQueryNav('pending')}>
-          Pending
-        </p>
-        <p className={nav === 'recieved' && 'mynft-nav-active' || undefined} onClick={(e) => setQueryNav('recieved')}>
-          Recieved
-        </p>
-      </div>
-    )
-  }
-
+  /* eslint-disable */
   return (
     <Page>
       <StyledReferralBox>
         <span style={nftTitleStyle}>My NFT</span>
         <div style={commonDivStyle}>
-          <Nav />
+          <div className="mynft-nav">
+            <p className={nav === 'pending' && 'mynft-nav-active' || undefined} onClick={(e) => setQueryNav('pending')}>
+              Pending
+        </p>
+            <p className={nav === 'recieved' && 'mynft-nav-active' || undefined} onClick={(e) => setQueryNav('recieved')}>
+              Recieved
+        </p>
+          </div>
           <CardList onChange={handleNavChange} />
         </div>
       </StyledReferralBox>
