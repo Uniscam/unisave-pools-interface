@@ -19,6 +19,9 @@ import useSushi from '../../../hooks/useSushi'
 import { getEarned, getMasterChefContract } from '../../../sushi/utils'
 import { bnToDec } from '../../../utils'
 import { getBalanceNumber } from '../../../utils/formatBalance'
+import useDecimals from '../../../hooks/useDecimals'
+import { useTokenPriceInBNB } from '../../../hooks/useTokenPrice'
+import { usePoolApy } from '../../../hooks/useFarmApy'
 
 interface FarmWithStakedValue extends Farm, StakedValue {
   apy: BigNumber
@@ -33,7 +36,7 @@ const FarmCards: React.FC = () => {
     ({ tokenSymbol }) => tokenSymbol === REWARD_TOKEN_SYMBOL,
   )
 
-  const sushiPrice = 
+  const sushiPrice =
     rewardTokenIndex >= 0 && stakedValue[rewardTokenIndex]
       ? stakedValue[rewardTokenIndex].tokenPriceInWeth
       : new BigNumber(0)
@@ -50,10 +53,10 @@ const FarmCards: React.FC = () => {
         ...stakedValue[i],
         apy: stakedValue[i]
           ? sushiPrice
-              .times(SUSHI_PER_BLOCK)
-              .times(BLOCKS_PER_YEAR)
-              .times(stakedValue[i].poolWeight)
-              .div(stakedValue[i].totalWethValue)
+            .times(SUSHI_PER_BLOCK)
+            .times(BLOCKS_PER_YEAR)
+            .times(stakedValue[i].poolWeight)
+            .div(stakedValue[i].totalWethValue)
           : null,
       }
       const newFarmRows = [...farmRows]
@@ -81,10 +84,10 @@ const FarmCards: React.FC = () => {
           </StyledRow>
         ))
       ) : (
-        <StyledLoadingWrapper>
-          <Loader text="Cooking the rice ..." />
-        </StyledLoadingWrapper>
-      )}
+          <StyledLoadingWrapper>
+            <Loader text="Cooking the rice ..." />
+          </StyledLoadingWrapper>
+        )}
     </StyledCards>
   )
 }
@@ -93,17 +96,31 @@ interface FarmCardProps {
   farm: FarmWithStakedValue
 }
 
+
 const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
   const { rewardPerToken } = useRewardPerToken(farm.poolAddress)
   const apy = ((Number(rewardPerToken) / (1e18)) * 100 + 50).toFixed(2)
+  console.log('farm', farm)
+
+  const { stakingTokenAddress, poolAddress, earnTokenAddress, pid, name: symbol } = farm
+  const decimalsOfStaking = useDecimals(stakingTokenAddress)
+  const decimalsOfEarn = useDecimals(earnTokenAddress)
+  const { priceInBNB: tokenPriceOfStaking } = useTokenPriceInBNB(stakingTokenAddress, decimalsOfStaking)
+  const { priceInBNB: tokenPriceOfEarn } = useTokenPriceInBNB('0xe44afc0319736759dbb3222d3dd8259abb374b0c', decimalsOfEarn)
+
+  console.log('tokenPriceOfEarn', tokenPriceOfEarn)
+
+  // 等待修复
+  const { apy: apys } = usePoolApy(poolAddress, tokenPriceOfEarn, tokenPriceOfStaking, decimalsOfEarn, decimalsOfStaking)
+  console.log('apyapyapy', apys)
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [startTime, setStartTime] = useState(0)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [harvestable, setHarvestable] = useState(0)
-  const [imagePath, setImagePath ] = useState('')
+  const [imagePath, setImagePath] = useState('')
 
   const { account } = useWallet()
-  const { stakingTokenAddress, pid, name: symbol } = farm
   const sushi = useSushi()
 
   const totalSupply = useTotalSupply(pid)
@@ -154,8 +171,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
         <CardContent>
           <StyledContent>
             <StyledMagnification>{farm.magnification}X</StyledMagnification>
-            <StyledCardIcon style={ isPairToken ? { height: '40px', marginTop: '30px' } : {}}>
-              <StyledIconImage style={ isPairToken ? { height: '40px' } : {}} src={imagePath} alt="token-icon" />
+            <StyledCardIcon style={isPairToken ? { height: '40px', marginTop: '30px' } : {}}>
+              <StyledIconImage style={isPairToken ? { height: '40px' } : {}} src={imagePath} alt="token-icon" />
             </StyledCardIcon>
             <StyledDetails>
               <StyledDetail>
@@ -172,7 +189,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
               </StyledDetail>
               <StyledDetail>
                 <StyledDetailSpan>APY</StyledDetailSpan>
-                <StyledDetailSpan>{ apy }%</StyledDetailSpan>
+                <StyledDetailSpan>{apy}%</StyledDetailSpan>
               </StyledDetail>
             </StyledDetails>
             <Spacer />
@@ -196,7 +213,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
               </StyledDetail>
               <StyledDetail>
                 <StyledDetailSpan>Total Staked</StyledDetailSpan>
-                <StyledDetailSpan>{ getBalanceNumber(totalSupply).toFixed(4) } {symbol}</StyledDetailSpan>
+                <StyledDetailSpan>{getBalanceNumber(totalSupply).toFixed(4)} {symbol}</StyledDetailSpan>
               </StyledDetail>
             </StyledDetails>
           </StyledContent>
