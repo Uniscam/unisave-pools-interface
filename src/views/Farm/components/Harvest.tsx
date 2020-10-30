@@ -11,7 +11,7 @@ import useFarm from '../../../hooks/useFarm'
 import useReward from '../../../hooks/useReward'
 import { getBalanceNumber } from '../../../utils/formatBalance'
 import CardIcon from './CardIcon'
-import FarmIcon from '../../../assets/img/farm-icon.png'
+import FarmIcon from '../../../assets/img/token/y3d.png'
 
 interface HarvestProps {
   pid: number
@@ -31,11 +31,11 @@ const Harvest: React.FC<HarvestProps> = ({ pid }) => {
         <StyledCardContentInner>
           <StyledCardHeader>
             <CardIcon>
-              <StyledImageIcon src={FarmIcon} alt="icon"/>
+              <StyledImageIcon src={FarmIcon} alt="icon" />
             </CardIcon>
             <Value value={getBalanceNumber(earnings)} />
             <Label text="Y3D Earned" />
-            { nftSymbol && acc > 0 ? `(+${acc / 10}% with ⛏)` : '' }
+            {nftSymbol && acc > 0 ? `(+${acc / 10}% with ⛏)` : ''}
           </StyledCardHeader>
           <StyledCardActions>
             <Button
