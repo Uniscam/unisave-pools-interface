@@ -4,3 +4,5 @@ export const WBNB = {
 }
 
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
+
+export const y3d_ADDRESS = '0x12e2fcfa079fc23ae82ab82707b402410321103f'

@@ -13,7 +13,7 @@ import useAllStakedValue, {
   StakedValue,
 } from '../../../hooks/useAllStakedValue'
 import useFarms from '../../../hooks/useFarms'
-import { useRewardPerToken } from '../../../hooks/useRewardPerToken';
+// import { useRewardPerToken } from '../../../hooks/useRewardPerToken';
 import useTotalSupply from '../../../hooks/useTotalSupply'
 import useSushi from '../../../hooks/useSushi'
 import { getEarned, getMasterChefContract } from '../../../sushi/utils'
@@ -22,6 +22,8 @@ import { getBalanceNumber } from '../../../utils/formatBalance'
 import useDecimals from '../../../hooks/useDecimals'
 import { useTokenPriceInBNB } from '../../../hooks/useTokenPrice'
 import { usePoolApy } from '../../../hooks/useFarmApy'
+import { y3d_ADDRESS } from '../../../constants/addresses'
+import { isNaN } from 'lodash'
 
 interface FarmWithStakedValue extends Farm, StakedValue {
   apy: BigNumber
@@ -98,21 +100,18 @@ interface FarmCardProps {
 
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
-  const { rewardPerToken } = useRewardPerToken(farm.poolAddress)
-  const apy = ((Number(rewardPerToken) / (1e18)) * 100 + 50).toFixed(2)
-  console.log('farm', farm)
+  // const { rewardPerToken } = useRewardPerToken(farm.poolAddress)
+  // const apy = ((Number(rewardPerToken) / (1e18)) * 100 + 50).toFixed(2)
+  // console.log('farm', farm)
 
   const { stakingTokenAddress, poolAddress, earnTokenAddress, pid, name: symbol } = farm
   const decimalsOfStaking = useDecimals(stakingTokenAddress)
   const decimalsOfEarn = useDecimals(earnTokenAddress)
   const { priceInBNB: tokenPriceOfStaking } = useTokenPriceInBNB(stakingTokenAddress, decimalsOfStaking)
-  const { priceInBNB: tokenPriceOfEarn } = useTokenPriceInBNB('0xe44afc0319736759dbb3222d3dd8259abb374b0c', decimalsOfEarn)
+  const { priceInBNB: tokenPriceOfEarn } = useTokenPriceInBNB(y3d_ADDRESS, decimalsOfEarn)
 
-  console.log('tokenPriceOfEarn', tokenPriceOfEarn)
-
-  // 等待修复
-  const { apy: apys } = usePoolApy(poolAddress, tokenPriceOfEarn, tokenPriceOfStaking, decimalsOfEarn, decimalsOfStaking)
-  console.log('apyapyapy', apys)
+  const { apy } = usePoolApy(poolAddress, tokenPriceOfEarn, tokenPriceOfStaking, decimalsOfEarn, decimalsOfStaking)
+  console.log('apy', apy, typeof apy)
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [startTime, setStartTime] = useState(0)
@@ -189,7 +188,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
               </StyledDetail>
               <StyledDetail>
                 <StyledDetailSpan>APY</StyledDetailSpan>
-                <StyledDetailSpan>{apy}%</StyledDetailSpan>
+                <StyledDetailSpan>{((typeof apy === 'string' && apy === 'NaN') || isNaN(apy)) ? 0 : apy}%</StyledDetailSpan>
               </StyledDetail>
             </StyledDetails>
             <Spacer />

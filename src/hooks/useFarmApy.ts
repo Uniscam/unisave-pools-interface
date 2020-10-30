@@ -7,7 +7,7 @@ import { getContract } from "../utils/pool";
 export function usePoolApy(poolAddress: string, everyRewardTokenInBNB: string, everyStakingTokenInBNB: string,
     rewardTokenDecimal: string, stakingTokenDecimal: string) {
 
-    console.log('poolAddresspoolAddress', poolAddress, everyRewardTokenInBNB, everyStakingTokenInBNB, rewardTokenDecimal, stakingTokenDecimal)
+    // console.log('poolAddresspoolAddress', poolAddress, everyRewardTokenInBNB, everyStakingTokenInBNB, rewardTokenDecimal, stakingTokenDecimal)
     const { account, ethereum } = useWallet()
     const [rewardRate, updateRewardRate] = useState("0")
     const [totalStaked, updateTotalStaked] = useState("0")
@@ -43,14 +43,8 @@ export function usePoolApy(poolAddress: string, everyRewardTokenInBNB: string, e
         const formattedRewardTokenInBNB = formatUnits(everyRewardTokenInBNB, 18)
         const formattedStakingTokenInBNB = formatUnits(everyStakingTokenInBNB, 18)
 
-        console.log('formattedRewardTokenInBNB', formattedRewardTokenInBNB)
-        console.log('formattedStakingTokenInBNB', formattedStakingTokenInBNB)
-
         const formattedRewardRate = formatUnits(rewardRate, rewardTokenDecimal)
         const formattedtotalStaked = formatUnits(totalStaked, stakingTokenDecimal)
-
-        console.log('formattedRewardRate', formattedRewardRate)
-        console.log('formattedtotalStaked', formattedtotalStaked)
 
         // 365天，24小时，每个小时3600秒
         const yearlyRewardInBNB = Number(formattedRewardRate) * 365 * 24 * 3600 * Number(formattedRewardTokenInBNB)
