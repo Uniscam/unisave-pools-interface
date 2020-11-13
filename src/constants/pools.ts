@@ -82,8 +82,8 @@ export const Pools = [
             56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
         },        
         name: 'WBNB/BUSD LP',
-        symbol: 'WBNB/BUSD  ULP',
-        tokenSymbol: 'WBNB/BUSD ULP',
+        symbol: 'WBNB/BUSD LP',
+        tokenSymbol: 'WBNB/BUSD LP',
         isWBNB: false,
         isLpToken: true,
         icon: 'y3d',
@@ -100,13 +100,32 @@ export const Pools = [
             56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
         },        
         name: 'WBNB/USDT LP',
-        symbol: 'WBNB/USDT ULP',
-        tokenSymbol: 'WBNB/USDT ULP',
+        symbol: 'WBNB/USDT LP',
+        tokenSymbol: 'WBNB/USDT LP',
         isWBNB: false,
         isLpToken: true,
         icon: 'y3d',
         magnification: 1,
     },
+    {
+        poolAddresses: {
+            56: '0xAe6AcA33844575F2DC410E6cd75587ab94d8b65A',
+        },
+        stakingTokenAddresses: {
+            56: '0x3e40fbee56d2298c8762770917315d748f74cf97',
+        },
+        acceleratorAddresses: {
+            56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
+        },
+        name: 'BNB/ETH LP',
+        symbol: 'BNB/ETH LP',
+        tokenSymbol: 'BNB/ETH LP',
+        isWBNB: false,
+        isLpToken: true,
+        icon: 'y3d',
+        nftSymbol: 'TEST',
+        magnification: 1,
+    },    
     // @XXX: need to fill the actual `poolAddresses` - Frank
     // Uncomment lines below
     // {
@@ -146,23 +165,5 @@ export const Pools = [
     //     icon: 'y3d',
     //     nftSymbol: 'TEST',
     //     magnification: 1,
-    // },{
-    //     poolAddresses: {
-    //         56: '0x4Ec9379Afd0c99f6Ed4786095a3dD8C491Be239C',
-    //     },
-    //     stakingTokenAddresses: {
-    //         56: '0x3e40fbee56d2298c8762770917315d748f74cf97',
-    //     },
-    //     acceleratorAddresses: {
-    //         56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
-    //     },
-    //     name: 'BNB/ETH LP',
-    //     symbol: 'BNB/ETH  ULP',
-    //     tokenSymbol: 'BNB/ETH ULP',
-    //     isWBNB: false,
-    //     isLpToken: true,
-    //     icon: 'y3d',
-    //     nftSymbol: 'TEST',
-    //     magnification: 1,
-    // },
+    // }
 ]
