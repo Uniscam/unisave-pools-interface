@@ -12,7 +12,7 @@ import useTokenBalance from '../../../hooks/useTokenBalance'
 // import useSushi from '../../../hooks/useSushi'
 // import { getSushiAddress, getSushiSupply } from '../../../sushi/utils'
 import { getBalanceNumber } from '../../../utils/formatBalance'
-import useBest from '../../../hooks/useBest'
+import useY3d from '../../../hooks/useY3d'
 import { getTotalSupply } from '../../../utils/erc20'
 import Card from './Card'
 import CardContent from './CardContent'
@@ -75,8 +75,8 @@ const PendingRewards: React.FC = () => {
 const Balances: React.FC = () => {
   // eslint-disable-next-line
   const [totalSupply, setTotalSupply] = useState<BigNumber>()
-  const best = useBest()
-  const sushiBalance = useTokenBalance(best.address)
+  const best = useY3d()
+  const y3dBalance = useTokenBalance(best.address)
   const { account, ethereum }: { account: any; ethereum: any } = useWallet()
 
   useEffect(() => {
@@ -101,7 +101,7 @@ const Balances: React.FC = () => {
                   <BestIcon />
                   <Spacer size='md' />
                   <Value
-                    value={!!account ? getBalanceNumber(sushiBalance) : 'Locked'}
+                    value={!!account ? getBalanceNumber(y3dBalance) : 'Locked'}
                   />
                 </StyledBalanceWrapper>
               </div>
