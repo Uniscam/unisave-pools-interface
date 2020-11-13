@@ -17,7 +17,7 @@ const SushiIcon: React.FC<SushiIconProps> = ({ size = 36, v1, v2, v3 }) => (
     }}
     aria-label="Sushi"
   >
-    🍣
+    ♨️
   </span>
 )
 
