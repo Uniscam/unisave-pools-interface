@@ -11,6 +11,7 @@ export interface Farm {
   id: string
   tokenSymbol: string,
   isWBNB: boolean,
+  isLpToken: boolean,
   icon: string,
   acceleratorAddress: string,
   nftSymbol: string,
