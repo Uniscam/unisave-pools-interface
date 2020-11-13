@@ -5,6 +5,7 @@ import { useWallet } from 'use-wallet'
 import { getSwapRouter } from '../utils/swapRouter'
 import { address } from '../constants/swap'
 import { ADDRESS_ZERO, WBNB } from '../constants/addresses'
+import { BUSD_ADDRESS } from '../constants/tokenAddresses';
 // import { BigNumber } from '../sushi';
 
 // const { BigNumber } = utils
@@ -62,7 +63,6 @@ export function useTokenPriceInBNB(tokenAddress: string, decimals: number | stri
  * @param decimals Token decimals, optional, default is 18. Needs to fill if decimals is not 18
  */
 export function useTokenPriceInBUSD(tokenAddress: string, decimals: number | string = 18) {
-    const BUSD_ADDRESS = '0xe9e7cea3dedca5984780bafc599bd69add087d56'
     const { account, ethereum } = useWallet()
     // use BigNumber, format them at the display part please
     const [priceInBUSD, updatePriceInBUSD] = useState('0')
