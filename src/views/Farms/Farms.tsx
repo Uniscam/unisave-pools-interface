@@ -13,11 +13,11 @@ import useModal from '../../hooks/useModal'
 import Farm from '../Farm'
 
 import FarmCards from './components/FarmCards'
-import { useEDCPrice } from '../../hooks/useEDCPrice'
+import { useY3dPrice } from '../../hooks/useY3dPrice'
 
 const Farms: React.FC = () => {
   const { path } = useRouteMatch()
-  const edcPrice = useEDCPrice()
+  const edcPrice = useY3dPrice()
   const readablePriceInUSDT = utils.formatUnits(edcPrice.priceInUSDT, 6)
   const { account } = useWallet()
   const [onPresentWalletProviderModal] = useModal(<WalletProviderModal />)
@@ -27,7 +27,7 @@ const Farms: React.FC = () => {
         {account ? (
           <>
             <Route exact path={path}>
-              <PageHeader title="Stake tokens to stack Y3D" subtitle={`BUSD PRICE: $${readablePriceInUSDT}`} />
+              <PageHeader title="Stake tokens to stack Y3D" subtitle={`Y3D PRICE: $${readablePriceInUSDT}`} />
               <FarmCards />
             </Route>
             <Route path={`${path}/:farmId`}>

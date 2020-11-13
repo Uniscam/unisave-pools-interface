@@ -9,7 +9,7 @@ export const getUniswapRouter02 = (provider: provider) => {
   const web3 = new Web3(provider)
   const contract = new web3.eth.Contract(
     (Router02ABI as unknown) as AbiItem,
-    '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D',
+    '0x039b5818e51dfec86c1d56a4668787af0ed1c068',
   )
   return contract
 }
