@@ -18,7 +18,7 @@ import { useY3dPrice } from '../../hooks/useY3dPrice'
 const Farms: React.FC = () => {
   const { path } = useRouteMatch()
   const y3dPrice = useY3dPrice()
-  const readablePriceInUSDT = utils.formatUnits(y3dPrice.priceInUSD, 18)
+  const readablePriceInUSDT = utils.formatUnits(y3dPrice.priceInUSD, 18).slice(0, 9)
   const { account } = useWallet()
   const [onPresentWalletProviderModal] = useModal(<WalletProviderModal />)
   return (
