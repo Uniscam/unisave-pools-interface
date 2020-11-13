@@ -7,7 +7,7 @@ import { getContract } from "../utils/pool";
 export function usePoolApy(poolAddress: string, everyRewardTokenInMiddleToken: string, everyStakingTokenInMiddleToken: string,
     rewardTokenDecimal: string, stakingTokenDecimal: string) {
 
-    // console.log('poolAddresspoolAddress', poolAddress, everyRewardTokenInBNB, everyStakingTokenInBNB, rewardTokenDecimal, stakingTokenDecimal)
+    console.log('poolAddresspoolAddress', poolAddress, everyRewardTokenInMiddleToken, everyStakingTokenInMiddleToken, rewardTokenDecimal, stakingTokenDecimal)
     const { account, ethereum } = useWallet()
     const [rewardRate, updateRewardRate] = useState("0")
     const [totalStaked, updateTotalStaked] = useState("0")
@@ -50,7 +50,7 @@ export function usePoolApy(poolAddress: string, everyRewardTokenInMiddleToken: s
         const yearlyRewardInBNB = Number(formattedRewardRate) * 365 * 24 * 3600 * Number(formattedRewardTokenInBNB)
         const totalStakedTokenInBNB = Number(formattedtotalStaked) * Number(formattedStakingTokenInBNB)
         const apy = (yearlyRewardInBNB / totalStakedTokenInBNB)
-        const apyForDisplay = (apy * 100).toFixed(2)
+        const apyForDisplay = (apy * 100).toFixed(6)
         return apy === Number.POSITIVE_INFINITY ?
             '---.--' : apyForDisplay
     }, [
