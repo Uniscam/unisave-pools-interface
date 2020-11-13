@@ -12,8 +12,6 @@ import useFarm from '../../hooks/useFarm'
 import { getContract } from '../../utils/erc20'
 import Harvest from './components/Harvest'
 import Stake from './components/Stake'
-import FarmSingleTokenIcon from './components/FarmSingleTokenIcon'
-import FarmPairTokenIcon from './components/FarmPairTokenIcon'
 
 const Farm: React.FC = () => {
   const { farmId } = useParams<{ farmId?: string}>()
@@ -56,7 +54,6 @@ const Farm: React.FC = () => {
   return (
     <>
       <PageHeader
-        icon={lpTokenName.includes('/') ? <FarmPairTokenIcon /> : <FarmSingleTokenIcon />}
         title={`Deposit ${lpTokenName} Tokens and earn ${earnTokenName}`}
       />
       <StyledFarm>
