@@ -76,7 +76,7 @@ export const Pools = [
             56: '0x4Ec9379Afd0c99f6Ed4786095a3dD8C491Be239C',
         },
         stakingTokenAddresses: {
-            56: '0x3e40fbee56d2298c8762770917315d748f74cf97',
+            56: '0xe9527c5ae16c0e2967ed8b967a7126a991b8903d',
         },
         acceleratorAddresses: {
             56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
@@ -143,7 +143,8 @@ export const Pools = [
         isLpToken: true,
         icon: 'y3d',
         nftSymbol: 'TEST',
-        magnification: 5,
+        magnification: 6,
+        p3d: 5,
     },
     {
         poolAddresses: {
@@ -163,6 +164,7 @@ export const Pools = [
         icon: 'y3d',
         nftSymbol: 'TEST',
         magnification: 10,
+        p3d: 5
     },
 
 ]
