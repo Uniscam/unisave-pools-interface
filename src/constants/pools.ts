@@ -16,7 +16,7 @@ export const Pools = [
         isLpToken: false,
         icon: 'y3d',
         magnification: 0.5,
-    }
+    },
     {
         poolAddresses: {
             56: '0xB10fD0F525cBDeCef941a594dD7808427B3e87e2',
