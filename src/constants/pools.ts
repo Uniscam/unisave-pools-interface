@@ -6,17 +6,13 @@ export const Pools = [
         stakingTokenAddresses: {
             56: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
         },
-        acceleratorAddresses: {
-            56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
-        },
         name: 'BUSD',
         symbol: 'BUSD',
         tokenSymbol: 'BUSD',
         isWBNB: false,
         isLpToken: false,
         icon: 'y3d',
-        nftSymbol: 'TEST',
-        magnification: 1,
+        magnification: 0.5,
     },
     {
         poolAddresses: {
@@ -25,17 +21,13 @@ export const Pools = [
         stakingTokenAddresses: {
             56: '0x55d398326f99059fF775485246999027B3197955',
         },
-        acceleratorAddresses: {
-            56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
-        },
         name: 'USDT',
         symbol: 'USDT',
         tokenSymbol: 'USDT',
         isWBNB: false,
         isLpToken: false,
         icon: 'y3d',
-        nftSymbol: 'TEST',
-        magnification: 1,
+        magnification: 0.5,
     },
     {
         poolAddresses: {
@@ -44,16 +36,12 @@ export const Pools = [
         stakingTokenAddresses: {
             56: '0x3e40fbee56d2298c8762770917315d748f74cf97',
         },
-        acceleratorAddresses: {
-            56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
-        },
-        name: 'BUSD/ETH LP',
-        symbol: 'BUSD/ETH ULP',
-        tokenSymbol: 'BUSD/ETH ULP',
+        name: 'ETH/BUSD LP',
+        symbol: 'ETH/BUSD LP',
+        tokenSymbol: 'ETH/BUSD LP',
         isWBNB: false,
         isLpToken: true,
         icon: 'y3d',
-        nftSymbol: 'TEST',
         magnification: 1,
     },
     {
@@ -63,16 +51,12 @@ export const Pools = [
         stakingTokenAddresses: {
             56: '0x3e40fbee56d2298c8762770917315d748f74cf97',
         },
-        acceleratorAddresses: {
-            56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
-        },
         name: 'ETH/USDT LP',
-        symbol: 'ETH/USDT  ULP',
-        tokenSymbol: 'ETH/USDT ULP',
+        symbol: 'ETH/USDT  LP',
+        tokenSymbol: 'ETH/USDT LP',
         isWBNB: false,
         isLpToken: true,
         icon: 'y3d',
-        nftSymbol: 'TEST',
         magnification: 1,
     },
     {
@@ -82,18 +66,29 @@ export const Pools = [
         stakingTokenAddresses: {
             56: '0x3e40fbee56d2298c8762770917315d748f74cf97',
         },
-        acceleratorAddresses: {
-            56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
-        },
         name: 'WBNB/BUSD LP',
         symbol: 'WBNB/BUSD  ULP',
         tokenSymbol: 'WBNB/BUSD ULP',
         isWBNB: false,
         isLpToken: true,
         icon: 'y3d',
-        nftSymbol: 'TEST',
         magnification: 1,
     },
+    {
+        poolAddresses: {
+            56: '0xD75998B880270276DB24a69DD751520064e270FC',
+        },
+        stakingTokenAddresses: {
+            56: '0x65522CD1534F3324E8Cd54D67F893fcC82293111',
+        },
+        name: 'WBNB/USDT LP',
+        symbol: 'WBNB/USDT ULP',
+        tokenSymbol: 'WBNB/USDT ULP',
+        isWBNB: false,
+        isLpToken: true,
+        icon: 'y3d',
+        magnification: 1,
+    },    
     // @XXX: need to fill the actual `poolAddresses` - Frank
     // Uncomment lines below
     // {
@@ -146,25 +141,6 @@ export const Pools = [
     //     name: 'BNB/ETH LP',
     //     symbol: 'BNB/ETH  ULP',
     //     tokenSymbol: 'BNB/ETH ULP',
-    //     isWBNB: false,
-    //     isLpToken: true,
-    //     icon: 'y3d',
-    //     nftSymbol: 'TEST',
-    //     magnification: 1,
-    // },
-    // {
-    //     poolAddresses: {
-    //         56: '0x4Ec9379Afd0c99f6Ed4786095a3dD8C491Be239C',
-    //     },
-    //     stakingTokenAddresses: {
-    //         56: '0x3e40fbee56d2298c8762770917315d748f74cf97',
-    //     },
-    //     acceleratorAddresses: {
-    //         56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
-    //     },
-    //     name: 'BNB/USDT LP',
-    //     symbol: 'BNB/USDT ULP',
-    //     tokenSymbol: 'BNB/USDT ULP',
     //     isWBNB: false,
     //     isLpToken: true,
     //     icon: 'y3d',

@@ -9,11 +9,10 @@ interface PageHeaderProps {
   title?: string
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ icon, subtitle, title }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ subtitle, title }) => {
   return (
     <Container size="sm">
       <StyledPageHeader>
-        <StyledIcon>{icon}</StyledIcon>
         <StyledTitle>{title}</StyledTitle>
         <StyledSubtitle>{subtitle}</StyledSubtitle>
       </StyledPageHeader>
@@ -29,14 +28,6 @@ const StyledPageHeader = styled.div`
   padding-bottom: ${(props) => props.theme.spacing[6]}px;
   padding-top: ${(props) => props.theme.spacing[6]}px;
   margin: 0 auto;
-`
-
-const StyledIcon = styled.div`
-  font-size: 120px;
-  height: 120px;
-  line-height: 120px;
-  text-align: center;
-  width: 120px;
 `
 
 const StyledTitle = styled.h1`
