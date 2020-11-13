@@ -17,7 +17,6 @@ export const Pools = [
         icon: 'y3d',
         magnification: 0.5,
     }
-    /*,
     {
         poolAddresses: {
             56: '0xB10fD0F525cBDeCef941a594dD7808427B3e87e2',
@@ -25,6 +24,9 @@ export const Pools = [
         stakingTokenAddresses: {
             56: '0x55d398326f99059fF775485246999027B3197955',
         },
+        acceleratorAddresses: {
+            56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
+        },        
         name: 'USDT',
         symbol: 'USDT',
         tokenSymbol: 'USDT',
@@ -40,6 +42,9 @@ export const Pools = [
         stakingTokenAddresses: {
             56: '0x3e40fbee56d2298c8762770917315d748f74cf97',
         },
+        acceleratorAddresses: {
+            56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
+        },        
         name: 'ETH/BUSD LP',
         symbol: 'ETH/BUSD LP',
         tokenSymbol: 'ETH/BUSD LP',
@@ -55,6 +60,9 @@ export const Pools = [
         stakingTokenAddresses: {
             56: '0x3e40fbee56d2298c8762770917315d748f74cf97',
         },
+        acceleratorAddresses: {
+            56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
+        },        
         name: 'ETH/USDT LP',
         symbol: 'ETH/USDT  LP',
         tokenSymbol: 'ETH/USDT LP',
@@ -70,6 +78,9 @@ export const Pools = [
         stakingTokenAddresses: {
             56: '0x3e40fbee56d2298c8762770917315d748f74cf97',
         },
+        acceleratorAddresses: {
+            56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
+        },        
         name: 'WBNB/BUSD LP',
         symbol: 'WBNB/BUSD  ULP',
         tokenSymbol: 'WBNB/BUSD ULP',
@@ -85,6 +96,9 @@ export const Pools = [
         stakingTokenAddresses: {
             56: '0x65522CD1534F3324E8Cd54D67F893fcC82293111',
         },
+        acceleratorAddresses: {
+            56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
+        },        
         name: 'WBNB/USDT LP',
         symbol: 'WBNB/USDT ULP',
         tokenSymbol: 'WBNB/USDT ULP',
@@ -92,7 +106,7 @@ export const Pools = [
         isLpToken: true,
         icon: 'y3d',
         magnification: 1,
-    },     */
+    },
     // @XXX: need to fill the actual `poolAddresses` - Frank
     // Uncomment lines below
     // {
