@@ -4,7 +4,7 @@ import { useWallet } from "use-wallet";
 import { formatUnits } from "ethers/utils";
 import { getContract } from "../utils/pool";
 
-export function usePoolApy(poolAddress: string, everyRewardTokenInBNB: string, everyStakingTokenInBNB: string,
+export function usePoolApy(poolAddress: string, everyRewardTokenInMiddleToken: string, everyStakingTokenInMiddleToken: string,
     rewardTokenDecimal: string, stakingTokenDecimal: string) {
 
     // console.log('poolAddresspoolAddress', poolAddress, everyRewardTokenInBNB, everyStakingTokenInBNB, rewardTokenDecimal, stakingTokenDecimal)
@@ -40,8 +40,8 @@ export function usePoolApy(poolAddress: string, everyRewardTokenInBNB: string, e
             return '---.--'
         }
         // BNB is 18 long
-        const formattedRewardTokenInBNB = formatUnits(everyRewardTokenInBNB, 18)
-        const formattedStakingTokenInBNB = formatUnits(everyStakingTokenInBNB, 18)
+        const formattedRewardTokenInBNB = formatUnits(everyRewardTokenInMiddleToken, 18)
+        const formattedStakingTokenInBNB = formatUnits(everyStakingTokenInMiddleToken, 18)
 
         const formattedRewardRate = formatUnits(rewardRate, rewardTokenDecimal)
         const formattedtotalStaked = formatUnits(totalStaked, stakingTokenDecimal)
@@ -54,7 +54,7 @@ export function usePoolApy(poolAddress: string, everyRewardTokenInBNB: string, e
         return apy === Number.POSITIVE_INFINITY ?
             '---.--' : apyForDisplay
     }, [
-        everyRewardTokenInBNB, everyStakingTokenInBNB,
+        everyRewardTokenInMiddleToken, everyStakingTokenInMiddleToken,
         rewardTokenDecimal, stakingTokenDecimal,
         rewardRate, totalStaked]);
     useEffect(() => {

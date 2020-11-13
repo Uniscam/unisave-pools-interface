@@ -1,4 +1,4 @@
 
 export const address = {
-    56: '0x22Ac04F6609912aab2F73302a71207AAdD676B8c'
+    56: '0x039b5818e51dfec86c1d56a4668787af0ed1c068'
 }

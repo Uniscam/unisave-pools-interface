@@ -54,3 +54,51 @@ export function useTokenPriceInBNB(tokenAddress: string, decimals: number | stri
 
     return { priceInBNB, fetchPrice }
 }
+
+
+/**
+ * useTokenPriceInBNB 获取1个单位的代币在 Swap 合约中的价格（以BNB计价）
+ * @param tokenAddress Address of ERC20/BEP20 Token
+ * @param decimals Token decimals, optional, default is 18. Needs to fill if decimals is not 18
+ */
+export function useTokenPriceInBUSD(tokenAddress: string, decimals: number | string = 18) {
+    const BUSD_ADDRESS = '0xe9e7cea3dedca5984780bafc599bd69add087d56'
+    const { account, ethereum } = useWallet()
+    // use BigNumber, format them at the display part please
+    const [priceInBUSD, updatePriceInBUSD] = useState('0')
+    // 97 stands for bsc testnet
+    const networkId = 56
+    const contract = useMemo(() => {
+        return getSwapRouter(ethereum as provider, address[networkId])
+    }, [ethereum])
+
+    const oneUnitOfToken = utils.parseUnits('1', decimals)
+
+    const fetchPrice = useCallback(async () => {
+        if (tokenAddress.toLowerCase() === BUSD_ADDRESS) {
+            // 1 BUSD = 1 BUSD 没毛病
+            updatePriceInBUSD(oneUnitOfToken.toString())
+            return
+        }
+        try {
+            const [, outputBUSD] = await contract.methods.getAmountsOut(
+                oneUnitOfToken,
+                [
+                    tokenAddress, // the token address
+                    BUSD_ADDRESS // BUSD
+                ]).call();
+            updatePriceInBUSD(outputBUSD)
+        } catch (error) {
+            console.error('unable to fetch price for: ' + tokenAddress)
+        }
+    }, [contract, tokenAddress, oneUnitOfToken])
+
+
+    useEffect(() => {
+        if (account && contract && decimals !== '0') {
+            fetchPrice()
+        }
+    }, [contract, account, fetchPrice, decimals])
+
+    return { priceInBUSD, fetchPrice }
+}

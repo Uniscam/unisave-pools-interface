@@ -20,10 +20,11 @@ import { getEarned, getMasterChefContract } from '../../../sushi/utils'
 import { bnToDec } from '../../../utils'
 import { getBalanceNumber } from '../../../utils/formatBalance'
 import useDecimals from '../../../hooks/useDecimals'
-import { useTokenPriceInBNB } from '../../../hooks/useTokenPrice'
+import { useTokenPriceInBUSD } from '../../../hooks/useTokenPrice'
 import { usePoolApy } from '../../../hooks/useFarmApy'
-import { y3d_ADDRESS } from '../../../constants/addresses'
+// import { y3d_ADDRESS } from '../../../constants/addresses'
 import { isNaN } from 'lodash'
+import { useY3dPrice } from '../../../hooks/useY3dPrice'
 
 interface FarmWithStakedValue extends Farm, StakedValue {
   apy: BigNumber
@@ -106,11 +107,12 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
 
   const { stakingTokenAddress, poolAddress, earnTokenAddress, pid, name: symbol } = farm
   const decimalsOfStaking = useDecimals(stakingTokenAddress)
-  const decimalsOfEarn = useDecimals(earnTokenAddress)
-  const { priceInBNB: tokenPriceOfStaking } = useTokenPriceInBNB(stakingTokenAddress, decimalsOfStaking)
-  const { priceInBNB: tokenPriceOfEarn } = useTokenPriceInBNB(y3d_ADDRESS, decimalsOfEarn)
+  console.log(earnTokenAddress)
+  // const decimalsOfEarn = useDecimals(earnTokenAddress)
+  const { priceInBUSD: tokenPriceOfStaking } = useTokenPriceInBUSD(stakingTokenAddress, decimalsOfStaking)
+  const { priceInUSD: tokenPriceOfEarn } = useY3dPrice()
 
-  const { apy } = usePoolApy(poolAddress, tokenPriceOfEarn, tokenPriceOfStaking, decimalsOfEarn, decimalsOfStaking)
+  const { apy } = usePoolApy(poolAddress, tokenPriceOfEarn.toString(), tokenPriceOfStaking, "18", decimalsOfStaking)
   console.log('apy', apy, typeof apy)
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
