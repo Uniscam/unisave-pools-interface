@@ -36,5 +36,24 @@ export const Pools = [
         icon: 'y3d',
         nftSymbol: 'TEST',
         magnification: 1,
+    },
+    {
+        poolAddresses: {
+            56: '0xA2A183416690C9199783fB67690d677Aa419E169',
+        },
+        stakingTokenAddresses: {
+            56: '0x3e40fbee56d2298c8762770917315d748f74cf97',
+        },
+        acceleratorAddresses: {
+            56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
+        },
+        name: 'BUSD/ETH LP',
+        symbol: 'BUSD/ETH ULP',
+        tokenSymbol: 'BUSD/ETH ULP',
+        isWBNB: false,
+        isLpToken: true,
+        icon: 'y3d',
+        nftSymbol: 'TEST',
+        magnification: 1,
     }
 ]

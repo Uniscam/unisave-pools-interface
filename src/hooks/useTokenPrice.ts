@@ -6,6 +6,7 @@ import { getSwapRouter } from '../utils/swapRouter'
 import { address } from '../constants/swap'
 import { ADDRESS_ZERO, WBNB } from '../constants/addresses'
 import { BUSD_ADDRESS } from '../constants/tokenAddresses';
+import { getTotalLiquidity } from '../utils/Liquidity';
 // import { BigNumber } from '../sushi';
 
 // const { BigNumber } = utils
@@ -62,7 +63,7 @@ export function useTokenPriceInBNB(tokenAddress: string, decimals: number | stri
  * @param tokenAddress Address of ERC20/BEP20 Token
  * @param decimals Token decimals, optional, default is 18. Needs to fill if decimals is not 18
  */
-export function useTokenPriceInBUSD(tokenAddress: string, decimals: number | string = 18) {
+export function useTokenPriceInBUSD(tokenAddress: string, decimals: number | string = 18, isLp: boolean = false) {
     const { account, ethereum } = useWallet()
     // use BigNumber, format them at the display part please
     const [priceInBUSD, updatePriceInBUSD] = useState('0')
@@ -75,6 +76,16 @@ export function useTokenPriceInBUSD(tokenAddress: string, decimals: number | str
     const oneUnitOfToken = utils.parseUnits('1', decimals)
 
     const fetchPrice = useCallback(async () => {
+        if (isLp) {
+            // LP 做特殊处理
+            const fresult = await getTotalLiquidity(
+              ethereum as provider,
+              tokenAddress,
+              BUSD_ADDRESS,
+            )
+            updatePriceInBUSD(fresult)
+            return
+        }
         if (tokenAddress.toLowerCase() === BUSD_ADDRESS) {
             // 1 BUSD = 1 BUSD 没毛病
             updatePriceInBUSD(oneUnitOfToken.toString())
@@ -91,7 +102,7 @@ export function useTokenPriceInBUSD(tokenAddress: string, decimals: number | str
         } catch (error) {
             console.error('unable to fetch price for: ' + tokenAddress)
         }
-    }, [contract, tokenAddress, oneUnitOfToken])
+    }, [contract, tokenAddress, oneUnitOfToken, isLp, ethereum])
 
 
     useEffect(() => {

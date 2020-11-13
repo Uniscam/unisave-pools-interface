@@ -105,11 +105,11 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
   // const apy = ((Number(rewardPerToken) / (1e18)) * 100 + 50).toFixed(2)
   // console.log('farm', farm)
 
-  const { stakingTokenAddress, poolAddress, earnTokenAddress, pid, name: symbol } = farm
+  const { stakingTokenAddress, poolAddress, earnTokenAddress, pid, name: symbol, isLpToken } = farm
   const decimalsOfStaking = useDecimals(stakingTokenAddress)
   console.log(earnTokenAddress)
   // const decimalsOfEarn = useDecimals(earnTokenAddress)
-  const { priceInBUSD: tokenPriceOfStaking } = useTokenPriceInBUSD(stakingTokenAddress, decimalsOfStaking)
+  const { priceInBUSD: tokenPriceOfStaking } = useTokenPriceInBUSD(stakingTokenAddress, decimalsOfStaking, isLpToken)
   const { priceInUSD: tokenPriceOfEarn } = useY3dPrice()
 
   const { apy } = usePoolApy(poolAddress, tokenPriceOfEarn.toString(), tokenPriceOfStaking, "18", decimalsOfStaking)
