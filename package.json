@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.165",
     "@types/numeral": "0.0.28",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
