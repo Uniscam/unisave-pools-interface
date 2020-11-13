@@ -29,6 +29,7 @@ export const Pools = [
         icon: 'y3d',
         magnification: 0.5,
     },
+    /*
     {
         poolAddresses: {
             56: '0xA2A183416690C9199783fB67690d677Aa419E169',
@@ -88,7 +89,7 @@ export const Pools = [
         isLpToken: true,
         icon: 'y3d',
         magnification: 1,
-    },    
+    },     */
     // @XXX: need to fill the actual `poolAddresses` - Frank
     // Uncomment lines below
     // {
