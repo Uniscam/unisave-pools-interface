@@ -207,10 +207,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
             <Spacer />
             <StyledDetails style={{ marginTop: 0 }}>
               <StyledDetail>
-                <StyledDetailSpan>Total Liquidity</StyledDetailSpan>
-                <StyledDetailSpan>$41,270,688</StyledDetailSpan>
-              </StyledDetail>
-              <StyledDetail>
                 <StyledDetailSpan>Total Staked</StyledDetailSpan>
                 <StyledDetailSpan>{getBalanceNumber(totalSupply).toFixed(4)} {symbol}</StyledDetailSpan>
               </StyledDetail>
