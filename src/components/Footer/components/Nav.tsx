@@ -21,7 +21,7 @@ const Nav: React.FC = () => {
       </StyledLink>
       <StyledLink
         target="_blank"
-        href="#"
+        href="https://medium.com/y3dscam/introduction-to-unisave-6ca3a85a0693"
       >
         Medium
       </StyledLink>
