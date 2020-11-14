@@ -22,7 +22,6 @@ const Referral: React.FC = () => {
   const [link, setLink] = useState('')
   const [ invitedNum, setInvitedNum ] = useState(0)
   const [ rebateNum, setRebateNum ] = useState<BigNumber>(new BigNumber(0))
-  const [ rebatePercent ] = useState(0.07)
   const [ invitedList, setInvitedList ] = useState([])
   const [ rebateScore, setRebateScore ] = useState({})
   const history = useHistory()
