@@ -27,7 +27,7 @@ const Farms: React.FC = () => {
         {account ? (
           <>
             <Route exact path={path}>
-              <PageHeader title="Stake tokens to stack Y3D" subtitle={`Y3D PRICE: $${readablePriceInUSDT}`} />
+              <PageHeader title="Stake LP tokens to earn Y3D" subtitle={`<a href="https://swap.y3d.finance/#/swap?inputCurrency=0x12e2fcfa079fc23ae82ab82707b402410321103f&outputCurrency=0xe9e7cea3dedca5984780bafc599bd69add087d56">Y3D PRICE: $${readablePriceInUSDT}</a>`} />
               <FarmCards />
             </Route>
             <Route path={`${path}/:farmId`}>
