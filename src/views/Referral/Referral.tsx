@@ -161,18 +161,15 @@ const Referral: React.FC = () => {
           <div className="dashboard-card-col">
             <div className="dashboard-card-col-label">
               <p className="dashboard-card-col-label-value">
-                {getDisplayBalance(rebateNum)}
-                <span>Y3D ({Math.round(rebatePercent * 100)}%)</span>
-              </p>
-              <p className="dashboard-card-col-label-title">
-                Rebate
+                Farmed {getDisplayBalance(rebateNum)}
+                <span>Y3D in total</span>
               </p>
             </div>
           </div>
         </div>
         <div className="address-list">
           <h3 className="address-list-title">
-            Invited People
+            Detailed
           </h3>
           <AddressList list={invitedList} />
           { invitedList.length ? null : <p className="address-list-entry">No invited people</p> }

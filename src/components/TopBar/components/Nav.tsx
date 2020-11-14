@@ -11,12 +11,12 @@ const Nav: React.FC = () => {
       <StyledLink exact activeClassName="active" to="/farms">
         Menu
       </StyledLink>
-      <StyledLink exact activeClassName="active" to="https://swap.y3d.finance/#/swap">
+      <StyledLink target="_blank" href="https://swap.y3d.finance/#/swap?inputCurrency=0x12e2fcfa079fc23ae82ab82707b402410321103f&outputCurrency=0xe9e7cea3dedca5984780bafc599bd69add087d56">
         Swap
       </StyledLink>
-      <StyledLink exact activeClassName="active" to="https://info.y3d.finance/">
+      <StyledLink  target="_blank" href="https://info.y3d.finance/">
         Info
-      </StyledLink>
+      </StyledLink>      
       <StyledLink exact activeClassName="active" to="/referral">
         Referral
       </StyledLink>            
