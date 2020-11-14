@@ -15,7 +15,7 @@ export const Pools = [
         isWBNB: false,
         isLpToken: false,
         icon: 'y3d',
-        magnification: 0.4,
+        magnification: 0.2,
     },
     {
         poolAddresses: {
@@ -33,7 +33,7 @@ export const Pools = [
         isWBNB: false,
         isLpToken: false,
         icon: 'y3d',
-        magnification: 0.4,
+        magnification: 0.2,
     },
     {
         poolAddresses: {
