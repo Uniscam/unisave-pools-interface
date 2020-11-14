@@ -4,19 +4,13 @@ import styled from 'styled-components'
 const Nav: React.FC = () => {
   return (
     <StyledNav>
-      <StyledLink
-        target="_blank"
-        href="#"
-      >
+      <StyledLink target="_blank" href="https://t.me/y3dScam">
         Telegram
       </StyledLink>
-      <StyledLink target="_blank" href="https://discord.gg/hJ2p555">
-        Discord
-      </StyledLink>
-      <StyledLink target="_blank" href="https://github.com/sushiswap">
+      <StyledLink target="_blank" href="https://github.com/Uniscam/unisave-pools-interface">
         GitHub
       </StyledLink>
-      <StyledLink target="_blank" href="https://twitter.com/sushiswap">
+      <StyledLink target="_blank" href="https://twitter.com/UnisaveProtocol">
         Twitter
       </StyledLink>
       <StyledLink
