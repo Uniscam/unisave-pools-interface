@@ -24,6 +24,7 @@ const Farms: React.FC = ({ children }) => {
       icon,
       nftSymbol,
       magnification,
+      p3d
     }: any, index) => ({
       pid: index,
       id: symbol.replace('/', '-'),
@@ -40,6 +41,7 @@ const Farms: React.FC = ({ children }) => {
       icon,
       nftSymbol: nftSymbol ?? '',
       magnification,
+      p3d: p3d ?? 0
     }),
   );
 

@@ -113,7 +113,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
   const { priceInUSD: tokenPriceOfEarn } = useY3dPrice()
 
   const { apy } = usePoolApy(poolAddress, tokenPriceOfEarn.toString(), tokenPriceOfStaking, "18", decimalsOfStaking)
-  console.log('apy', apy, typeof apy)
+  // console.log('apy', apy, typeof apy)
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [startTime, setStartTime] = useState(0)
@@ -194,7 +194,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
               </StyledDetail>
               <StyledDetail>
                 <StyledDetailSpan>P3D</StyledDetailSpan>
-                <StyledDetailSpan>{((typeof p3d === 'string' && p3d === 'NaN') || isNaN(p3d)) ? 0 : p3d}%</StyledDetailSpan>
+                <StyledDetailSpan>{((typeof farm.p3d === 'string' && farm.p3d === 'NaN') || isNaN(farm.p3d)) ? 0 : farm.p3d}%</StyledDetailSpan>
               </StyledDetail>              
             </StyledDetails>
             <Spacer />
