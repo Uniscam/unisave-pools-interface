@@ -4,6 +4,12 @@ import styled from 'styled-components'
 const Nav: React.FC = () => {
   return (
     <StyledNav>
+      <StyledLink target="_blank" href="https://swap.y3d.finance/#/swap?inputCurrency=0x12e2fcfa079fc23ae82ab82707b402410321103f\&outputCurrency=0xe9e7cea3dedca5984780bafc599bd69add087d56">
+        Swap
+      </StyledLink>
+      <StyledLink  target="_blank" href="https://info.y3d.finance/">
+        Info
+      </StyledLink>      
       <StyledLink target="_blank" href="https://t.me/y3dScam">
         Telegram
       </StyledLink>
