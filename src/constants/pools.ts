@@ -143,7 +143,7 @@ export const Pools = [
         isLpToken: true,
         icon: 'y3d',
         nftSymbol: 'TEST',
-        magnification: 6,
+        magnification: 5,
         p3d: 5,
     },
     {

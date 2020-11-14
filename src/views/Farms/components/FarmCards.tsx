@@ -192,6 +192,10 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
                 <StyledDetailSpan>APY</StyledDetailSpan>
                 <StyledDetailSpan>{((typeof apy === 'string' && apy === 'NaN') || isNaN(apy)) ? 0 : apy}%</StyledDetailSpan>
               </StyledDetail>
+              <StyledDetail>
+                <StyledDetailSpan>P3D</StyledDetailSpan>
+                <StyledDetailSpan>{((typeof p3d === 'string' && p3d === 'NaN') || isNaN(p3d)) ? 0 : p3d}%</StyledDetailSpan>
+              </StyledDetail>              
             </StyledDetails>
             <Spacer />
             <Button
