@@ -166,5 +166,25 @@ export const Pools = [
         magnification: 10,
         p3d: 5
     },
+    {
+        poolAddresses: {
+            56: '0x80d348bBcF1504e2D99850da482faE48138c8393',
+        },
+        stakingTokenAddresses: {
+            56: '0x68Ea08c0F9317EAda0192BE5A65a0Cb2968383e1',
+        },
+        acceleratorAddresses: {
+            56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
+        },
+        name: 'WBNB/FOR LP',
+        symbol: 'WBNB/FOR LP',
+        tokenSymbol: 'WBNB/FOR LP',
+        isWBNB: false,
+        isLpToken: true,
+        icon: 'y3d',
+        nftSymbol: 'TEST',
+        magnification: 0.2,
+        p3d: 0
+    },    
 
 ]
