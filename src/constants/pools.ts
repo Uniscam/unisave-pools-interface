@@ -183,8 +183,28 @@ export const Pools = [
         isLpToken: true,
         icon: 'y3d',
         nftSymbol: 'TEST',
-        magnification: 0.2,
+        magnification: 0.1,
         p3d: 0
-    },    
+    },
+    {
+        poolAddresses: {
+            56: '0x2656C7b0420cFdACCf884Ad4a21923628dC451da',
+        },
+        stakingTokenAddresses: {
+            56: '0x57EbF1d71a11519E4c5caB6DC164Bd9beA18Cf90',
+        },
+        acceleratorAddresses: {
+            56: '0x7377ED43F5A79cc89A5cE5D6632764a3494996B7'
+        },
+        name: 'WBNB/DEGO LP',
+        symbol: 'WBNB/DEGO LP',
+        tokenSymbol: 'WBNB/DEGO LP',
+        isWBNB: false,
+        isLpToken: true,
+        icon: 'y3d',
+        nftSymbol: 'TEST',
+        magnification: 0.1,
+        p3d: 0
+    },      
 
 ]
