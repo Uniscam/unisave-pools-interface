@@ -56,7 +56,16 @@ export const SharePools: Array<SharePoolObj> = [
                 isWBNB: false,
                 isLpToken: true,
                 icon: 'y3d',
-            }
+            },
+            {
+                56: '0x96a5335a3cf10e6429ee01b2701c6536587012e0',
+                name: 'USDT/BUSD LP',
+                symbol: 'USDT/BUSD LP',
+                tokenSymbol: 'USDT/BUSD LP',
+                isWBNB: false,
+                isLpToken: true,
+                icon: 'y3d',
+            }            
         ],
         icon: 'y3d',
         name: 'StableLP Pool',

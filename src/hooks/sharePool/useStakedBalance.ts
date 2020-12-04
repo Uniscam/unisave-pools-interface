@@ -10,19 +10,21 @@ import { useWallet } from 'use-wallet'
 import useSharePool from '../useSharePool'
 import { getContract } from '../../utils/sharePool'
 
-const useStakedBalance = (pid: number) => {
+const useStakedBalance = (pid: number, symbol: string) => {
   const [balance, setBalance] = useState(new BigNumber(0))
   const { account, ethereum } = useWallet()
   const farm = useSharePool(pid)
+  const findTokenInfo = farm.stakingTokenAddresses.find(stake => stake.symbol === symbol)
+  const tokenAddr = findTokenInfo.address
 
   const contract = useMemo(() => {
     return getContract(ethereum as provider, farm.poolAddress)
   }, [ethereum, farm.poolAddress])
 
   const fetchBalance = useCallback(async () => {
-    const balance = await contract.methods.balanceOf(account).call();
+    const balance = await contract.methods._subBalances(account, tokenAddr).call();
     setBalance(new BigNumber(balance))
-  }, [account, contract])
+  }, [account, contract, tokenAddr])
 
   useEffect(() => {
     if (account && contract) {
