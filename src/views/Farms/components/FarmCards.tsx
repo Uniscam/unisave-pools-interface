@@ -25,6 +25,8 @@ import { usePoolApy } from '../../../hooks/useFarmApy'
 // import { y3d_ADDRESS } from '../../../constants/addresses'
 import { isNaN } from 'lodash'
 import { useY3dPrice } from '../../../hooks/useY3dPrice'
+import useSharePools from '../../../hooks/useSharePools'
+import SharePoolCard from '../../SharePool/components/SharePoolCard'
 
 interface FarmWithStakedValue extends Farm, StakedValue {
   apy: BigNumber
@@ -32,6 +34,7 @@ interface FarmWithStakedValue extends Farm, StakedValue {
 
 const FarmCards: React.FC = () => {
   const [farms] = useFarms()
+  const [sharePools] = useSharePools()
   // const { account } = useWallet()
   const stakedValue = useAllStakedValue()
   const REWARD_TOKEN_SYMBOL = 'BUSD'
@@ -48,44 +51,56 @@ const FarmCards: React.FC = () => {
   const BLOCKS_PER_YEAR = new BigNumber(2336000)
   const SUSHI_PER_BLOCK = new BigNumber(1000)
 
+  // const rows = farms.reduce<FarmWithStakedValue[][]>(
+  //   (farmRows, farm, i) => {
+  //     const farmWithStakedValue = {
+  //       ...farm,
+  //       ...stakedValue[i],
+  //       apy: stakedValue[i]
+  //         ? sushiPrice
+  //           .times(SUSHI_PER_BLOCK)
+  //           .times(BLOCKS_PER_YEAR)
+  //           .times(stakedValue[i].poolWeight)
+  //           .div(stakedValue[i].totalWethValue)
+  //         : null,
+  //     }
+  //     const newFarmRows = [...farmRows]
+  //     if (newFarmRows[newFarmRows.length - 1].length === 3) {
+  //       newFarmRows.push([farmWithStakedValue])
+  //     } else {
+  //       newFarmRows[newFarmRows.length - 1].push(farmWithStakedValue)
+  //     }
+  //     return newFarmRows
+  //   },
+  //   [[]],
+  // )
 
-  const rows = farms.reduce<FarmWithStakedValue[][]>(
-    (farmRows, farm, i) => {
-      const farmWithStakedValue = {
-        ...farm,
-        ...stakedValue[i],
-        apy: stakedValue[i]
-          ? sushiPrice
-            .times(SUSHI_PER_BLOCK)
-            .times(BLOCKS_PER_YEAR)
-            .times(stakedValue[i].poolWeight)
-            .div(stakedValue[i].totalWethValue)
-          : null,
-      }
-      const newFarmRows = [...farmRows]
-      if (newFarmRows[newFarmRows.length - 1].length === 3) {
-        newFarmRows.push([farmWithStakedValue])
-      } else {
-        newFarmRows[newFarmRows.length - 1].push(farmWithStakedValue)
-      }
-      return newFarmRows
-    },
-    [[]],
-  )
+  const rows2 = farms.map((farm, i) => {
+    const farmWithStakedValue = {
+      ...farm,
+      ...stakedValue[i],
+      apy: stakedValue[i]
+        ? sushiPrice
+          .times(SUSHI_PER_BLOCK)
+          .times(BLOCKS_PER_YEAR)
+          .times(stakedValue[i].poolWeight)
+          .div(stakedValue[i].totalWethValue)
+        : null,
+    }
+    return farmWithStakedValue
+  })
 
   return (
     <StyledCards>
-      {!!rows[0].length ? (
-        rows.map((farmRow, i) => (
-          <StyledRow key={i}>
-            {farmRow.map((farm, j) => (
-              <React.Fragment key={j}>
-                <FarmCard farm={farm} />
-                {(j === 0 || j === 1) && <StyledSpacer />}
-              </React.Fragment>
-            ))}
-          </StyledRow>
-        ))
+      {(rows2.length || sharePools.length) ? (
+        <StyledCardGird>
+          {rows2.map((farm, i) => (
+            <FarmCard farm={farm} key={i} />
+          ))}
+          {sharePools.map((pool, j) => (
+            <SharePoolCard sharePool={pool} key={j} />
+          ))}
+        </StyledCardGird>
       ) : (
           <StyledLoadingWrapper>
             <Loader text="Cooking the rice ..." />
@@ -195,7 +210,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
               <StyledDetail>
                 <StyledDetailSpan>P3D</StyledDetailSpan>
                 <StyledDetailSpan>{((typeof farm.p3d === 'string' && farm.p3d === 'NaN') || isNaN(farm.p3d)) ? 0 : farm.p3d}%</StyledDetailSpan>
-              </StyledDetail>              
+              </StyledDetail>
             </StyledDetails>
             <Spacer />
             <Button
@@ -277,16 +292,31 @@ const StyledLoadingWrapper = styled.div`
   justify-content: center;
 `
 
-const StyledRow = styled.div`
-  display: flex;
+const StyledCardGird = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: ${(props) => props.theme.spacing[4]}px;
+  column-gap: ${(props) => props.theme.spacing[4]}px;
   margin-bottom: ${(props) => props.theme.spacing[4]}px;
-  flex-flow: row wrap;
   @media (max-width: 768px) {
+    display: flex;
+    margin-bottom: ${(props) => props.theme.spacing[4]}px;
     width: 100%;
     flex-flow: column nowrap;
     align-items: center;
   }
 `
+
+// const StyledRow = styled.div`
+//   display: flex;
+//   margin-bottom: ${(props) => props.theme.spacing[4]}px;
+//   flex-flow: row wrap;
+//   @media (max-width: 768px) {
+//     width: 100%;
+//     flex-flow: column nowrap;
+//     align-items: center;
+//   }
+// `
 
 const StyledCardWrapper = styled.div`
   display: flex;
@@ -324,10 +354,10 @@ const StyledContent = styled.div`
   position: relative;
 `
 
-const StyledSpacer = styled.div`
-  height: ${(props) => props.theme.spacing[4]}px;
-  width: ${(props) => props.theme.spacing[4]}px;
-`
+// const StyledSpacer = styled.div`
+//   height: ${(props) => props.theme.spacing[4]}px;
+//   width: ${(props) => props.theme.spacing[4]}px;
+// `
 
 const StyledDetails = styled.div`
   width: 100%;

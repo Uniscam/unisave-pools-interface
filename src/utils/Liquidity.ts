@@ -3,8 +3,9 @@ import { getPairContract } from './pair'
 import { provider } from 'web3-core'
 // import { useWallet } from 'use-wallet'
 import { getSwapRouter } from '../utils/swapRouter'
-import { address } from '../constants/swap'
+// import { address } from '../constants/swap'
 import BigNumber from 'bignumber.js'
+import { ROUTER02_ADDRESS } from '../constants/tokenAddresses'
 // import { useCallback, useEffect, useMemo, useState } from 'react'
 // import { BUSD_ADDRESS } from '../constants/tokenAddresses'
 
@@ -31,10 +32,11 @@ export async function getTotalLiquidity(
   ethereum: provider,
   tokenAddress: string,
   valuationCurrency: string,
+  chainId: number = 56
 ) {
   // @XXX: need rewrite for Unisave
-  const networkId = 56 // BSC
-  const swapRouter = getSwapRouter(ethereum as provider, address[networkId])
+  const networkId = chainId // BSC
+  const swapRouter = getSwapRouter(ethereum as provider, ROUTER02_ADDRESS[networkId])
   // LP 做特殊处理
   const pairContract = getPairContract(ethereum, tokenAddress)
   // rewardRate = reward for every second staking

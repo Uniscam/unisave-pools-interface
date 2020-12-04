@@ -2,6 +2,7 @@ import React from 'react'
 
 import { useWallet } from 'use-wallet'
 import { Pools } from '../../constants/pools'
+import { Y3D_ADDRESS } from '../../constants/tokenAddresses'
 
 // import { bnToDec } from '../../utils'
 
@@ -35,7 +36,7 @@ const Farms: React.FC = ({ children }) => {
       acceleratorAddress: acceleratorAddresses?.[chainId],
       tokenSymbol,
       earnToken: 'y3d',
-      earnTokenAddress: '0x12e2fcfa079fc23ae82ab82707b402410321103f',
+      earnTokenAddress: Y3D_ADDRESS[chainId],
       isWBNB,
       isLpToken,
       icon,
@@ -44,6 +45,7 @@ const Farms: React.FC = ({ children }) => {
       p3d: p3d ?? 0
     }),
   );
+  console.log('FarmsContexts::farms:', farms)
 
   return (
     <Context.Provider

@@ -8,17 +8,25 @@ import { Contract } from 'web3-eth-contract'
 
 // import { approve, getMasterChefContract } from '../sushi/utils'
 import useFarm from './useFarm'
+import useSharePool from './useSharePool'
 
-const useApprove = (lpContract: Contract, pid: number) => {
+const useApprove = (lpContract: Contract, pid: number, isSharePool: boolean = false) => {
   const { account } = useWallet()
-  const farm = useFarm(pid)
+  const sharePool = useSharePool(pid)
+  const farmPool = useFarm(pid)
+  const farm = isSharePool ? sharePool : farmPool
+  console.log('useApprove::farm:', farm)
+
+  if (!account) {
+    console.error('useApprove::error:', 'Unlock wallet first!')
+  }
 
   const handleApprove = useCallback(async () => {
     try {
       return await lpContract.methods.approve(farm.poolAddress, ethers.constants.MaxUint256)
         .send({ from: account })
     } catch (e) {
-      console.error(e)
+      console.error('useApprove::handleApprove:error:', e)
       return false
     }
   }, [account, lpContract, farm])

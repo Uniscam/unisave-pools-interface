@@ -9,11 +9,10 @@ import PageHeader from './components/PageHeader'
 import WalletProviderModal from '../../components/WalletProviderModal'
 
 import useModal from '../../hooks/useModal'
+import { useY3dPrice } from '../../hooks/useY3dPrice'
 
 import Farm from '../Farm'
-
 import FarmCards from './components/FarmCards'
-import { useY3dPrice } from '../../hooks/useY3dPrice'
 
 const Farms: React.FC = () => {
   const { path } = useRouteMatch()
