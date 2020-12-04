@@ -24,7 +24,7 @@ const useStakedBalance = (pid: number, symbol: string) => {
   const fetchBalance = useCallback(async () => {
     const balance = await contract.methods._subBalances(account, tokenAddr).call();
     setBalance(new BigNumber(balance))
-  }, [account, contract])
+  }, [account, contract, tokenAddr])
 
   useEffect(() => {
     if (account && contract) {
