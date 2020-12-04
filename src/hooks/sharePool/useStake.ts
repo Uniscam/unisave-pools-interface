@@ -9,9 +9,12 @@ import useSharePool from '../useSharePool'
 import { getContract } from '../../utils/pool'
 import BigNumber from 'bignumber.js'
 
-const useStake = (pid: number, isWBNB: boolean) => {
+const useStake = (pid: number, symbol: string) => {
   const { account, ethereum } = useWallet()
   const farm = useSharePool(pid)
+  const findTokenInfo = farm.stakingTokenAddresses.find(stake => stake.symbol === symbol)
+  const tokenAddr = findTokenInfo.address
+  console.log('useStake::farm:', farm, 'findTokenInfo:', findTokenInfo)
 
   const contract = useMemo(() => {
     return getContract(ethereum as provider, farm.poolAddress)
@@ -21,9 +24,7 @@ const useStake = (pid: number, isWBNB: boolean) => {
     async (amount: string) => {
       const value = new BigNumber(amount).times(new BigNumber(10).pow(18)).toString()
 
-      const call = !isWBNB
-        ? contract.methods.stake(value).send({ from: account })
-        : contract.methods.stake().send({ from: account, value })
+      const call = contract.methods.stake(tokenAddr, value).send({ from: account })
 
       const txHash = call.on('transactionHash', (tx: any) => {
         console.log(tx)
@@ -31,7 +32,7 @@ const useStake = (pid: number, isWBNB: boolean) => {
       })
       console.log(txHash)
     },
-    [account, contract.methods, isWBNB],
+    [account, contract.methods, tokenAddr],
   )
 
   const handleStakeWithRef = useCallback(
@@ -43,9 +44,7 @@ const useStake = (pid: number, isWBNB: boolean) => {
       console.log('amount', addr)
       const value = new BigNumber(amount).times(new BigNumber(10).pow(18)).toString()
 
-      const call = !isWBNB
-        ? contract.methods.stakeWithRef(value, addr).send({ from: account })
-        : contract.methods.stakeWithRef(addr).send({ from: account, value })
+      const call = contract.methods.stakeWithRef(tokenAddr, value, addr).send({ from: account })
 
       const txHash = call.on('transactionHash', (tx: any) => {
         console.log(tx)
@@ -53,7 +52,7 @@ const useStake = (pid: number, isWBNB: boolean) => {
       })
       console.log(txHash)
     },
-    [account, contract.methods, isWBNB],
+    [account, contract.methods, tokenAddr],
   )
 
   return { onStake: handleStake, onStakeWithRef: handleStakeWithRef }

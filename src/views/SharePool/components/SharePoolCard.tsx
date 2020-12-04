@@ -20,7 +20,7 @@ export interface SharePoolCardProps {
 }
 
 const SharePoolCard: React.FC<SharePoolCardProps> = ({ sharePool }) => {
-  const { poolAddress, stakingTokenAddresses, earnToken, /* earnTokenAddress,*/ pid, name: symbol, icon: poolIcon, id: poolId } = sharePool
+  const { poolAddress, stakingTokenAddresses, earnToken, /* earnTokenAddress,*/ pid, name: symbol, icon: poolIcon, id: poolId, magnification, p3d } = sharePool
   // const { account, chainId } = useWallet()
   const stakingTokenAddress = stakingTokenAddresses[0].address
   // const stakingToken = stakingTokenAddresses[0].symbol
@@ -71,7 +71,7 @@ const SharePoolCard: React.FC<SharePoolCardProps> = ({ sharePool }) => {
       <Card>
         <CardContent>
           <StyledContent>
-            {/* <StyledMagnification>{farm.magnification}X</StyledMagnification> */}
+            <StyledMagnification>{magnification}X</StyledMagnification>
             <StyledCardIcon style={isPairToken ? { height: '40px', marginTop: '30px' } : {}}>
               <StyledIconImage style={isPairToken ? { height: '40px' } : {}} src={imagePath} alt="token-icon" />
             </StyledCardIcon>
@@ -97,7 +97,7 @@ const SharePoolCard: React.FC<SharePoolCardProps> = ({ sharePool }) => {
               <StyledDetail>
                 <StyledDetailSpan>P3D</StyledDetailSpan>
                 <StyledDetailSpan>
-                  {/* {((typeof p3d === 'string' && p3d === 'NaN') || isNaN(p3d)) ? 0 : p3d}% */}
+                  {((typeof p3d === 'string' && p3d === 'NaN') || isNaN(p3d)) ? 0 : p3d}%
                 </StyledDetailSpan>
               </StyledDetail>
             </StyledDetails>
@@ -179,19 +179,19 @@ const StyledDetailSpan = styled.span`
   }
 `
 
-// const StyledMagnification = styled.div`
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   background-color: #F7CA2D;
-//   border-radius: 13px;
-//   width: 52px;
-//   height: 24px;
-//   line-height: 24px;
-//   color: #000000;
-//   font-size: 16px;
-//   text-align: center;
-//   font-weight: 600;
-// `
+const StyledMagnification = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #F7CA2D;
+  border-radius: 13px;
+  width: 52px;
+  height: 24px;
+  line-height: 24px;
+  color: #000000;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 600;
+`
 
 export default SharePoolCard

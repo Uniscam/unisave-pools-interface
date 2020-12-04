@@ -21,7 +21,9 @@ const SharePool: React.FC = () => {
     earnToken: '',
     earnTokenAddress: '',
     id: '',
-    icon: 'y3d'
+    icon: 'y3d',
+    p3d: 0,
+    magnification: 0
   }
   const { pid, stakingTokenAddresses, earnToken, earnTokenAddress } = useSharePool(poolId) || initPool
 

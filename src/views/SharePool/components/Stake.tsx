@@ -43,7 +43,7 @@ const Stake: React.FC<StakeProps> = ({ lpContract, pid, tokenName, isWBNB }) => 
 
   const stakedBalance = useStakedBalance(pid)
 
-  const { onStake, onStakeWithRef } = useStake(pid, isWBNB)
+  const { onStake, onStakeWithRef } = useStake(pid, tokenName)
   const { onUnstake } = useUnstake(pid)
 
   const [onPresentDeposit] = useModal(

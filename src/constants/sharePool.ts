@@ -18,6 +18,8 @@ export interface SharePoolObj {
     stakingTokenAddresses: Array<StakingTokenAddressObj>
     icon: string
     name: string
+    p3d: number
+    magnification: number
 }
 
 export const SharePools: Array<SharePoolObj> = [
@@ -25,7 +27,7 @@ export const SharePools: Array<SharePoolObj> = [
         poolAddresses: {
             56: '0x963FfA229E0197a3cA070Da8b0C9316142B635d2',
             97: '0x68741369e9d45227a03bD420D1429A0684809837',
-             // Ref 0x63c96a4ef286a807ee2ae3131331669efed9e6a1
+            // Ref 0x63c96a4ef286a807ee2ae3131331669efed9e6a1
         },
         stakingTokenAddresses: [
             {

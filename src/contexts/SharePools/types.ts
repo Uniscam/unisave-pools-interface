@@ -17,6 +17,8 @@ export interface SharePool {
   earnTokenAddress: string
   id: string
   icon: string
+  p3d: number
+  magnification: number
 }
 
 export interface SharePoolsContext {

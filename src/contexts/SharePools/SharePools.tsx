@@ -9,6 +9,7 @@ const SharePools: React.FC = ({ children }) => {
   const { chainId } = useWallet()
   const filtered = Pools.filter(pool => pool.poolAddresses[chainId])
   const sharePools: Array<SharePool> = filtered.map((sharePool, index) => {
+    const { name, icon, poolAddresses, p3d, magnification } = sharePool
     const stakings: Array<StakingTokenAddress> = sharePool.stakingTokenAddresses.map(staking => {
       const stake: StakingTokenAddress = {
         address: staking[chainId],
@@ -19,12 +20,14 @@ const SharePools: React.FC = ({ children }) => {
     const pool: SharePool = {
       id: `share-pool-${index}`,
       pid: index,
-      name: sharePool.name,
-      icon: sharePool.icon,
+      name,
+      icon,
       earnToken: 'y3d',
       earnTokenAddress: Y3D_ADDRESS[chainId],
-      poolAddress: sharePool.poolAddresses[chainId],
-      stakingTokenAddresses: [...stakings]
+      poolAddress: poolAddresses[chainId],
+      stakingTokenAddresses: [...stakings],
+      p3d,
+      magnification
     }
     return pool
   })
