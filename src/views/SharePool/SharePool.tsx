@@ -10,9 +10,12 @@ import PageHeader from './components/PageHeader'
 import Spacer from '../../components/Spacer'
 import Stake from './components/Stake'
 import Harvest from './components/Harvest'
+import Button from '../../components/Button'
+import WalletProviderModal from '../../components/WalletProviderModal'
+import useModal from '../../hooks/useModal'
 
 const SharePool: React.FC = () => {
-  const { poolId } = useParams<{ poolId?: string}>()
+  const { poolId } = useParams<{ poolId?: string }>()
   const initPool: Pool = {
     pid: 0,
     name: '',
@@ -31,7 +34,7 @@ const SharePool: React.FC = () => {
     window.scrollTo(0, 0)
   }, [])
 
-  const { ethereum } = useWallet()
+  const { ethereum, account } = useWallet()
   const earnTokenName = earnToken.toUpperCase()
   const lpPoolInfos = useMemo(() => {
     return stakingTokenAddresses.map(stake => {
@@ -47,30 +50,44 @@ const SharePool: React.FC = () => {
       }
     })
   }, [earnTokenAddress, earnTokenName, ethereum, stakingTokenAddresses])
+  const [onPresentWalletProviderModal] = useModal(<WalletProviderModal />)
 
   return (
     <>
-      <PageHeader
-        title={`Deposit Tokens and earn ${earnTokenName}`}
-      />
-      <StyledSharePool>
-        <StyledCardsWrapper>
-          <StyledCardWrapper>
-            <Harvest pid={pid} />
-          </StyledCardWrapper>
-          {lpPoolInfos.map(pool => (
-            <StyledCardWrapper>
-              <Stake
-                pid={pid}
-                lpContract={pool.contract}
-                tokenName={pool.tokenName}
-                isWBNB={pool.isWBNB}
+      { account ? (
+        <>
+          <PageHeader
+            title={`Deposit Tokens and earn ${earnTokenName}`}
+          />
+          <StyledSharePool>
+            <StyledCardsWrapper>
+              <StyledCardWrapper>
+                <Harvest pid={pid} />
+              </StyledCardWrapper>
+              {lpPoolInfos.map(pool => (
+                <StyledCardWrapper key={pool.tokenName}>
+                  <Stake
+                    pid={pid}
+                    lpContract={pool.contract}
+                    tokenName={pool.tokenName}
+                    isWBNB={pool.isWBNB}
+                  />
+                </StyledCardWrapper>
+              ))}
+            </StyledCardsWrapper>
+          </StyledSharePool>
+          <Spacer size="lg" />
+        </>
+      ) : (
+          <StyledUnlockButtonWrapper>
+            <StyledUnlockButton>
+              <Button
+                onClick={onPresentWalletProviderModal}
+                text="🔓 Unlock Wallet"
               />
-            </StyledCardWrapper>
-          ))}
-        </StyledCardsWrapper>
-      </StyledSharePool>
-      <Spacer size="lg" />
+            </StyledUnlockButton>
+          </StyledUnlockButtonWrapper>
+        )}
     </>
   )
 }
@@ -101,6 +118,18 @@ const StyledCardWrapper = styled.div`
   @media (max-width: 768px) {
     width: 80%;
   }
+`
+
+const StyledUnlockButtonWrapper = styled.div`
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  height: 80vh;
+`
+
+const StyledUnlockButton = styled.div`
+  width: 200px;
 `
 
 export default SharePool
