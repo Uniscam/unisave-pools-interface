@@ -14,7 +14,7 @@ const useUnstake = (pid: number, symbol: string) => {
   const farm = useSharePool(pid)
   const findTokenInfo = farm.stakingTokenAddresses.find(stake => stake.symbol === symbol)
   const tokenAddr = findTokenInfo.address
-  console.log('useUntake::findTokenInfo:', findTokenInfo, 'symbol:', symbol)
+  // console.log('useUntake::findTokenInfo:', findTokenInfo, 'symbol:', symbol)
 
   const contract = useMemo(() => {
     return getContract(ethereum as provider, farm.poolAddress)
