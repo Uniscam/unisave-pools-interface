@@ -59,7 +59,7 @@ export const SharePools: Array<SharePoolObj> = [
             }
         ],
         icon: 'y3d',
-        name: 'Muti Pool',
+        name: 'StableLP Pool',
         p3d: 0,
         magnification: 2,
     }
