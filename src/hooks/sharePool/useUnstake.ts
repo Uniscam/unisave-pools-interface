@@ -6,7 +6,7 @@ import { useWallet } from 'use-wallet'
 
 // import { unstake, getMasterChefContract } from '../sushi/utils'
 import useSharePool from '../useSharePool'
-import { getContract } from '../../utils/pool'
+import { getContract } from '../../utils/sharePool'
 import BigNumber from 'bignumber.js'
 
 const useUnstake = (pid: number) => {

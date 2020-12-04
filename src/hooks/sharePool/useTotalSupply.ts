@@ -2,7 +2,7 @@ import BigNumber from "bignumber.js"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { useWallet } from "use-wallet"
 import { provider } from 'web3-core'
-import { getContract } from "../../utils/pool"
+import { getContract } from "../../utils/sharePool"
 import useSharePool from '../useSharePool'
 
 const useTotalSupply = (pid: number) => {

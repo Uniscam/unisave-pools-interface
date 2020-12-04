@@ -5,7 +5,7 @@ import { provider } from 'web3-core'
 import { useWallet } from 'use-wallet'
 
 // import { harvest, getMasterChefContract } from '../sushi/utils'
-import { getContract } from '../../utils/pool'
+import { getContract } from '../../utils/sharePool'
 import useSharePool from '../useSharePool'
 
 const useReward = (pid: number) => {

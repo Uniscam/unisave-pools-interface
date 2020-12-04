@@ -8,7 +8,7 @@ import { useWallet } from 'use-wallet'
 // import useSushi from './useSushi'
 // import useBlock from './useBlock'
 import useSharePool from '../useSharePool'
-import { getContract } from '../../utils/pool'
+import { getContract } from '../../utils/sharePool'
 
 const useStakedBalance = (pid: number) => {
   const [balance, setBalance] = useState(new BigNumber(0))

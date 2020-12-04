@@ -6,7 +6,7 @@ import { useWallet } from 'use-wallet'
 
 // import { stake, getMasterChefContract } from '../sushi/utils'
 import useSharePool from '../useSharePool'
-import { getContract } from '../../utils/pool'
+import { getContract } from '../../utils/sharePool'
 import BigNumber from 'bignumber.js'
 
 const useStake = (pid: number, symbol: string) => {
@@ -14,7 +14,7 @@ const useStake = (pid: number, symbol: string) => {
   const farm = useSharePool(pid)
   const findTokenInfo = farm.stakingTokenAddresses.find(stake => stake.symbol === symbol)
   const tokenAddr = findTokenInfo.address
-  console.log('useStake::farm:', farm, 'findTokenInfo:', findTokenInfo)
+  console.log('useStake::farm:', farm, 'findTokenInfo:', findTokenInfo, 'symbol:', symbol)
 
   const contract = useMemo(() => {
     return getContract(ethereum as provider, farm.poolAddress)

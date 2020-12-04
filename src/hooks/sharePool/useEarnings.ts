@@ -7,7 +7,7 @@ import { useWallet } from 'use-wallet'
 // import { getEarned, getMasterChefContract } from '../sushi/utils'
 // import useSushi from './useSushi'
 // import useBlock from './useBlock'
-import { getContract } from '../../utils/pool'
+import { getContract } from '../../utils/sharePool'
 import useSharePool from '../useSharePool'
 
 const useEarnings = (pid: number) => {
