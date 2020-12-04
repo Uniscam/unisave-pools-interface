@@ -11,6 +11,7 @@ import TransactionProvider from './contexts/Transactions'
 // import SushiProvider from './contexts/SushiProvider'
 import NFTsProvider from './contexts/NFTs'
 import AcceleratorsProvider from './contexts/Accelerators'
+import SharePoolsProvider from './contexts/SharePools'
 import useModal from './hooks/useModal'
 import theme from './theme'
 import Farms from './views/Farms'
@@ -21,6 +22,7 @@ import NFTs from './views/NFTs'
 import VestNFT from './views/VestNFT'
 import MyNFT from './views/MyNFT'
 import Referral from './views/Referral'
+import SharePool from './views/SharePool'
 
 const App: React.FC = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
@@ -60,6 +62,9 @@ const App: React.FC = () => {
           <Route path="/mynft">
             <MyNFT />
           </Route>
+          <Route path="/sharepool/:poolId">
+            <SharePool />
+          </Route>
         </Switch>
       </Router>
       <Disclaimer />
@@ -68,21 +73,24 @@ const App: React.FC = () => {
 }
 
 const Providers: React.FC = ({ children }) => {
+  const chainId = Number(process.env.REACT_APP_CHAIN_ID) || 56
   return (
     <ThemeProvider theme={theme}>
       <UseWalletProvider
-        chainId={56}
+        chainId={chainId}
         connectors={{
           walletconnect: { rpcUrl: 'https://bsc-dataseed.binance.org/' },
         }}
       >
           <TransactionProvider>
             <FarmsProvider>
-              <NFTsProvider>
-                <AcceleratorsProvider>
-                  <ModalsProvider>{children}</ModalsProvider>
-                </AcceleratorsProvider>
-              </NFTsProvider>
+              <SharePoolsProvider>
+                <NFTsProvider>
+                  <AcceleratorsProvider>
+                    <ModalsProvider>{children}</ModalsProvider>
+                  </AcceleratorsProvider>
+                </NFTsProvider>
+              </SharePoolsProvider>
             </FarmsProvider>
           </TransactionProvider>
       </UseWalletProvider>
