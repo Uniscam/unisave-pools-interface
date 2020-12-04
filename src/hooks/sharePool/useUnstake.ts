@@ -9,9 +9,12 @@ import useSharePool from '../useSharePool'
 import { getContract } from '../../utils/sharePool'
 import BigNumber from 'bignumber.js'
 
-const useUnstake = (pid: number) => {
+const useUnstake = (pid: number, symbol: string) => {
   const { account, ethereum } = useWallet()
   const farm = useSharePool(pid)
+  const findTokenInfo = farm.stakingTokenAddresses.find(stake => stake.symbol === symbol)
+  const tokenAddr = findTokenInfo.address
+  console.log('useUntake::findTokenInfo:', findTokenInfo, 'symbol:', symbol)
 
   const contract = useMemo(() => {
     return getContract(ethereum as provider, farm.poolAddress)
@@ -22,6 +25,7 @@ const useUnstake = (pid: number) => {
       const value = new BigNumber(amount).times(new BigNumber(10).pow(18)).toString()
       const txHash = await contract.methods
       .withdraw(
+        tokenAddr,
         value,
       )
       .send({ from: account })
@@ -31,7 +35,7 @@ const useUnstake = (pid: number) => {
       })
       console.log(txHash)
     },
-    [account, contract],
+    [account, contract, tokenAddr],
   )
 
   return { onUnstake: handleUnstake }
