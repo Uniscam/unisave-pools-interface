@@ -7,7 +7,7 @@ const Nav: React.FC = () => {
       <StyledLink target="_blank" href="https://app.unisave.exchange/#/swap?inputCurrency=0x12e2fcfa079fc23ae82ab82707b402410321103f&outputCurrency=0xe9e7cea3dedca5984780bafc599bd69add087d56">
         Swap
       </StyledLink>
-      <StyledLink  target="_blank" href="https://info.y3d.finance/">
+      <StyledLink  target="_blank" href="http://bsc-info.unisave.exchange/">
         Info
       </StyledLink>      
       <StyledLink target="_blank" href="https://t.me/y3dScam">
