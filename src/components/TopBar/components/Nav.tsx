@@ -14,6 +14,9 @@ const Nav: React.FC = () => {
       <StyledLink exact activeClassName="active" to="/referral">
         Referral
       </StyledLink>
+      <StyledExternalLink target="_blank" href="https://app.unisave.exchange/#/swap?inputCurrency=0x12e2fcfa079fc23ae82ab82707b402410321103f&outputCurrency=0xe9e7cea3dedca5984780bafc599bd69add087d56">
+        Swap
+      </StyledExternalLink>
       {/* <StyledLink exact activeClassName="active" to="/shop">
         Shop
       </StyledLink>
@@ -39,6 +42,25 @@ const StyledNav = styled.nav`
 `
 
 const StyledLink = styled(NavLink)`
+  color: ${(props) => props.theme.color.yellow};
+  font-weight: normal;
+  padding-left: ${(props) => props.theme.spacing[3]}px;
+  padding-right: ${(props) => props.theme.spacing[3]}px;
+  text-decoration: none;
+  &:hover {
+    color: ${(props) => props.theme.color.yellow};
+  }
+  &.active {
+    color: ${(props) => props.theme.color.yellow};
+    font-weight: bold;
+  }
+  @media (max-width: 400px) {
+    padding-left: ${(props) => props.theme.spacing[2]}px;
+    padding-right: ${(props) => props.theme.spacing[2]}px;
+  }
+`
+
+const StyledExternalLink = styled.a`
   color: ${(props) => props.theme.color.yellow};
   font-weight: normal;
   padding-left: ${(props) => props.theme.spacing[3]}px;
