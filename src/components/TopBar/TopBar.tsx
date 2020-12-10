@@ -19,7 +19,9 @@ const TopBar: React.FC<TopBarProps> = ({ onPresentMobileMenu }) => {
           <StyledLogoWrapper>
             <Logo />
           </StyledLogoWrapper>
-          <Nav />
+          <StyledNavWrapper>
+            <Nav />
+          </StyledNavWrapper>
           <StyledAccountButtonWrapper>
             <AccountButton />
           </StyledAccountButtonWrapper>
@@ -29,7 +31,11 @@ const TopBar: React.FC<TopBarProps> = ({ onPresentMobileMenu }) => {
   )
 }
 
-const StyledLogoWrapper = styled.div``
+const StyledLogoWrapper = styled.div`
+  @media only screen and (max-width: 768px) {
+    grid-row: row1;
+  }
+`
 
 const StyledTopBar = styled.div`
   background-color: rgba(8,8,8,0.25);
@@ -38,19 +44,22 @@ const StyledTopBar = styled.div`
 const StyledTopBarInner = styled.div`
   align-items: center;
   display: flex;
-  height: ${(props) => props.theme.topBarSize}px;
+  min-height: ${(props) => props.theme.topBarSize}px;
   justify-content: space-between;
   max-width: ${(props) => props.theme.siteWidth}px;
   width: 100%;
+  @media only screen and (max-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: [row1] auto [row2] 32px;
+  }
 `
-// const StyledNavWrapper = styled.div`
-//   display: flex;
-//   flex: 1;
-//   justify-content: center;
-//   @media (max-width: 400px) {
-//     display: none;
-//   }
-// `
+const StyledNavWrapper = styled.div`
+  @media only screen and (max-width: 768px) {
+    grid-row: row2;
+    grid-column: 1 / 3;
+  }
+`
 
 const StyledAccountButtonWrapper = styled.div`
   align-items: center;
@@ -60,6 +69,9 @@ const StyledAccountButtonWrapper = styled.div`
   @media (max-width: 400px) {
     justify-content: center;
     width: auto;
+  }
+  @media only screen and (max-width: 768px) {
+    grid-row: row1;
   }
 `
 

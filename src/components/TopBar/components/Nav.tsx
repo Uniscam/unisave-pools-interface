@@ -10,11 +10,10 @@ const Nav: React.FC = () => {
       </StyledLink>
       <StyledLink exact activeClassName="active" to="/farms">
         Menu
-      </StyledLink>    
+      </StyledLink>
       <StyledLink exact activeClassName="active" to="/referral">
         Referral
-      </StyledLink>            
-
+      </StyledLink>
       {/* <StyledLink exact activeClassName="active" to="/shop">
         Shop
       </StyledLink>
@@ -34,6 +33,9 @@ const Nav: React.FC = () => {
 const StyledNav = styled.nav`
   align-items: center;
   display: flex;
+  @media only screen and (max-width: 768px) {
+    justify-content: center;
+  }
 `
 
 const StyledLink = styled(NavLink)`

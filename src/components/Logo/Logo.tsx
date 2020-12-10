@@ -20,6 +20,10 @@ const StyledLogo = styled(Link)`
   min-width: 44px;
   padding: 0;
   text-decoration: none;
+  @media only screen and (max-width: 768px) {
+    grid-row: row1;
+    justify-content: flex-start;
+  }
 `
 
 // const StyledText = styled.span`

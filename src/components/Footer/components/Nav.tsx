@@ -32,6 +32,10 @@ const Nav: React.FC = () => {
 const StyledNav = styled.nav`
   align-items: center;
   display: flex;
+  @media only screen and (max-width: 768px) {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 `
 
 const StyledLink = styled.a`
@@ -41,6 +45,9 @@ const StyledLink = styled.a`
   text-decoration: none;
   &:hover {
     color: ${(props) => props.theme.color.yellow};
+  }
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 10px;
   }
 `
 
