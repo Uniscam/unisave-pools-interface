@@ -1,4 +1,4 @@
-export const Pools = [
+export const Pools: any[] = [
 //     {
 //         poolAddresses: {
 //             56: '0x07dB5Da96981A1937037c8F293Ae8efc43EE66b3',
